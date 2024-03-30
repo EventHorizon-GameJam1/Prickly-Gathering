@@ -1,0 +1,156 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class InputManager : MonoBehaviour
+{
+    //Singleton
+    public static InputManager Instance;
+
+    #region EVENTS
+    //---------------------------GAMEPLAY---------------------------
+    //Movement
+    public delegate void DirectionChanged(Vector3 direction);
+    public static event DirectionChanged OnDirectionChanged = (Vector3 direction) => { };
+    //Sprint
+    public delegate void SprintCalled();
+    public static event SprintCalled OnSprint = () => { };
+    public static event SprintCalled OnSprintCancelled = () => { };
+    //Jump
+    public delegate void JumpCalled();
+    public static event JumpCalled OnJump = () => { };
+    //Parry
+    public delegate void ParryCalled();
+    public static event ParryCalled OnParry = () => { };
+    //-----------------------------GAME-----------------------------
+    //Menu
+    public delegate void GameMenuCalled();
+    public static event GameMenuCalled OnMenuCalled = () => { };
+    //------------------------------UI------------------------------
+    //UI Movement
+    public delegate void UI_DirectionChanged(Vector3 direction);
+    public static event UI_DirectionChanged OnUIDirectionChanged = (Vector3 direction) => { };
+    //UI Select
+    public delegate void UI_Select();
+    public static event UI_Select OnUISelect = () => { };
+    //--------------------------------------------------------------
+    #endregion
+
+    //Serialized Var
+    [SerializeField] private bool PlayOnPause = false;
+
+    private InputMap InputActions;
+
+    private void Awake()
+    {
+        //Set Up Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Debug.LogWarning("WARNING: MULTIPLE INPUT MANAGER FOUND!");
+            Destroy(this.gameObject);
+            return;
+        }
+
+        //setup InputMap
+        InputActions = new InputMap();
+        InputActions.Enable();
+        
+        //set up enabled action
+        if (PlayOnPause)
+        {
+            InputActions.Gameplay.Disable();
+            InputActions.Menu.Enable();
+        }
+        else
+        {
+            InputActions.Gameplay.Enable();
+            InputActions.Menu.Disable();
+        }
+
+        //Setup events
+        //---------------------------GAMEPLAY---------------------------
+        //Movement
+        InputActions.Gameplay.Movement.performed += CallMovement;
+        //Sprint
+        InputActions.Gameplay.Sprint.started += CallSprint;
+        InputActions.Gameplay.Sprint.canceled += CancelSprint;
+        //Jump
+        InputActions.Gameplay.Jump.performed += CallJump;
+        //Parry
+        InputActions.Gameplay.Parry.performed += CallParry;
+        //-----------------------------GAME-----------------------------
+        //Menu
+        InputActions.Gameplay.EnterMenu.performed += CallMenu;
+        InputActions.Menu.ExitMenu.performed += CallMenu;
+        //------------------------------UI------------------------------
+        //UI Movement
+        InputActions.Menu.MenuNavigation.performed += CallUIMovement;
+        //UI Select
+        InputActions.Menu.Select.performed += CallUISelect;
+        //--------------------------------------------------------------
+    }
+
+    private void Start()
+    {
+        if (PlayOnPause)
+            OnMenuCalled();
+    }
+
+    private void Update()
+    {
+        if (InputActions.Gameplay.Movement.IsPressed())
+            OnDirectionChanged(InputActions.Gameplay.Movement.ReadValue<Vector3>());
+    }
+
+    #region EVENTS FUNCTIONS
+    //---------------------------GAMEPLAY---------------------------
+    //Movement
+    private void CallMovement(InputAction.CallbackContext context) => OnDirectionChanged(context.ReadValue<Vector3>());
+    //Sprint
+    private void CallSprint(InputAction.CallbackContext context) => OnSprint();
+    private void CancelSprint(InputAction.CallbackContext context) => OnSprintCancelled();
+    //Jump
+    private void CallJump(InputAction.CallbackContext context) => OnJump();
+    //Parry
+    private void CallParry(InputAction.CallbackContext context) => OnParry();
+    //-----------------------------GAME-----------------------------
+    //Menu
+    private void CallMenu(InputAction.CallbackContext context) => OnMenuCalled();
+    //------------------------------UI------------------------------
+    //UI Movement
+    private void CallUIMovement(InputAction.CallbackContext context) => OnUIDirectionChanged(context.ReadValue<Vector2>());
+    //UI Select
+    private void CallUISelect(InputAction.CallbackContext context) => OnUISelect();
+    //--------------------------------------------------------------
+    #endregion
+
+    private void OnDisable()
+    {
+        //Disconnect events
+        //---------------------------GAMEPLAY---------------------------
+        //Movement
+        OnDirectionChanged -= OnDirectionChanged;
+        //Sprint
+        OnSprint -= OnSprint;
+        OnSprintCancelled -= OnSprintCancelled;
+        //Jump
+        OnJump -= OnJump;
+        //Parry
+        OnParry -= OnParry;
+        //-----------------------------GAME-----------------------------
+        //Menu
+        OnMenuCalled -= OnMenuCalled;
+        //------------------------------UI------------------------------
+        //UI Movement
+        OnUIDirectionChanged -= OnUIDirectionChanged;
+        //UI Select
+        OnUISelect -= OnUISelect;
+        //--------------------------------------------------------------
+    }
+}
