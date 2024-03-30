@@ -1,33 +1,31 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.VFX;
 
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody Body;
 
-    [SerializeField] private PlayerMovement Movement;
+    [SerializeField] private PlayerSettings PlayerSettings;
 
     private void Awake()
     {
         Body = GetComponent<Rigidbody>();
-        Movement.Rigidbody = Body;
+        PlayerSettings.Movement.Rigidbody = Body;
     }
 
     private void OnEnable()
     {
-        InputManager.OnDirectionChanged += Movement.ApplySpeed;
-        InputManager.OnSprint += Movement.Sprint;
-        InputManager.OnSprintCancelled += Movement.CancelSprint;
-        InputManager.OnJump += Movement.Jump;
+        InputManager.OnDirectionChanged += PlayerSettings.Movement.ApplySpeed;
+        InputManager.OnSprint += PlayerSettings.Movement.Sprint;
+        InputManager.OnSprintCancelled += PlayerSettings.Movement.CancelSprint;
+        InputManager.OnJump += PlayerSettings.Movement.Jump;
     }
 
     private void OnDisable()
     {
-        InputManager.OnDirectionChanged -= Movement.ApplySpeed;
-        InputManager.OnSprint -= Movement.Sprint;
-        InputManager.OnSprintCancelled -= Movement.CancelSprint;
-        InputManager.OnJump -= Movement.Jump;
+        InputManager.OnDirectionChanged -= PlayerSettings.Movement.ApplySpeed;
+        InputManager.OnSprint -= PlayerSettings.Movement.Sprint;
+        InputManager.OnSprintCancelled -= PlayerSettings.Movement.CancelSprint;
+        InputManager.OnJump -= PlayerSettings.Movement.Jump;
     }
 }
