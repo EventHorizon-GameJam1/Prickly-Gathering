@@ -13,6 +13,8 @@ public class PlayerMovement : Movement
     
     public void Jump()
     {
+        if(Disabled) return;
+
         if(!IsJumping)
             EnumeratorManager.AddEnumerator(JumpAnimation());
     }
@@ -30,5 +32,15 @@ public class PlayerMovement : Movement
             yield return null;
         }
         IsJumping = false;
+    }
+
+    new public void Disable()
+    {
+        base.Disable();
+    }
+
+    new public void Enable()
+    {
+        base.Enable();
     }
 }
