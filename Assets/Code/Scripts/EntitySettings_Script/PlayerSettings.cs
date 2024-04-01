@@ -13,8 +13,8 @@ public class PlayerSettings : ScriptableObject
 
     [Header("Movement Settings")]
     [SerializeField] public PlayerMovement Movement;
-    [Header("Animation Settings")]
-    [SerializeField] public AnimationController AnimationController;
+    
+    [HideInInspector] public AnimationController AnimationController;
 
     private void Awake()
     {

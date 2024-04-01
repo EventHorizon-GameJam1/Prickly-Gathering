@@ -7,17 +7,13 @@ public class AnimationController
     [HideInInspector] public Animator Animator { set; private get; }
     [HideInInspector] public SpriteRenderer Renderer { set; private get; }
 
-    private Vector3 Direction;
-
     public void UpdateDirection(Vector3 direction)
     {
-        Direction = direction;
         if (direction.x != 0f)
             FlipAnimation(direction.x);
 
         if (direction == Vector3.zero)
         {
-            Animator.SetBool("IsIdling", true);
             Animator.SetBool("IsWalking", false);
         }
         else
@@ -26,29 +22,19 @@ public class AnimationController
         }
     }
 
-    public void PlaySprint()
-    {
-        if (Direction != Vector3.zero)
-        {
-            Animator.SetBool("IsRunning", true);
-        }
-    }
-
-    public void StopSprint()
-    {
-        if (Direction != Vector3.zero)
-        {
-            Animator.SetBool("IsRunning", false);
-        }
-    }
-
+    public void PlaySprint() => Animator.SetBool("IsRunning", true);
+    public void StopSprint() => Animator.SetBool("IsRunning", false);
     public void PlaySpecial()
     {
+        Animator.SetBool("IsWalking", false);
+        Animator.SetBool("IsRunning", false);
         Animator.SetBool("IsSpecial", true);
     }
 
     public void StopSpecial()
     {
+        Animator.SetBool("IsWalking", false);
+        Animator.SetBool("IsRunning", false);
         Animator.SetBool("IsSpecial", false);
     }
 

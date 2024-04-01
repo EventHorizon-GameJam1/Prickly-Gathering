@@ -10,6 +10,7 @@ public class Movement
 
     private float SprintValue = 0f;
     private bool IsSprinting = false;
+
     protected bool Disabled = false;
 
     public void ApplySpeed(Vector3 direction)
@@ -41,6 +42,7 @@ public class Movement
 
     public void Disable()
     {
+        Rigidbody.velocity = Vector3.zero;
         Disabled = true;
     }
 
