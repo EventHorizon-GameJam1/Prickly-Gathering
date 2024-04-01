@@ -7,10 +7,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private PlayerSettings PlayerSettings;
     [SerializeField] private SpriteRenderer SpriteRenderer;
+    [SerializeField] private Animator Animator;
     public bool IsInvulnerable { private set; get; } = false;
 
     private Rigidbody Body;
-    private Animator Animator;
 
     //Parry var
     //Parry Time After Invulnerability (TAI)
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
         Animator = GetComponent<Animator>();
         //Set Up
         PlayerSettings.Movement.Rigidbody = Body;
-        PlayerSettings.AnimationController.Animator = Animator;
+        PlayerSettings.AnimationController.SetAnimator(Animator);
         PlayerSettings.AnimationController.Renderer = SpriteRenderer;
         ParryWait = new WaitForSeconds(PlayerSettings.ParryInvulnerabilityTime);
         InvulnerabilityWait = new WaitForSeconds(Parry_TAI);
@@ -66,6 +66,9 @@ public class PlayerController : MonoBehaviour
         InputManager.OnSprint += PlayerSettings.AnimationController.PlaySprint;
         InputManager.OnSprintCancelled += PlayerSettings.AnimationController.StopSprint;
         InputManager.OnParry += PlayerSettings.AnimationController.PlaySpecial;
+        //Jump
+        InputManager.OnJump += PlayerSettings.AnimationController.JumpAnimation;
+        PlayerSettings.Movement.OnJumpFinished += PlayerSettings.AnimationController.Enable;
     }
 
     private void OnDisable()
@@ -81,5 +84,9 @@ public class PlayerController : MonoBehaviour
         InputManager.OnDirectionChanged -= PlayerSettings.AnimationController.UpdateDirection;
         InputManager.OnSprint -= PlayerSettings.AnimationController.PlaySprint;
         InputManager.OnSprintCancelled -= PlayerSettings.AnimationController.StopSprint;
+        InputManager.OnParry -= PlayerSettings.AnimationController.PlaySpecial;
+        //Jump
+        InputManager.OnJump -= PlayerSettings.AnimationController.JumpAnimation;
+        PlayerSettings.Movement.OnJumpFinished -= PlayerSettings.AnimationController.Enable;
     }
 }

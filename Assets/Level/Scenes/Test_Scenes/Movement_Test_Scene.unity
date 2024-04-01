@@ -889,22 +889,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestPlayer_Prefab
       objectReference: {fileID: 0}
-    - target: {fileID: 529485350517087746, guid: 397bc4fa0af351c47a2a07af867c6fae,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
-    - target: {fileID: 529485350517087746, guid: 397bc4fa0af351c47a2a07af867c6fae,
-        type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 877552376812275381, guid: 397bc4fa0af351c47a2a07af867c6fae,
-        type: 3}
-      propertyPath: PlayerSettings
-      value: 
-      objectReference: {fileID: 11400000, guid: 60990c86a8d94da45a088f08f3926941,
-        type: 2}
     - target: {fileID: 2609435633452203105, guid: 397bc4fa0af351c47a2a07af867c6fae,
         type: 3}
       propertyPath: m_LocalPosition.x
