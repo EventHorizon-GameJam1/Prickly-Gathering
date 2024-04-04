@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 015fce4922f06d14085df17eea69a6b6, type: 3}
   m_Name: Player_Settings
   m_EditorClassIdentifier: 
+  m_ParrySustainTime: 3
+  m_ParryInvulnerabilityTime: 0.25
   Movement:
     MovementSpeed: 5
-    SprintIncreaser: 5
+    SprintMultiplier: 2
     Rigidbody: {fileID: 0}
     JumpHeight: 1.5
     JumpAnimationSpeed: 2
@@ -51,5 +53,3 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  AnimationController:
-    StatingState: 0

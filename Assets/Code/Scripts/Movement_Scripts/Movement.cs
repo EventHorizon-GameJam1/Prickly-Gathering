@@ -1,14 +1,15 @@
 using UnityEngine;
 
 [System.Serializable]
-public class Movement
+public abstract class Movement
 {
     [Header("Movement")]
-    [SerializeField] private float MovementSpeed = 1.0f;
-    [SerializeField] private float SprintIncreaser = 0.5f;
+    [SerializeField] public float MovementSpeed = 5f;
+    [SerializeField] public float SprintMultiplier = 2f;
     [HideInInspector] public Rigidbody Rigidbody;
 
-    private float SprintValue = 0f;
+    protected float SprintValue => MovementSpeed * SprintMultiplier;
+    private float ActualSprint = 1f;
     private bool IsSprinting = false;
 
     protected bool Disabled = false;
@@ -17,7 +18,7 @@ public class Movement
     {
         if(Disabled) return;
 
-        Rigidbody.velocity = direction.normalized * (MovementSpeed + SprintValue);
+        Rigidbody.velocity = direction.normalized * (MovementSpeed + ActualSprint);
     }
 
     public void Sprint()
@@ -26,7 +27,7 @@ public class Movement
 
         if (IsSprinting)
             return;
-        SprintValue += SprintIncreaser;
+        ActualSprint = SprintValue;
         ApplySpeed(Rigidbody.velocity.normalized);
         IsSprinting = true;
     }
@@ -35,7 +36,7 @@ public class Movement
     {
         if (Disabled) return;
 
-        SprintValue -= SprintIncreaser;
+        ActualSprint = 1f;
         ApplySpeed(Rigidbody.velocity.normalized);
         IsSprinting = false;
     }

@@ -12,7 +12,8 @@ public class AnimationController
         if (direction.x != 0f)
             FlipAnimation(direction.x);
 
-        if (direction == Vector3.zero)
+        float directionMagnitute = direction.magnitude;
+        if (directionMagnitute <= 0.25f)
         {
             Animator.SetBool("IsWalking", false);
         }

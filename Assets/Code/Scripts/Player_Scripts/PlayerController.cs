@@ -1,9 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using static PlayerController;
 
 [RequireComponent(typeof(Animator), typeof(Rigidbody), typeof(CapsuleCollider))]
 public class PlayerController : MonoBehaviour
 {
+    public delegate void PlayerReady(PlayerController player);
+    public static event PlayerReady OnPlayerReady = (PlayerController controller) => { };
 
     [SerializeField] private PlayerSettings PlayerSettings;
     [SerializeField] private SpriteRenderer SpriteRenderer;
@@ -11,6 +14,8 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody Body;
     private Animator Animator;
+
+    private float Stamina => PlayerSettings.PlayerStartStamina;
 
     //Parry var
     //Parry Time After Invulnerability (TAI)
@@ -27,8 +32,8 @@ public class PlayerController : MonoBehaviour
         PlayerSettings.Movement.Rigidbody = Body;
         PlayerSettings.AnimationController.Animator = Animator;
         PlayerSettings.AnimationController.Renderer = SpriteRenderer;
-        ParryWait = new WaitForSeconds(PlayerSettings.ParryInvulnerabilityTime);
-        InvulnerabilityWait = new WaitForSeconds(Parry_TAI);
+        InvulnerabilityWait = new WaitForSeconds(PlayerSettings.ParryInvulnerabilityTime);
+        ParryWait = new WaitForSeconds(Parry_TAI);
     }
 
     private void Start()
@@ -44,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator ParryCoroutine()
     {
+        PlayerSettings.AnimationController.PlaySpecial();
         IsInvulnerable = true;
         yield return ParryWait;
         IsInvulnerable = false;
@@ -66,10 +72,13 @@ public class PlayerController : MonoBehaviour
         InputManager.OnSprint += PlayerSettings.AnimationController.PlaySprint;
         InputManager.OnSprintCancelled += PlayerSettings.AnimationController.StopSprint;
         InputManager.OnParry += PlayerSettings.AnimationController.PlaySpecial;
+
+        OnPlayerReady(this);
     }
 
     private void OnDisable()
     {
+        OnPlayerReady += OnPlayerReady;
         //Controller Connections
         InputManager.OnParry -= Parry;
         //Movement Disconnections

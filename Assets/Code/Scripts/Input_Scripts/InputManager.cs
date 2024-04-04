@@ -70,6 +70,7 @@ public class InputManager : MonoBehaviour
             InputActions.Menu.Disable();
         }
 
+        #region Events Setup
         //Setup events
         //---------------------------GAMEPLAY---------------------------
         //Movement
@@ -78,7 +79,7 @@ public class InputManager : MonoBehaviour
         InputActions.Gameplay.Sprint.started += CallSprint;
         InputActions.Gameplay.Sprint.canceled += CancelSprint;
         //Jump
-        InputActions.Gameplay.Jump.performed += CallJump;
+        //InputActions.Gameplay.Jump.performed += CallJump;
         //Parry
         InputActions.Gameplay.Parry.performed += CallParry;
         //-----------------------------GAME-----------------------------
@@ -91,6 +92,7 @@ public class InputManager : MonoBehaviour
         //UI Select
         InputActions.Menu.Select.performed += CallUISelect;
         //--------------------------------------------------------------
+        #endregion
     }
 
     private void Start()
@@ -101,8 +103,11 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        if (InputActions.Gameplay.Movement.IsPressed())
-            OnDirectionChanged(InputActions.Gameplay.Movement.ReadValue<Vector3>());
+        Vector3 dir = Vector3.zero;
+        if (InputActions.Gameplay.Movement.inProgress)
+            dir  = InputActions.Gameplay.Movement.ReadValue<Vector3>();
+
+        OnDirectionChanged(dir);
     }
 
     #region EVENTS FUNCTIONS
@@ -113,7 +118,7 @@ public class InputManager : MonoBehaviour
     private void CallSprint(InputAction.CallbackContext context) => OnSprint();
     private void CancelSprint(InputAction.CallbackContext context) => OnSprintCancelled();
     //Jump
-    private void CallJump(InputAction.CallbackContext context) => OnJump();
+    //private void CallJump(InputAction.CallbackContext context) => OnJump();
     //Parry
     private void CallParry(InputAction.CallbackContext context) => OnParry();
     //-----------------------------GAME-----------------------------
@@ -137,7 +142,7 @@ public class InputManager : MonoBehaviour
         OnSprint -= OnSprint;
         OnSprintCancelled -= OnSprintCancelled;
         //Jump
-        OnJump -= OnJump;
+        //OnJump -= OnJump;
         //Parry
         OnParry -= OnParry;
         //-----------------------------GAME-----------------------------
