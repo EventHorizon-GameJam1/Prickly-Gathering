@@ -12,8 +12,12 @@ public class EnemyController : MonoBehaviour
     public delegate void EnemyReady(EnemyController enemy);
     public EnemyReady OnEnemyReady = (EnemyController controller) => {};
 
+    [Header("Enemy Settings")]
     [SerializeField] private EnemySettings EnemySettings;
     [SerializeField] private SpriteRenderer SpriteRenderer;
+    [SerializeField] private Transform ParticleHolder;
+    [Space]
+    [Header("Debug Settings")]
     [SerializeField] private bool DrawGizmos = true;
 
     private Rigidbody Body;
@@ -24,7 +28,7 @@ public class EnemyController : MonoBehaviour
     private AnimationController EnemyAnimation = new AnimationController();
     //TODO: Fix this with patrolling transform
     private Transform TargetTransform => transform;
-    public Transform PlayerTransform => LevelManager.PlayerTransform;
+    [HideInInspector] public Transform PlayerTransform => LevelManager.PlayerTransform;
 
     private delegate void EnemyState();
     private EnemyState EnemyActions;
@@ -46,6 +50,7 @@ public class EnemyController : MonoBehaviour
         //Animation Set Up
         EnemyAnimation.Renderer = SpriteRenderer;
         EnemyAnimation.Animator = Animator;
+        EnemyAnimation.ParticleTransform = ParticleHolder;
     }
 
     private void Start()
@@ -70,8 +75,11 @@ public class EnemyController : MonoBehaviour
 
     private void PatrolState()
     {
-        //Run or Walk
+        
         float dist = EnemyMovement.GetDistance();
+
+        //Movement
+        //Run or Walk
         if (dist > EnemySettings.SprintDistance)
         {
             EnemyMovement.Sprint();
@@ -82,13 +90,12 @@ public class EnemyController : MonoBehaviour
             EnemyMovement.CancelSprint();
             EnemyAnimation.StopSprint();
         }
-
-        //update patrolling points
+        //Move to next patrolling point
         if(dist <= EnemyMovement.StoppingDistance)
             UpdatePatrollingTarget();
 
-        Debug.Log("Distance: "+dist+"\nEnemyMovement.StoppingDistance"+EnemyMovement.StoppingDistance+"\n");
-
+        //Animations
+        //Update animation direction
         EnemyAnimation.UpdateDirection(EnemyMovement.GetDirection());
     }
 
@@ -104,7 +111,7 @@ public class EnemyController : MonoBehaviour
         if (EnemyPatrollingPath != null)
             EnemyPatrollingPath = null;
     }
-
+    
     //Gizsmos
 #if UNITY_EDITOR
     private void OnDrawGizmos()

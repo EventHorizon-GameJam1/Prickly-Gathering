@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private PlayerSettings PlayerSettings;
     [SerializeField] private SpriteRenderer SpriteRenderer;
+    [SerializeField] private Transform ParticleHolder;
+
     public bool IsInvulnerable { private set; get; } = false;
 
     private Rigidbody Body;
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
         PlayerSettings.Movement.Rigidbody = Body;
         PlayerSettings.AnimationController.Animator = Animator;
         PlayerSettings.AnimationController.Renderer = SpriteRenderer;
+        PlayerSettings.AnimationController.ParticleTransform = ParticleHolder;
         InvulnerabilityWait = new WaitForSeconds(PlayerSettings.ParryInvulnerabilityTime);
         ParryWait = new WaitForSeconds(Parry_TAI);
     }
