@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         PlayerSettings.Movement.Enable();
+        OnPlayerReady(this);
     }
 
     private void Parry()
@@ -72,8 +73,6 @@ public class PlayerController : MonoBehaviour
         InputManager.OnSprint += PlayerSettings.AnimationController.PlaySprint;
         InputManager.OnSprintCancelled += PlayerSettings.AnimationController.StopSprint;
         InputManager.OnParry += PlayerSettings.AnimationController.PlaySpecial;
-
-        OnPlayerReady(this);
     }
 
     private void OnDisable()

@@ -18,10 +18,10 @@ MonoBehaviour:
   EnemyDetermination: 1
   Damage: 1
   Movement:
-    MovementSpeed: 15
-    SprintMultiplier: 3
+    MovementSpeed: 5
+    SprintMultiplier: 2
     Rigidbody: {fileID: 0}
-    StoppingDistance: 2
+    StoppingDistance: 4
     Agent: {fileID: 0}
     FleeingPosition: {x: 0, y: 0, z: 0}
   Idling_SFX: {fileID: 0}

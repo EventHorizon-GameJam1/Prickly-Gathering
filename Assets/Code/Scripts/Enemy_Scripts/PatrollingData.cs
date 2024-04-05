@@ -32,6 +32,10 @@ public class PatrollingData
 
     public Transform GetNextPoint()
     {
+        PatrollingCount++;
+        if (PatrollingCount > PatrollingPositions.Count-1)
+            PatrollingCount = 0;
+        
         return PatrollingPositions[PatrollingCount];
     }
 }

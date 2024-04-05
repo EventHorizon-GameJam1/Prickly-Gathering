@@ -4,14 +4,7 @@ using UnityEngine.AI;
 [System.Serializable]
 public class EnemyMovement : Movement
 {
-    public delegate void AttackDistanceReached();
-    public event AttackDistanceReached OnAttackDistanceReached = () => { };
-
-    public delegate void PatrollingPositionReached();
-    public event PatrollingPositionReached OnPatrollingPositionReached = () => { };
-
     [SerializeField] public float StoppingDistance = 1.25f;
-
     [HideInInspector] public NavMeshAgent Agent;
     [HideInInspector] public Vector3 FleeingPosition = Vector3.zero;
     private Vector3 FleeingPos => FleeingPosition;
@@ -45,7 +38,6 @@ public class EnemyMovement : Movement
     {
         if (DistanceFromTarget < StoppingDistance)
         {
-            OnPatrollingPositionReached();
             Stop();
             return true;
         }
@@ -82,7 +74,5 @@ public class EnemyMovement : Movement
     {
         base.Disable();
         Agent.speed = 0f;
-        OnAttackDistanceReached -= OnAttackDistanceReached;
-        OnPatrollingPositionReached -= OnPatrollingPositionReached;
     }
 }

@@ -24,12 +24,12 @@ public class EnemyController : MonoBehaviour
     private AnimationController EnemyAnimation = new AnimationController();
     //TODO: Fix this with patrolling transform
     private Transform TargetTransform => transform;
-    private Transform PlayerTransform = null;
+    public Transform PlayerTransform => LevelManager.PlayerTransform;
 
     private delegate void EnemyState();
     private EnemyState EnemyActions;
 
-    public PatrollingData EnemyPatrollingPath;
+    public PatrollingData EnemyPatrollingPath = new PatrollingData();
 
     private void Awake()
     {
@@ -38,7 +38,8 @@ public class EnemyController : MonoBehaviour
         NavMeshAgent = GetComponent<NavMeshAgent>();
         //Movement Set Up
         EnemyMovement.Rigidbody = Body;
-        NavMeshAgent.stoppingDistance = EnemySettings.Movement.StoppingDistance;
+        EnemyMovement.StoppingDistance = EnemySettings.Movement.StoppingDistance;
+        NavMeshAgent.stoppingDistance = EnemyMovement.StoppingDistance;
         EnemyMovement.Agent = NavMeshAgent;
         EnemyMovement.SprintMultiplier = EnemySettings.Movement.SprintMultiplier;
         EnemyMovement.MovementSpeed = EnemySettings.Movement.MovementSpeed;
@@ -49,8 +50,9 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        EnemyActions += PatrolState;
         EnemyMovement.SetTargetTransform(EnemyPatrollingPath.GetClosestPatrollingPos(transform.position));
+        EnemyActions += PatrolState;
+        //OnEnemyReady(this);
     }
 
     private void FixedUpdate()
@@ -68,12 +70,9 @@ public class EnemyController : MonoBehaviour
 
     private void PatrolState()
     {
-        if (EnemyMovement.GetDistance() < EnemySettings.TriggerDistance)
-        {
-            EnemyActions -= PatrolState;
-            EnemyActions += AttackState;
-        }
-        if (EnemyMovement.GetDistance() > EnemySettings.SprintDistance)
+        //Run or Walk
+        float dist = EnemyMovement.GetDistance();
+        if (dist > EnemySettings.SprintDistance)
         {
             EnemyMovement.Sprint();
             EnemyAnimation.PlaySprint();
@@ -84,20 +83,18 @@ public class EnemyController : MonoBehaviour
             EnemyAnimation.StopSprint();
         }
 
+        //update patrolling points
+        if(dist <= EnemyMovement.StoppingDistance)
+            UpdatePatrollingTarget();
+
+        Debug.Log("Distance: "+dist+"\nEnemyMovement.StoppingDistance"+EnemyMovement.StoppingDistance+"\n");
+
         EnemyAnimation.UpdateDirection(EnemyMovement.GetDirection());
     }
 
     private void UpdatePatrollingTarget()
     {
         EnemyMovement.SetTargetTransform(EnemyPatrollingPath.GetNextPoint());
-    }
-
-    private void OnEnable()
-    {
-        OnEnemyReady(this);
-        EnemyMovement.Enable();
-        PlayerController.OnPlayerReady += AcquireTarget;
-        EnemyMovement.OnPatrollingPositionReached += UpdatePatrollingTarget;
     }
 
     private void OnDisable()
@@ -107,13 +104,6 @@ public class EnemyController : MonoBehaviour
         if (EnemyPatrollingPath != null)
             EnemyPatrollingPath = null;
     }
-
-    #region Setting up enemy
-    private void AcquireTarget(PlayerController playerController)
-    {
-        PlayerTransform = playerController.transform;
-    }
-    #endregion
 
     //Gizsmos
 #if UNITY_EDITOR

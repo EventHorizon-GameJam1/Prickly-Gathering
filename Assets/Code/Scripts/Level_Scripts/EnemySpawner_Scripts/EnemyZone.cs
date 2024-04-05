@@ -19,25 +19,22 @@ public class EnemyZone : MonoBehaviour
     private List<EnemyController> EnemiesSpawned = new List<EnemyController>();
     private List<Transform> EnemyCollectible = new List<Transform>();
 
-    public void Awake()
+    private void Awake()
     {
         //instanciate all enemies
-        for(int i= 0; i < SpawnData.Count-1; i++)
+        for (int i = 0; i < SpawnData.Count; i++)
         {
-            Vector3 randomPos = Random.insideUnitSphere * SpawnRadius;
-            randomPos.y = 0f;
             //Instanciate Enemies and disable it
-            EnemiesSpawned.Add(Instantiate(SpawnData[i].EnemyToSpawn, randomPos, Quaternion.identity));
-            EnemiesSpawned[i].EnemyPatrollingPath = EnemyPath;
+            EnemiesSpawned.Add(Instantiate(SpawnData[i].EnemyToSpawn, transform.position, Quaternion.identity));
             EnemiesSpawned[i].gameObject.SetActive(false);
             //Instanciate Enemies Collectible and disable it
-            if (SpawnData[i].EnemyCollectible.transform == null)
+            if (SpawnData[i].EnemyCollectible == null)
             {
                 EnemyCollectible.Add(null);
             }
             else
             {
-                EnemyCollectible.Add(Instantiate(SpawnData[i].EnemyCollectible, randomPos, Quaternion.identity));
+                EnemyCollectible.Add(Instantiate(SpawnData[i].EnemyCollectible, transform.position, Quaternion.identity));
                 EnemyCollectible[i].gameObject.SetActive(false);
             }
         }
@@ -66,18 +63,19 @@ public class EnemyZone : MonoBehaviour
         //probability array
         float[] probabilityArr = new float[SpawnData.Count];
         probabilityArr[0] = SpawnData[0].Probability;
-        for (int i = 1; i < SpawnData.Count - 1; i++)
-            probabilityArr[i] = SpawnData[i].Probability + SpawnData[i-1].Probability;
+        for (int i = 1; i < SpawnData.Count; i++)
+            probabilityArr[i] = probabilityArr[i - 1] + SpawnData[i].Probability;
         //get random value
-        float randomValue = Random.value;
+        float randomValue = UnityEngine.Random.value;
         //select only one enemy
         for(int i = 0; i < SpawnData.Count; i++)
         {
-            if (probabilityArr[i] <= randomValue)
+            if (randomValue < probabilityArr[i])
             {
                 Vector3 randomPos = Random.insideUnitSphere * SpawnRadius;
                 randomPos.y = 0f;
-                EnemiesSpawned[i].transform.position = randomPos;
+                EnemiesSpawned[i].transform.position = randomPos + transform.position;
+                EnemiesSpawned[i].EnemyPatrollingPath = EnemyPath;
                 EnemiesSpawned[i].gameObject.SetActive(true);
                 return;
             }
@@ -112,7 +110,7 @@ public class EnemyZone : MonoBehaviour
         //Escape Point
         if(EnemyPath.EscapePoint.position != null)
         {
-            Gizmos.color = PathPointsColor;
+            Gizmos.color = EscapepointColor;
             Gizmos.DrawWireSphere(EnemyPath.EscapePoint.position, PathPointsSize);
         }
     }
