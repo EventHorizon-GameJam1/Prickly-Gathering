@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Enemy Settings", menuName = "ScriptableSettings/Entity/Enemy")]
+[CreateAssetMenu(fileName = "New Enemy Settings", menuName = "Settings/Entity/Enemy")]
 public class EnemySettings : ScriptableObject
 {
     [Header("Enemy Settings")]

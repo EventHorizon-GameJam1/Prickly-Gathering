@@ -62,6 +62,14 @@ public class PlayerController : MonoBehaviour
         PlayerSettings.AnimationController.StopSpecial();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.TryGetComponent<ICollectible>(out ICollectible collectible))
+        {
+            collectible.Collect();
+        }
+    }
+
     private void OnEnable()
     {
         //Controller Connections
