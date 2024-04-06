@@ -19,16 +19,24 @@ public class GameManager : MonoBehaviour
             Debug.Log("WARNING: MULTIPLE GAME MANAGER INSTANCES FOUND REMOVING GAME OBJECT");
             Destroy(this.gameObject);
         }
+        Time.timeScale = 0f;
+    }
+
+    private void StartGame()
+    {
+        Time.timeScale = 1f;
     }
 
     private void IncraseScore(float score)
     {
         Score += score;
-        Debug.Log("Score Increased by "+score+"\nNow is "+ Score);
     }
     
     private void OnEnable()
     {
+        //Collectible events
         Collectible.OnCollect += IncraseScore;
+        //Level manager event
+        LevelManager.OnLevelReady += StartGame;
     }
 }

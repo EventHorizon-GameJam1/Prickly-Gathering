@@ -55,8 +55,6 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        EnemyMovement.SetTargetTransform(EnemyPatrollingPath.GetClosestPatrollingPos(transform.position));
-        EnemyActions += PatrolState;
         //OnEnemyReady(this);
     }
 
@@ -111,7 +109,13 @@ public class EnemyController : MonoBehaviour
         if (EnemyPatrollingPath != null)
             EnemyPatrollingPath = null;
     }
-    
+
+    private void OnEnable()
+    {
+        EnemyMovement.SetTargetTransform(EnemyPatrollingPath.GetClosestPatrollingPos(transform.position));
+        EnemyActions += PatrolState;
+    }
+
     //Gizsmos
 #if UNITY_EDITOR
     private void OnDrawGizmos()

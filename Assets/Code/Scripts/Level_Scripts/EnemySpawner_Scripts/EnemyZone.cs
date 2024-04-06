@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyZone : MonoBehaviour
 {
+    public delegate void CollectibleSpawnerReady();
+    public event CollectibleSpawnerReady OnReady = () => { };
+
     [Header("Spawner Settings")]
     [SerializeField] private float SpawnRadius = 15f;
     [SerializeField] private List<EnemySpawner_Data> SpawnData;
@@ -17,28 +20,20 @@ public class EnemyZone : MonoBehaviour
     [SerializeField] private Color EscapepointColor = Color.magenta;
 
     private List<EnemyController> EnemiesSpawned = new List<EnemyController>();
-    private List<Transform> EnemyCollectible = new List<Transform>();
 
-    private void Awake()
+    public void SetUp()
     {
         //instanciate all enemies
         for (int i = 0; i < SpawnData.Count; i++)
         {
             //Instanciate Enemies and disable it
-            EnemiesSpawned.Add(Instantiate(SpawnData[i].EnemyToSpawn, transform.position, Quaternion.identity));
+            EnemyController EnemyToSpawn = SpawnData[i].EnemyToSpawn;
+            EnemyToSpawn.EnemyPatrollingPath = EnemyPath;
+            EnemiesSpawned.Add(Instantiate(EnemyToSpawn, transform.position, Quaternion.identity));
             EnemiesSpawned[i].gameObject.SetActive(false);
-            //Instanciate Enemies Collectible and disable it
-            if (SpawnData[i].EnemyCollectible == null)
-            {
-                EnemyCollectible.Add(null);
-            }
-            else
-            {
-                EnemyCollectible.Add(Instantiate(SpawnData[i].EnemyCollectible, transform.position, Quaternion.identity));
-                EnemyCollectible[i].gameObject.SetActive(false);
-            }
         }
-        Spawn();
+        //Spawner is now ready
+        OnReady();
     }
 
     public void ResetSpawner()
@@ -46,18 +41,13 @@ public class EnemyZone : MonoBehaviour
         //Disable all enemies
         for (int i = 0; i < SpawnData.Count; i++)
         {
-            //Disale undefeated enemy
-            if(EnemiesSpawned[i].gameObject.activeInHierarchy)
-                EnemiesSpawned[i].gameObject.SetActive(false);
-            //Disale enemy Collectibles
-            if (EnemyCollectible[i].gameObject != null && EnemyCollectible[i].gameObject.activeInHierarchy)
-                EnemyCollectible[i].gameObject.SetActive(false);
+            //Disale enemy
+            EnemiesSpawned[i].gameObject.SetActive(false);
         }
-        //Enable One Enemy and one collectible
         Spawn();
     }
 
-    private void Spawn()
+    public void Spawn()
     {
         //weighted random
         //probability array
@@ -68,14 +58,14 @@ public class EnemyZone : MonoBehaviour
         //get random value
         float randomValue = UnityEngine.Random.value;
         //select only one enemy
-        for(int i = 0; i < SpawnData.Count; i++)
+        for(int i = 0; i < EnemiesSpawned.Count; i++)
         {
             if (randomValue < probabilityArr[i])
             {
                 Vector3 randomPos = Random.insideUnitSphere * SpawnRadius;
                 randomPos.y = 0f;
-                EnemiesSpawned[i].transform.position = randomPos + transform.position;
                 EnemiesSpawned[i].EnemyPatrollingPath = EnemyPath;
+                EnemiesSpawned[i].transform.position = randomPos + transform.position;
                 EnemiesSpawned[i].gameObject.SetActive(true);
                 return;
             }

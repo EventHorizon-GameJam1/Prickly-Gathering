@@ -1171,7 +1171,7 @@ Transform:
   m_GameObject: {fileID: 817279734}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.13532, y: -1.9810346, z: 1.0768859}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1216,8 +1216,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyZones:
   - {fileID: 99504893}
+  - {fileID: 1797856998}
+  - {fileID: 1733524665}
+  - {fileID: 1165913375}
   CollectibleSpawners:
   - {fileID: 789343956}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &817279740
 MonoBehaviour:
   m_ObjectHideFlags: 0

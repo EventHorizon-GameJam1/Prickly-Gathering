@@ -22,6 +22,7 @@ public class EnemySettings : ScriptableObject
     [SerializeField] public AudioClip Patrolling_SFX;
     [SerializeField] public AudioClip Attack_SFX;
     [SerializeField] public AudioClip Fleeing_SFX;
+    [SerializeField] public AudioClip EnemySpotted_SFX;
     [Header("Debug Gizsmo")]
     [SerializeField] public Color TriggerRadiousColor = new Color32(128, 55, 171, 255);
     [SerializeField] public Color AttackRadiousColor = new Color32(202, 48, 48, 255);

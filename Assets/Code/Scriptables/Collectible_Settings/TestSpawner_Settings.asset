@@ -12,22 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d0ce1fb6364d04786ffd6ba6e6d47e, type: 3}
   m_Name: TestSpawner_Settings
   m_EditorClassIdentifier: 
-  MaxCollectibleAmount: 10
-  MinCollectibleAmount: 5
+  MaxCollectibleAmount: 50
+  MinCollectibleAmount: 1
   CollectibleToSpawn:
-  - CollectibleToSpawn: {fileID: 2249080998733161602, guid: 8c46b58113074254aacdbdf8f9ac9f76,
+  - Collectible: {fileID: 2249080998733161602, guid: 8c46b58113074254aacdbdf8f9ac9f76,
       type: 3}
     Probability: 0.2
-  - CollectibleToSpawn: {fileID: 2249080998733161602, guid: deb7e0a11cbee454cbfe9d1b48e86b3f,
+  - Collectible: {fileID: 2249080998733161602, guid: deb7e0a11cbee454cbfe9d1b48e86b3f,
       type: 3}
     Probability: 0.2
-  - CollectibleToSpawn: {fileID: 2249080998733161602, guid: 9f129d4bd26ca5a409345372cd722ddc,
+  - Collectible: {fileID: 2249080998733161602, guid: 9f129d4bd26ca5a409345372cd722ddc,
       type: 3}
     Probability: 0.2
-  - CollectibleToSpawn: {fileID: 2249080998733161602, guid: a6ebdcbbd62c29c4ca60a1a67aa8f6fe,
+  - Collectible: {fileID: 2249080998733161602, guid: a6ebdcbbd62c29c4ca60a1a67aa8f6fe,
       type: 3}
     Probability: 0.2
-  - CollectibleToSpawn: {fileID: 2249080998733161602, guid: 7552fedc399dc9f43bb0daae49c7ba51,
+  - Collectible: {fileID: 2249080998733161602, guid: 7552fedc399dc9f43bb0daae49c7ba51,
       type: 3}
     Probability: 0.2
   SpawnAreaColor: {r: 0, g: 1, b: 1, a: 1}
