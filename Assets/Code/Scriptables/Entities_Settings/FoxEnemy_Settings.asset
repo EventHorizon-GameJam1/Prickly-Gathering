@@ -25,9 +25,10 @@ MonoBehaviour:
     Agent: {fileID: 0}
     FleeingPosition: {x: 0, y: 0, z: 0}
   Idling_SFX: {fileID: 0}
-  Patrolling_SFX: {fileID: 0}
+  Patrolling_SFX: {fileID: 8300000, guid: a047397c1260b2c489ac0459e7cb11a2, type: 3}
   Attack_SFX: {fileID: 0}
   Fleeing_SFX: {fileID: 0}
+  EnemySpotted_SFX: {fileID: 0}
   TriggerRadiousColor: {r: 0.5019608, g: 0.21568628, b: 0.67058825, a: 1}
   AttackRadiousColor: {r: 0.7921569, g: 0.1882353, b: 0.1882353, a: 1}
   SprintRadiousColor: {r: 1, g: 0, b: 1, a: 1}

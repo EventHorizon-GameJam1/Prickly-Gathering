@@ -9,6 +9,14 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMesh))]
 public class EnemyController : MonoBehaviour
 {
+    private enum State
+    {
+        IDLE,
+        PATROLLING,
+        ATTACK,
+        FLEE
+    }
+
     public delegate void EnemyReady(EnemyController enemy);
     public EnemyReady OnEnemyReady = (EnemyController controller) => {};
 
@@ -19,21 +27,19 @@ public class EnemyController : MonoBehaviour
     [Space]
     [Header("Debug Settings")]
     [SerializeField] private bool DrawGizmos = true;
-
+    //Patrolling
+    public PatrollingData EnemyPatrollingPath = new PatrollingData();
+    [HideInInspector] public Transform PlayerTransform => LevelManager.PlayerTransform;
+    private Transform TargetTransform => transform;
+    //Components
+    private EnemyMovement EnemyMovement = new EnemyMovement();
+    private AnimationController EnemyAnimation = new AnimationController();
     private Rigidbody Body;
     private Animator Animator;
     private NavMeshAgent NavMeshAgent;
-
-    private EnemyMovement EnemyMovement = new EnemyMovement();
-    private AnimationController EnemyAnimation = new AnimationController();
-    //TODO: Fix this with patrolling transform
-    private Transform TargetTransform => transform;
-    [HideInInspector] public Transform PlayerTransform => LevelManager.PlayerTransform;
-
-    private delegate void EnemyState();
-    private EnemyState EnemyActions;
-
-    public PatrollingData EnemyPatrollingPath = new PatrollingData();
+    
+    private delegate void EnemyAction();
+    private EnemyAction EnemyActions;
 
     private void Awake()
     {
@@ -55,7 +61,7 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        //OnEnemyReady(this);
+        ChangeState(State.PATROLLING);
     }
 
     private void FixedUpdate()
@@ -63,6 +69,48 @@ public class EnemyController : MonoBehaviour
         EnemyActions();
         //TODO: Move
         //TODO: Animate
+    }
+
+    private void ChangeState(State newState)
+    {
+        switch(newState)
+        {
+            case State.IDLE:
+            {
+                EnemyActions -= EnemyActions;
+                EnemyActions += IdleState;
+                SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Idling_SFX);
+                break;
+            }
+            case State.PATROLLING:
+            {
+                EnemyActions -= EnemyActions;
+                EnemyActions += PatrolState;
+                SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Patrolling_SFX);
+                break;
+            }
+            case State.FLEE:
+            {
+                EnemyActions -= EnemyActions;
+                EnemyActions += FleeState;
+                SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Fleeing_SFX);
+                break;
+            }
+            case State.ATTACK:
+            {
+                EnemyActions -= EnemyActions;
+                EnemyActions += AttackState;
+                SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Attack_SFX);
+                break;
+            }
+
+            default:break;
+        }
+    }
+
+    private void IdleState()
+    {
+
     }
 
     private void AttackState()
@@ -100,6 +148,10 @@ public class EnemyController : MonoBehaviour
     private void UpdatePatrollingTarget()
     {
         EnemyMovement.SetTargetTransform(EnemyPatrollingPath.GetNextPoint());
+    }
+    private void FleeState()
+    { 
+
     }
 
     private void OnDisable()

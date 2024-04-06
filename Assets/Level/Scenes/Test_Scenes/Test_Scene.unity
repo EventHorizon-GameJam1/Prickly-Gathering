@@ -1153,8 +1153,8 @@ GameObject:
   - component: {fileID: 817279735}
   - component: {fileID: 817279740}
   - component: {fileID: 817279738}
-  - component: {fileID: 817279737}
   - component: {fileID: 817279739}
+  - component: {fileID: 817279737}
   m_Layer: 0
   m_Name: DIRECTOR
   m_TagString: Untagged
@@ -1174,7 +1174,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1554723074}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &817279737
@@ -2083,6 +2084,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1733524664}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1554723073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1554723074}
+  - component: {fileID: 1554723077}
+  - component: {fileID: 1554723076}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1554723074
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554723073}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 817279735}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1554723076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554723073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69fcd94e735b6d84586b5ab5cc396fdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Max3DSFX: 3
+  Max2DSFX: 5
+  MaxDistanceFromPlayer: 50
+  Source3D: {fileID: 6561466898252094198, guid: e2c2ccc263e9e8f478b31ca99e17d669,
+    type: 3}
+  Source2D: {fileID: -9179280895533574267, guid: f27bf1d4e77722d4886f9e69fe52bc99,
+    type: 3}
+--- !u!114 &1554723077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554723073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5635cd5547344e146b3efa792de9b994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Instance: {fileID: 0}
+  AudioData_List:
+  - SubMixer: {fileID: 24100000, guid: 7979d8ef9988269408801acd7deb9f49, type: 2}
+    Type: 0
+    DefaultVolume: 0.75
+  - SubMixer: {fileID: 24100000, guid: 7979d8ef9988269408801acd7deb9f49, type: 2}
+    Type: 1
+    DefaultVolume: 0.75
+  - SubMixer: {fileID: 24100000, guid: 7979d8ef9988269408801acd7deb9f49, type: 2}
+    Type: 2
+    DefaultVolume: 0.75
 --- !u!1 &1568334959
 GameObject:
   m_ObjectHideFlags: 0
