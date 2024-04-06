@@ -47,8 +47,6 @@ public class LevelManager : MonoBehaviour
         //Set up Enemy Zones
         for (int i = 0; i < EnemyZones.Count; i++)
             EnemyZones[i].SetUp();
-
-        InvokeRepeating("ResetLevel", 0f, 1f);
     }
 
     private void SpawnAll()
