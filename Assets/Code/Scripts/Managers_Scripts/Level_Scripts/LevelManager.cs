@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     public static event LevelReady OnLevelReady = () => { };
 
     public static Transform PlayerTransform { get; private set; } = null;
+    public static PlayerController Player { get; private set; } = null;
     public static float LevelLoadProgress { get; private set; } = 0f;
 
     [Header("Level Manager Settings")]
@@ -83,6 +84,7 @@ public class LevelManager : MonoBehaviour
     private void SetPlayerTransform(PlayerController controller)
     {
         PlayerTransform = controller.transform;
+        Player = controller;
     }
 
     private void OnEnable()

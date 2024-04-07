@@ -49,7 +49,6 @@ public class AudioManager : MonoBehaviour
                 volume = -80f;
             
             AudioData_List[i].SubMixer.SetFloat(AudioData_List[i].Type.ToString() + "Volume", volume);
-            Debug.Log(volume);
         }
 
         SFXManager.SetUp();

@@ -2132,9 +2132,9 @@ MonoBehaviour:
   Max3DSFX: 3
   Max2DSFX: 5
   MaxDistanceFromPlayer: 50
-  Source3D: {fileID: 6561466898252094198, guid: e2c2ccc263e9e8f478b31ca99e17d669,
+  Source3D: {fileID: -4665707991769908462, guid: f27bf1d4e77722d4886f9e69fe52bc99,
     type: 3}
-  Source2D: {fileID: -9179280895533574267, guid: f27bf1d4e77722d4886f9e69fe52bc99,
+  Source2D: {fileID: -6288604172438286560, guid: e2c2ccc263e9e8f478b31ca99e17d669,
     type: 3}
 --- !u!114 &1554723077
 MonoBehaviour:

@@ -6,13 +6,13 @@ using UnityEngine;
 public class EnemySettings : ScriptableObject
 {
     [Header("Enemy Settings")]
-    [SerializeField] public float AttackDistance = 1.5f;
-    [SerializeField] public float SprintDistance = 10f;
-    [SerializeField] public float TriggerDistance = 5f;
-    [SerializeField] public float EnemyDetermination = 1f;
+    [SerializeField] public int EnemyDetermination = 3;
     [SerializeField] public float Damage = 1f;
     [Space]
     [Header("Movement Settings")]
+    [SerializeField] public float AttackDistance = 1.5f;
+    [SerializeField] public float SprintDistance = 10f;
+    [SerializeField] public float TriggerDistance = 5f;
     [SerializeField] public EnemyMovement Movement;
     [Header("Animation Settings")]
     [SerializeField] public AnimationController AnimationController;

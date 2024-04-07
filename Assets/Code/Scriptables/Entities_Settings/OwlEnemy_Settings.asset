@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d844a59864327714abf9a22019b63020, type: 3}
   m_Name: OwlEnemy_Settings
   m_EditorClassIdentifier: 
-  AttackDistance: 2
-  SprintDistance: 15
-  TriggerDistance: 5
   EnemyDetermination: 1
   Damage: 1
+  AttackDistance: 3
+  SprintDistance: 15
+  TriggerDistance: 20
   Movement:
     MovementSpeed: 5
     SprintMultiplier: 2
@@ -28,6 +28,7 @@ MonoBehaviour:
   Patrolling_SFX: {fileID: 0}
   Attack_SFX: {fileID: 0}
   Fleeing_SFX: {fileID: 0}
+  EnemySpotted_SFX: {fileID: 8300000, guid: 691398e6bf770874e86cb5d45e8e2d9e, type: 3}
   TriggerRadiousColor: {r: 0.5019608, g: 0.21568628, b: 0.67058825, a: 1}
   AttackRadiousColor: {r: 0.7921569, g: 0.1882353, b: 0.1882353, a: 1}
   SprintRadiousColor: {r: 0.85882354, g: 0.41568628, b: 0, a: 0.49803922}

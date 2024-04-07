@@ -20,6 +20,9 @@ public class EnemyController : MonoBehaviour
     public delegate void EnemyReady(EnemyController enemy);
     public EnemyReady OnEnemyReady = (EnemyController controller) => {};
 
+    public delegate void EnemyParried();
+    public EnemyParried OnEnemyParried = () => { };
+
     [Header("Enemy Settings")]
     [SerializeField] private EnemySettings EnemySettings;
     [SerializeField] private SpriteRenderer SpriteRenderer;
@@ -28,9 +31,9 @@ public class EnemyController : MonoBehaviour
     [Header("Debug Settings")]
     [SerializeField] private bool DrawGizmos = true;
     //Patrolling
-    public PatrollingData EnemyPatrollingPath = new PatrollingData();
+    [HideInInspector] public PatrollingData EnemyPatrollingPath = new PatrollingData();
     [HideInInspector] public Transform PlayerTransform => LevelManager.PlayerTransform;
-    private Transform TargetTransform => transform;
+
     //Components
     private EnemyMovement EnemyMovement = new EnemyMovement();
     private AnimationController EnemyAnimation = new AnimationController();
@@ -67,8 +70,8 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate()
     {
         EnemyActions();
-        //TODO: Move
-        //TODO: Animate
+        //Update animation direction
+        EnemyAnimation.UpdateDirection(EnemyMovement.GetDirection());
     }
 
     private void ChangeState(State newState)
@@ -85,6 +88,7 @@ public class EnemyController : MonoBehaviour
             case State.PATROLLING:
             {
                 EnemyActions -= EnemyActions;
+                GetClosestPatrollingPoint();
                 EnemyActions += PatrolState;
                 SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Patrolling_SFX);
                 break;
@@ -100,28 +104,61 @@ public class EnemyController : MonoBehaviour
             {
                 EnemyActions -= EnemyActions;
                 EnemyActions += AttackState;
-                SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Attack_SFX);
+                EnemyMovement.SetTargetTransform(PlayerTransform);
+                SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.EnemySpotted_SFX);
                 break;
             }
-
             default:break;
         }
     }
-
+    #region IDLE
     private void IdleState()
     {
+        EnemyMovement.SetTargetTransform(transform);
 
+        //Check if player is in trigger distance
+        if (Vector3.Distance(transform.position, PlayerTransform.position) < EnemySettings.TriggerDistance)
+            ChangeState(State.ATTACK);
     }
+    #endregion
 
+    #region ATTACK
     private void AttackState()
     {
         EnemyMovement.SetTargetTransform(PlayerTransform);
-        EnemyAnimation.UpdateDirection(EnemyMovement.GetDirection());
+        float dist = EnemyMovement.GetDistance();
+
+        EnemyMovement.Sprint();
+        EnemyAnimation.PlaySprint();
+
+        //Play Attack Animation
+        if (dist < EnemySettings.AttackDistance)
+            EnemyAnimation.PlaySpecial();
+        else
+            EnemyAnimation.StopSpecial();
     }
 
+    //called by animation
+    private void ApplyDamage()
+    {
+        if(LevelManager.Player.IsInvulnerable)
+        {
+            //TODO: Parry
+            Debug.Log("I've been parried");
+            OnEnemyParried();
+        }
+        else
+        {
+            //TODO: Damage Player
+            Debug.Log("Player have been damaged");
+        }
+    }
+    
+    #endregion
+
+    #region PATROLLING
     private void PatrolState()
     {
-        
         float dist = EnemyMovement.GetDistance();
 
         //Movement
@@ -139,16 +176,23 @@ public class EnemyController : MonoBehaviour
         //Move to next patrolling point
         if(dist <= EnemyMovement.StoppingDistance)
             UpdatePatrollingTarget();
-
-        //Animations
-        //Update animation direction
-        EnemyAnimation.UpdateDirection(EnemyMovement.GetDirection());
+        
+        //Check if player is in trigger distance
+        if(Vector3.Distance(transform.position, PlayerTransform.position) < EnemySettings.TriggerDistance)
+            ChangeState(State.ATTACK);
     }
 
     private void UpdatePatrollingTarget()
     {
         EnemyMovement.SetTargetTransform(EnemyPatrollingPath.GetNextPoint());
     }
+
+    private void GetClosestPatrollingPoint()
+    {
+        EnemyMovement.SetTargetTransform(EnemyPatrollingPath.GetClosestPatrollingPos(transform.position));
+    }
+    #endregion
+
     private void FleeState()
     { 
 
@@ -164,7 +208,6 @@ public class EnemyController : MonoBehaviour
 
     private void OnEnable()
     {
-        EnemyMovement.SetTargetTransform(EnemyPatrollingPath.GetClosestPatrollingPos(transform.position));
         EnemyActions += PatrolState;
     }
 

@@ -8,8 +8,6 @@ public class SFX_Manager : MonoBehaviour
 {
     public static Action<Vector3, AudioClip> Request3DSFX = (Vector3 pos, AudioClip clip) => { };
     public static Action<Vector3, AudioClip> Request2DSFX = (Vector3 pos, AudioClip clip) => { };
-    public static Action<AudioClip> Stop3DAudioClip = (AudioClip clip) => { };
-    public static Action<AudioClip> Stop2DAudioClip = (AudioClip clip) => { };
 
     [Header("Settings")]
     [SerializeField][Range(0, 5)] private int Max3DSFX = 3;
@@ -17,11 +15,11 @@ public class SFX_Manager : MonoBehaviour
     [Header("If distance is higher the sound will not be played")]
     [SerializeField] private float MaxDistanceFromPlayer = 50f;
     [Header("Referces")]
-    [SerializeField] private AudioSource Source3D = null;
-    [SerializeField] private AudioSource Source2D = null;
+    [SerializeField] private SFX_Effect Source3D = null;
+    [SerializeField] private SFX_Effect Source2D = null;
 
-    private List<AudioSource> Sources_3D = new List<AudioSource>();
-    private List<AudioSource> Sources_2D = new List<AudioSource>();
+    private List<SFX_Effect> Sources_3D = new List<SFX_Effect>();
+    private List<SFX_Effect> Sources_2D = new List<SFX_Effect>();
 
     private Transform PlayerTransform => LevelManager.PlayerTransform;
 
@@ -29,8 +27,6 @@ public class SFX_Manager : MonoBehaviour
     {
         Request3DSFX += Request3D_SFX;
         Request2DSFX += Request2D_SFX;
-        Stop3DAudioClip += Stop3DClip;
-        Stop2DAudioClip += Stop2DClip;
     }
 
     public void SetUp()
@@ -52,15 +48,16 @@ public class SFX_Manager : MonoBehaviour
     {
         if (Vector3.Distance(PlayerTransform.position, position) > MaxDistanceFromPlayer)
             return;
+        if (clip == null)
+            return;
 
         for (int i = 0;i < Max3DSFX; i++)
         {
-            if (!Sources_3D[i].isPlaying)
+            if (!Sources_3D[i].gameObject.activeInHierarchy)
             {
-                Sources_3D[i].transform.position = position;
-                Sources_3D[i].clip = clip;
                 Sources_3D[i].gameObject.SetActive(true);
-                Sources_3D[i].Play();
+                Sources_3D[i].PlaySound(position, clip);
+                return;
             }
         }
     }
@@ -69,39 +66,24 @@ public class SFX_Manager : MonoBehaviour
     {
         if (Vector3.Distance(PlayerTransform.position, position) > MaxDistanceFromPlayer)
             return;
+        if (clip == null)
+            return;
 
         for (int i = 0; i < Max2DSFX; i++)
         {
-            if (!Sources_2D[i].isPlaying)
+            if (!Sources_2D[i].gameObject.activeInHierarchy)
             {
-                Sources_2D[i].transform.position = position;
-                Sources_2D[i].clip = clip;
                 Sources_2D[i].gameObject.SetActive(true);
-                Sources_2D[i].Play();
+                Sources_2D[i].PlaySound(position, clip);
+                return;
             }
         }
-    }
-
-    public void Stop3DClip(AudioClip clip)
-    {
-        for (int i=0; Sources_3D.Count<i; i++)
-            if (Sources_3D[i].clip == clip)
-                Sources_3D[i].Stop();
-    }
-
-    public void Stop2DClip(AudioClip clip)
-    {
-        for (int i = 0; Sources_2D.Count < i; i++)
-            if (Sources_2D[i].clip == clip)
-                Sources_2D[i].Stop();
     }
 
     private void OnDestroy()
     {
         Request3DSFX -= Request3DSFX;
         Request2DSFX -= Request2DSFX;
-        Stop3DAudioClip -= Stop3DAudioClip;
-        Stop2DAudioClip -= Stop2DAudioClip;
     }
 
 #if UNITY_EDITOR

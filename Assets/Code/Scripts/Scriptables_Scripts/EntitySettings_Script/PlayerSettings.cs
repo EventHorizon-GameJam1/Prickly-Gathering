@@ -24,7 +24,7 @@ public class PlayerSettings : ScriptableObject
     [SerializeField] public AudioClip Running_SFX;
     [SerializeField] public AudioClip Parry_SFX;
 
-    private void Awake()
+    private void OnValidate()
     {
         ParrySustainTime = m_ParrySustainTime;
         ParryInvulnerabilityTime = m_ParryInvulnerabilityTime;

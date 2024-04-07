@@ -47,9 +47,6 @@ public class CollectibleSpawner : MonoBehaviour
 
     public void Spawn()
     {
-        //TODO: Random position
-        //TODO: Select correct random
-
         //New Spawn amount
         SpawnAmount = UnityEngine.Random.Range(SpawnSettings.MinCollectibleAmount, SpawnSettings.MaxCollectibleAmount);
 

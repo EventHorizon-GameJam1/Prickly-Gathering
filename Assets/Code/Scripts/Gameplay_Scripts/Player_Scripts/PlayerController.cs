@@ -16,14 +16,15 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody Body;
     private Animator Animator;
-
+    //TODO: Consume Stamina
     private float Stamina => PlayerSettings.PlayerStartStamina;
 
     //Parry var
-    //Parry Time After Invulnerability (TAI)
-    private float Parry_TAI => PlayerSettings.ParrySustainTime - PlayerSettings.ParryInvulnerabilityTime;
+    private Coroutine ParryCorout = null;
     private WaitForSeconds ParryWait;
     private WaitForSeconds InvulnerabilityWait;
+    //Parry Time After Invulnerability (TAI)
+    private float Parry_TAI => PlayerSettings.ParrySustainTime - PlayerSettings.ParryInvulnerabilityTime;
 
     private void Awake()
     {
@@ -47,19 +48,23 @@ public class PlayerController : MonoBehaviour
 
     private void Parry()
     {
-        PlayerSettings.Movement.Disable();
-        StartCoroutine(ParryCoroutine());
+        if(ParryCorout == null)
+        {
+            PlayerSettings.Movement.Disable();
+            ParryCorout = StartCoroutine(ParryCoroutine());
+        }
     }
 
     private IEnumerator ParryCoroutine()
     {
         PlayerSettings.AnimationController.PlaySpecial();
         IsInvulnerable = true;
-        yield return ParryWait;
-        IsInvulnerable = false;
         yield return InvulnerabilityWait;
+        IsInvulnerable = false;
+        yield return ParryWait;
         PlayerSettings.Movement.Enable();
         PlayerSettings.AnimationController.StopSpecial();
+        ParryCorout = null;
     }
 
     private void OnTriggerEnter(Collider other)
