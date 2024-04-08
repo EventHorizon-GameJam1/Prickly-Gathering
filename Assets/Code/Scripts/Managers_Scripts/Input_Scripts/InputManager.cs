@@ -36,7 +36,7 @@ public class InputManager : MonoBehaviour
     #endregion
 
     //Serialized Var
-    [SerializeField] private bool PlayOnPause = false;
+    [SerializeField] private bool StartOnMenu = false;
 
     private InputMap InputActions;
 
@@ -59,7 +59,7 @@ public class InputManager : MonoBehaviour
         InputActions.Enable();
         
         //set up enabled action
-        if (PlayOnPause)
+        if (StartOnMenu)
         {
             InputActions.Gameplay.Disable();
             InputActions.Menu.Enable();
@@ -97,7 +97,7 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        if (PlayOnPause)
+        if (StartOnMenu)
             OnMenuCalled();
     }
 

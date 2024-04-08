@@ -21,7 +21,7 @@ MonoBehaviour:
     MovementSpeed: 5
     SprintMultiplier: 2
     Rigidbody: {fileID: 0}
-    StoppingDistance: 5
+    StoppingDistance: 2.5
     Agent: {fileID: 0}
     FleeingPosition: {x: 0, y: 0, z: 0}
   IdleProbability: 0.35

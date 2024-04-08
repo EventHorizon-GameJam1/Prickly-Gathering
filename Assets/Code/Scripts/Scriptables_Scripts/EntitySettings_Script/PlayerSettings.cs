@@ -7,7 +7,7 @@ public class PlayerSettings : ScriptableObject
 {
     [Header("Player Settings")]
     //DOTO: decrease enemrgy when run
-    [SerializeField] private float EnergyAmount = 10f;
+    [SerializeField] private float m_PlayerStamina = 10f;
     [SerializeField] private float m_ParrySustainTime = 0.5f;
     [SerializeField] private float m_ParryInvulnerabilityTime = 0.25f;
     public float ParrySustainTime { private set; get; }
@@ -24,10 +24,10 @@ public class PlayerSettings : ScriptableObject
     [SerializeField] public AudioClip Running_SFX;
     [SerializeField] public AudioClip Parry_SFX;
 
-    private void OnValidate()
+    private void OnEnable()
     {
         ParrySustainTime = m_ParrySustainTime;
         ParryInvulnerabilityTime = m_ParryInvulnerabilityTime;
-        ParrySustainTime = EnergyAmount;
+        PlayerStartStamina = m_PlayerStamina;
     }
 }
