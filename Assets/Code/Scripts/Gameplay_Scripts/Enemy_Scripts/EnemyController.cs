@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,6 +7,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMesh))]
 public class EnemyController : MonoBehaviour
 {
+    //TODO: FLEEEEEEEEEEEEEEEEEEEEEEEEEeeeee
     private enum State
     {
         IDLE,
@@ -27,12 +26,13 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private EnemySettings EnemySettings;
     [SerializeField] private SpriteRenderer SpriteRenderer;
     [SerializeField] private Transform ParticleHolder;
+    [SerializeField] private State StartingState = State.PATROLLING;
     [Space]
     [Header("Debug Settings")]
     [SerializeField] private bool DrawGizmos = true;
     //Patrolling
     [HideInInspector] public PatrollingData EnemyPatrollingPath = new PatrollingData();
-    [HideInInspector] public Transform PlayerTransform => LevelManager.PlayerTransform;
+    [HideInInspector] private Transform PlayerTransform => LevelManager.PlayerTransform;
 
     //Components
     private EnemyMovement EnemyMovement = new EnemyMovement();
@@ -43,6 +43,11 @@ public class EnemyController : MonoBehaviour
     
     private delegate void EnemyAction();
     private EnemyAction EnemyActions;
+
+    private Coroutine IdleCoroutine;
+
+    private bool IsFleeing = false;
+    private bool ClosestAlreadyGot = false;
 
     private void Awake()
     {
@@ -64,7 +69,7 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        ChangeState(State.PATROLLING);
+        ChangeState(StartingState);
     }
 
     private void FixedUpdate()
@@ -88,7 +93,14 @@ public class EnemyController : MonoBehaviour
             case State.PATROLLING:
             {
                 EnemyActions -= EnemyActions;
-                GetClosestPatrollingPoint();
+                NavMeshAgent.stoppingDistance = EnemyMovement.StoppingDistance;
+
+                if(!ClosestAlreadyGot)
+                {
+                    ClosestAlreadyGot = true;
+                    GetClosestPatrollingPoint();
+                }
+
                 EnemyActions += PatrolState;
                 SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Patrolling_SFX);
                 break;
@@ -96,12 +108,20 @@ public class EnemyController : MonoBehaviour
             case State.FLEE:
             {
                 EnemyActions -= EnemyActions;
+                IsFleeing = true;
+                EnemyMovement.SetTargetTransform(EnemyPatrollingPath.EscapePoint);
                 EnemyActions += FleeState;
                 SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Fleeing_SFX);
                 break;
             }
             case State.ATTACK:
             {
+                if (IdleCoroutine != null)
+                    StopCoroutine(IdleCoroutine);
+
+
+                NavMeshAgent.stoppingDistance = EnemySettings.AttackDistance;
+
                 EnemyActions -= EnemyActions;
                 EnemyActions += AttackState;
                 EnemyMovement.SetTargetTransform(PlayerTransform);
@@ -111,14 +131,28 @@ public class EnemyController : MonoBehaviour
             default:break;
         }
     }
+
     #region IDLE
     private void IdleState()
     {
-        EnemyMovement.SetTargetTransform(transform);
+        EnemyMovement.Disable();
+
+        if(IdleCoroutine ==  null)
+            IdleCoroutine = StartCoroutine(IdleEumerator());
 
         //Check if player is in trigger distance
         if (Vector3.Distance(transform.position, PlayerTransform.position) < EnemySettings.TriggerDistance)
             ChangeState(State.ATTACK);
+    }
+
+    private IEnumerator IdleEumerator()
+    {
+        float randomWait = UnityEngine.Random.Range(EnemySettings.IdleTime_Min, EnemySettings.IdleTime_Max);
+        yield return new WaitForSeconds(randomWait);
+        EnemyMovement.Enable();
+        UpdatePatrollingTarget();
+        ChangeState(State.PATROLLING);
+        IdleCoroutine = null;
     }
     #endregion
 
@@ -138,7 +172,7 @@ public class EnemyController : MonoBehaviour
             EnemyAnimation.StopSpecial();
     }
 
-    //called by animation
+    //Called by animation
     private void ApplyDamage()
     {
         if(LevelManager.Player.IsInvulnerable)
@@ -153,7 +187,6 @@ public class EnemyController : MonoBehaviour
             Debug.Log("Player have been damaged");
         }
     }
-    
     #endregion
 
     #region PATROLLING
@@ -173,12 +206,19 @@ public class EnemyController : MonoBehaviour
             EnemyMovement.CancelSprint();
             EnemyAnimation.StopSprint();
         }
-        //Move to next patrolling point
-        if(dist <= EnemyMovement.StoppingDistance)
+        //Move to next patrolling point after idle
+        if (dist <= EnemyMovement.StoppingDistance)
+        {
+            if (UnityEngine.Random.value > EnemySettings.IdleProbability)
+            {
+                ChangeState(State.IDLE);
+                return;
+            }
             UpdatePatrollingTarget();
-        
+        }
+
         //Check if player is in trigger distance
-        if(Vector3.Distance(transform.position, PlayerTransform.position) < EnemySettings.TriggerDistance)
+        if (Vector3.Distance(transform.position, PlayerTransform.position) < EnemySettings.TriggerDistance)
             ChangeState(State.ATTACK);
     }
 
@@ -193,10 +233,13 @@ public class EnemyController : MonoBehaviour
     }
     #endregion
 
+    #region FLEEING
     private void FleeState()
-    { 
-
+    {
+        EnemyMovement.Sprint();
+        EnemyAnimation.PlaySprint();
     }
+    #endregion
 
     private void OnDisable()
     {
@@ -208,7 +251,8 @@ public class EnemyController : MonoBehaviour
 
     private void OnEnable()
     {
-        EnemyActions += PatrolState;
+        IsFleeing = false;
+        ClosestAlreadyGot = false;
     }
 
     //Gizsmos

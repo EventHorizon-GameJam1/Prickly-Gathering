@@ -14,6 +14,10 @@ public class EnemySettings : ScriptableObject
     [SerializeField] public float SprintDistance = 10f;
     [SerializeField] public float TriggerDistance = 5f;
     [SerializeField] public EnemyMovement Movement;
+    [Header("Idle Settings")]
+    [SerializeField][Range(0f, 1f)] public float IdleProbability = 0.25f;
+    [SerializeField][Min(0)] public float IdleTime_Min = 1f;
+    [SerializeField][Min(0)] public float IdleTime_Max = 2f;
     [Header("Animation Settings")]
     [SerializeField] public AnimationController AnimationController;
     [Space]

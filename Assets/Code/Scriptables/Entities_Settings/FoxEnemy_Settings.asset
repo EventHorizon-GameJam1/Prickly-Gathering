@@ -24,6 +24,9 @@ MonoBehaviour:
     StoppingDistance: 5
     Agent: {fileID: 0}
     FleeingPosition: {x: 0, y: 0, z: 0}
+  IdleProbability: 0.35
+  IdleTime_Min: 1
+  IdleTime_Max: 2
   Idling_SFX: {fileID: 0}
   Patrolling_SFX: {fileID: 0}
   Attack_SFX: {fileID: 0}

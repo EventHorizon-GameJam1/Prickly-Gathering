@@ -1202,7 +1202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a817ccf431116a345913f3ac02555f34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayOnPause: 0
+  StartOnMenu: 0
 --- !u!114 &817279739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1217,9 +1217,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyZones:
   - {fileID: 99504893}
-  - {fileID: 1797856998}
-  - {fileID: 1733524665}
-  - {fileID: 1165913375}
   CollectibleSpawners:
   - {fileID: 789343956}
 --- !u!114 &817279740

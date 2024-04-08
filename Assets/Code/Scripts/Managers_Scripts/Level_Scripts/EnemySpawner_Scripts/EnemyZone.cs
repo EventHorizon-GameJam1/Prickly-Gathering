@@ -35,7 +35,7 @@ public class EnemyZone : MonoBehaviour
         //Spawner is now ready
         OnReady();
     }
-
+    
     public void ResetSpawner()
     {
         //Disable all enemies
