@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
         IsInvulnerable = false;
         yield return ParryWait;
         PlayerSettings.Movement.Enable();
+        PlayerSettings.Movement.CancelSprint();
         PlayerSettings.AnimationController.StopSpecial();
         ParryCorout = null;
     }

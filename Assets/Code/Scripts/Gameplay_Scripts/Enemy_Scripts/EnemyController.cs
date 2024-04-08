@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -28,6 +29,11 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Transform ParticleHolder;
     [SerializeField] private State StartingState = State.PATROLLING;
     [Space]
+    [Header("Health Indicator settings")]
+    [SerializeField] private Sprite FullHealth;
+    [SerializeField] private Sprite EmptyHealth;
+    [SerializeField] private List<SpriteRenderer> HealthIndicators = new List<SpriteRenderer>(); 
+    [Space]
     [Header("Debug Settings")]
     [SerializeField] private bool DrawGizmos = true;
     //Patrolling
@@ -41,6 +47,8 @@ public class EnemyController : MonoBehaviour
     private Animator Animator;
     private NavMeshAgent NavMeshAgent;
     
+    private int EnemyDetermination = 0;
+
     private delegate void EnemyAction();
     private EnemyAction EnemyActions;
 
@@ -65,11 +73,16 @@ public class EnemyController : MonoBehaviour
         EnemyAnimation.Renderer = SpriteRenderer;
         EnemyAnimation.Animator = Animator;
         EnemyAnimation.ParticleTransform = ParticleHolder;
+        //Enemy set up
+        EnemyDetermination = EnemySettings.EnemyDetermination;
     }
 
     private void Start()
     {
         ChangeState(StartingState);
+
+        for (int i = 0; i < HealthIndicators.Count; i++)
+            HealthIndicators[i].sprite = FullHealth;
     }
 
     private void FixedUpdate()
@@ -109,6 +122,7 @@ public class EnemyController : MonoBehaviour
             {
                 EnemyActions -= EnemyActions;
                 IsFleeing = true;
+                EnemyAnimation.StopSpecial();
                 EnemyMovement.SetTargetTransform(EnemyPatrollingPath.EscapePoint);
                 EnemyActions += FleeState;
                 SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Fleeing_SFX);
@@ -119,8 +133,10 @@ public class EnemyController : MonoBehaviour
                 if (IdleCoroutine != null)
                     StopCoroutine(IdleCoroutine);
 
-
                 NavMeshAgent.stoppingDistance = EnemySettings.AttackDistance;
+
+                for (int i = 0; i < HealthIndicators.Count; i++)
+                    HealthIndicators[i].gameObject.SetActive(true);
 
                 EnemyActions -= EnemyActions;
                 EnemyActions += AttackState;
@@ -175,16 +191,28 @@ public class EnemyController : MonoBehaviour
     //Called by animation
     private void ApplyDamage()
     {
-        if(LevelManager.Player.IsInvulnerable)
+        if(LevelManager.Player.IsInvulnerable) //Parryed
         {
-            //TODO: Parry
-            Debug.Log("I've been parried");
-            OnEnemyParried();
+            TakeDamage();
         }
         else
         {
             //TODO: Damage Player
             Debug.Log("Player have been damaged");
+        }
+    }
+
+    private void TakeDamage()
+    {
+        EnemyDetermination--;
+        OnEnemyParried();
+        HealthIndicators[EnemyDetermination].sprite = EmptyHealth;
+
+        if (EnemyDetermination <= 0)
+        {
+            for (int i = 0; i < HealthIndicators.Count; i++)
+                HealthIndicators[i].gameObject.SetActive(false);
+            ChangeState(State.FLEE);
         }
     }
     #endregion
@@ -253,6 +281,9 @@ public class EnemyController : MonoBehaviour
     {
         IsFleeing = false;
         ClosestAlreadyGot = false;
+
+        for (int i = 0; i < HealthIndicators.Count; i++)
+            HealthIndicators[i].gameObject.SetActive(false);
     }
 
     //Gizsmos
