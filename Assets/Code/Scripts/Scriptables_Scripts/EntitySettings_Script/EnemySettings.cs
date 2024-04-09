@@ -8,6 +8,7 @@ public class EnemySettings : ScriptableObject
     [Header("Enemy Settings")]
     [SerializeField] public int EnemyDetermination = 3;
     [SerializeField] public float Damage = 1f;
+    [SerializeField][Range(0f, 1f)] public float PercentageLost = 0.25f;
     [Space]
     [Header("Movement Settings")]
     [SerializeField] public float AttackDistance = 1.5f;

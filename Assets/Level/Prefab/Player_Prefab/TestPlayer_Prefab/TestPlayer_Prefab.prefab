@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 529485350517087746}
   - component: {fileID: 6709689417375415477}
   - component: {fileID: 4553248367099020901}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TestPlayer_Prefab
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4614653310220012569}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: -- VFX --
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 727906629015505450}
   - component: {fileID: 4237855515231681942}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 3829756529382908206}
   - component: {fileID: 4781752524243637783}
   - component: {fileID: 7273286671943279409}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Running Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5145,7 +5145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2077083559076451326}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: -- MESH --
   m_TagString: Untagged
   m_Icon: {fileID: 0}
