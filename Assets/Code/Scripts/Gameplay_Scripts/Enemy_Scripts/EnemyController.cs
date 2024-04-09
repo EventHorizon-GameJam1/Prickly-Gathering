@@ -8,7 +8,6 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMesh))]
 public class EnemyController : MonoBehaviour
 {
-    //TODO: FLEEEEEEEEEEEEEEEEEEEEEEEEEeeeee
     private enum State
     {
         IDLE,
@@ -21,7 +20,10 @@ public class EnemyController : MonoBehaviour
     public EnemyReady OnEnemyReady = (EnemyController controller) => {};
 
     public delegate void EnemyParried();
-    public EnemyParried OnEnemyParried = () => { };
+    public static EnemyParried OnEnemyParried = () => { };
+
+    public delegate void PlayerDamaged(float damage, float suppliesLost);
+    public static PlayerDamaged OnPlayerDamaged = (float damage, float suppliesLost) => { };
 
     [Header("Enemy Settings")]
     [SerializeField] private EnemySettings EnemySettings;
@@ -192,14 +194,9 @@ public class EnemyController : MonoBehaviour
     private void ApplyDamage()
     {
         if(LevelManager.Player.IsInvulnerable) //Parryed
-        {
             TakeDamage();
-        }
         else
-        {
-            //TODO: Damage Player
-            Debug.Log("Player have been damaged");
-        }
+            OnPlayerDamaged(EnemySettings.Damage, EnemySettings.PercentageLost);
     }
 
     private void TakeDamage()
@@ -273,14 +270,14 @@ public class EnemyController : MonoBehaviour
     {
         EnemyMovement.Disable();
         OnEnemyReady -= OnEnemyReady;
-        if (EnemyPatrollingPath != null)
-            EnemyPatrollingPath = null;
     }
 
     private void OnEnable()
     {
         IsFleeing = false;
         ClosestAlreadyGot = false;
+
+        ChangeState(State.PATROLLING);
 
         for (int i = 0; i < HealthIndicators.Count; i++)
             HealthIndicators[i].gameObject.SetActive(false);

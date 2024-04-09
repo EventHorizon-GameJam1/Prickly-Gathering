@@ -1,12 +1,14 @@
 using System.Collections;
 using UnityEngine;
-using static PlayerController;
 
 [RequireComponent(typeof(Animator), typeof(Rigidbody), typeof(CapsuleCollider))]
 public class PlayerController : MonoBehaviour
 {
     public delegate void PlayerReady(PlayerController player);
     public static event PlayerReady OnPlayerReady = (PlayerController controller) => { };
+
+    public delegate void PlayerDefeated();
+    public static event PlayerDefeated OnPlayerDefeated = () => { };
 
     [SerializeField] private PlayerSettings PlayerSettings;
     [SerializeField] private SpriteRenderer SpriteRenderer;
@@ -26,6 +28,8 @@ public class PlayerController : MonoBehaviour
     //Parry Time After Invulnerability (TAI)
     private float Parry_TAI => PlayerSettings.ParrySustainTime - PlayerSettings.ParryInvulnerabilityTime;
 
+    private float PlayerHP;
+
     private void Awake()
     {
         //Get Components
@@ -38,9 +42,10 @@ public class PlayerController : MonoBehaviour
         PlayerSettings.AnimationController.ParticleTransform = ParticleHolder;
         InvulnerabilityWait = new WaitForSeconds(PlayerSettings.ParryInvulnerabilityTime);
         ParryWait = new WaitForSeconds(Parry_TAI);
+        PlayerHP = PlayerSettings.PlayerHP;
     }
 
-    private void Start()
+    private void EnablePlayerController()
     {
         PlayerSettings.Movement.Enable();
         OnPlayerReady(this);
@@ -76,6 +81,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void TakeDamage(float damage, float percentageLost)
+    {
+        PlayerHP -= damage;
+        if (PlayerHP <= 0)
+            OnPlayerDefeated();
+    }
+
     private void OnEnable()
     {
         //Controller Connections
@@ -90,6 +102,10 @@ public class PlayerController : MonoBehaviour
         InputManager.OnSprint += PlayerSettings.AnimationController.PlaySprint;
         InputManager.OnSprintCancelled += PlayerSettings.AnimationController.StopSprint;
         InputManager.OnParry += PlayerSettings.AnimationController.PlaySpecial;
+        //Enemy Connections
+        EnemyController.OnPlayerDamaged += TakeDamage;
+        //Level Manager Connection
+        LevelManager.OnLevelReady += EnablePlayerController;
     }
 
     private void OnDisable()
@@ -106,5 +122,9 @@ public class PlayerController : MonoBehaviour
         InputManager.OnDirectionChanged -= PlayerSettings.AnimationController.UpdateDirection;
         InputManager.OnSprint -= PlayerSettings.AnimationController.PlaySprint;
         InputManager.OnSprintCancelled -= PlayerSettings.AnimationController.StopSprint;
+        //Enemy Connections
+        EnemyController.OnPlayerDamaged -= TakeDamage;
+        //Level Manager Connection
+        LevelManager.OnLevelReady -= EnablePlayerController;
     }
 }

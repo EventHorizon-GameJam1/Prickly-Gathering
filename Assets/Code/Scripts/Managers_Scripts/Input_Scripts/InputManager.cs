@@ -25,6 +25,9 @@ public class InputManager : MonoBehaviour
     //Menu
     public delegate void GameMenuCalled();
     public static event GameMenuCalled OnMenuCalled = () => { };
+    //Interact
+    public delegate void IntercatCalled();
+    public static event IntercatCalled OnSelect = () => { };
     //------------------------------UI------------------------------
     //UI Movement
     public delegate void UI_DirectionChanged(Vector3 direction);
@@ -86,6 +89,8 @@ public class InputManager : MonoBehaviour
         //Menu
         InputActions.Gameplay.EnterMenu.performed += CallMenu;
         InputActions.Menu.ExitMenu.performed += CallMenu;
+        //Interact
+        InputActions.Gameplay.Select.performed += CallSelect;
         //------------------------------UI------------------------------
         //UI Movement
         InputActions.Menu.MenuNavigation.performed += CallUIMovement;
@@ -144,6 +149,8 @@ public class InputManager : MonoBehaviour
         else
             GameInput();
     }
+    //Select
+    private void CallSelect(InputAction.CallbackContext context) => OnSelect();
     //------------------------------UI------------------------------
     //UI Movement
     private void CallUIMovement(InputAction.CallbackContext context) => OnUIDirectionChanged(context.ReadValue<Vector2>());
@@ -168,6 +175,8 @@ public class InputManager : MonoBehaviour
         //-----------------------------GAME-----------------------------
         //Menu
         OnMenuCalled -= OnMenuCalled;
+        //Select
+        OnSelect -= OnSelect;
         //------------------------------UI------------------------------
         //UI Movement
         OnUIDirectionChanged -= OnUIDirectionChanged;

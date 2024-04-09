@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -11,17 +12,32 @@ public class LevelManager : MonoBehaviour
     public delegate void LevelReady();
     public static event LevelReady OnLevelReady = () => { };
 
+    public delegate void TimerEnded();
+    public static event TimerEnded OnTimerEnded = () => { };
+
+    public delegate void PlayerSecured();
+    public static event PlayerSecured OnPlayerSecured = () => { };
+
+    public static Transform PlayerSpawnPosition;
     public static Transform PlayerTransform { get; private set; } = null;
     public static PlayerController Player { get; private set; } = null;
     public static float LevelLoadProgress { get; private set; } = 0f;
+    public static float TimerProgress { get; private set; } = 0f;
 
     [Header("Level Manager Settings")]
-    //TODO: Add sky cycle
     [SerializeField] private List<EnemyZone> EnemyZones = new List<EnemyZone>();
     [SerializeField] private List<CollectibleSpawner> CollectibleSpawners = new List<CollectibleSpawner>();
+    [Tooltip("Time is in seconds")]
+    [SerializeField] public float DayDuration = 300f;
+    [Header("Light Cycle Settings")]
+    [SerializeField] private Transform LightTransform;
+    [SerializeField] private Vector3 StartRotation;
+    [SerializeField] private Vector3 EndRotation;
 
     private int SpawnerToSetUp = 0;
     private int SpawnerSetUpped = 0;
+
+    private Coroutine LightCycleCoroutine;
 
     private void Awake()
     {
@@ -37,6 +53,8 @@ public class LevelManager : MonoBehaviour
         SpawnerToSetUp = EnemyZones.Count + CollectibleSpawners.Count;
         SpawnerSetUpped = 0;
         LevelLoadProgress = 0f;
+
+        PlayerSpawnPosition = transform;
     }
 
     public void Start()
@@ -48,6 +66,36 @@ public class LevelManager : MonoBehaviour
         //Set up Enemy Zones
         for (int i = 0; i < EnemyZones.Count; i++)
             EnemyZones[i].SetUp();
+    }
+    
+    private IEnumerator LightCycle()
+    {
+        TimerProgress = 0f;
+
+        Quaternion initialQuaternion = Quaternion.Euler(StartRotation);
+        Quaternion finalQuaternion = Quaternion.Euler(EndRotation);
+
+        while(TimerProgress < DayDuration)
+        {
+            LightTransform.rotation = Quaternion.Lerp(initialQuaternion, finalQuaternion, TimerProgress/DayDuration);
+            TimerProgress += Time.deltaTime;
+            yield return null;
+        }
+
+        OnTimerEnded();
+
+        LightCycleCoroutine = null;
+    }
+
+    private void StartLevel()
+    {
+        SpawnAll();
+        if(LightCycleCoroutine != null)
+        {
+            StopCoroutine(LightCycleCoroutine);
+            LightCycleCoroutine = null;
+        }
+        LightCycleCoroutine = StartCoroutine(LightCycle());
     }
 
     private void SpawnAll()
@@ -69,6 +117,9 @@ public class LevelManager : MonoBehaviour
         //Reset Collectible Spawner
         for (int i = 0; i < CollectibleSpawners.Count; i++)
             CollectibleSpawners[i].ResetSpawner();
+
+        //Reset Player Pos
+        Player.transform.position = PlayerSpawnPosition.position;
     }
 
     private void UpdateLoadProgress()
@@ -90,7 +141,7 @@ public class LevelManager : MonoBehaviour
     private void OnEnable()
     {
         //Level Manager Events
-        OnLevelReady += SpawnAll;
+        OnLevelReady += StartLevel;
 
         //Spawner events
         //Set up collectible events

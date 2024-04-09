@@ -9,10 +9,23 @@ public class GameManager : MonoBehaviour
 
     //Evenets
     public delegate void GameStateChanged();
-    public static GameStateChanged OnGameStateChanged = () => {};
+    public static GameStateChanged OnGameStateChanged = () => { };
+
+    public delegate void ScoreChanged();
+    public static ScoreChanged OnScoreChanged = () => { };
+    public static ScoreChanged OnSecuredScoreChanged = () => { };
+
+    [Header("Game Manager Settings")]
+    [SerializeField] private int MaxDays = 3;
+    [SerializeField] public FamilySettings GameFamilySetting;
 
     public static bool OnPause { private set; get; } = false;
-    private float Score = 0f;
+    public static float Score { private set; get; } = 0f;
+    public static float SecuredScore { private set; get; } = 0f;
+
+    private int DayCounter = 0;
+    private List<int> FamilyScore = new List<int>();
+    private int FamilyMemberSatisfied = 0;
 
     private void Awake()
     {
@@ -25,8 +38,13 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
         Time.timeScale = 0f;
+
+        for (int i = 0; i < GameFamilySetting.FamilyNecessities.Count; i++)
+            FamilyScore.Add(0);
+
     }
 
+    #region MENU
     private void MenuCalled()
     {
         if (OnPause)
@@ -40,19 +58,79 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         OnPause = false;
-        Debug.Log(OnPause);
     }
 
     private void PauseGame()
     {
         Time.timeScale = 0f;
         OnPause = true;
-        Debug.Log(OnPause);
     }
+    #endregion
 
+    #region SCORE
     private void IncraseScore(float score)
     {
         Score += score;
+        OnScoreChanged();
+    }
+
+    private void LoseScore(float damage, float percentage)
+    {
+        Score = Score * percentage;
+    }
+
+    private void SecureScore(float percentage)
+    {
+        //Update Score
+        SecuredScore += (Score*percentage);
+        Score -= Score*percentage;
+        OnSecuredScoreChanged();
+        OnScoreChanged();
+        //Update Family Necessities
+        //TODO: check family necessities
+        /*
+        float checkedScore = SecuredScore;
+        for (int i = 0; i < GameFamilySetting.FamilyNecessities.Count; i++)
+        {
+            if (GameFamilySetting.FamilyNecessities[i].ScoreRequested >= SecuredScore)
+            {
+                checkedScore -= GameFamilySetting.FamilyNecessities[i].ScoreRequested;
+                FamilyMemberSatisfied++;
+            }
+        }
+        */
+        if (FamilyMemberSatisfied >= GameFamilySetting.FamilyNecessities.Count)
+        {
+            GameWon();
+            return;
+        }
+        NewDay();
+    }
+    #endregion
+
+    private void GameOver()
+    {
+        //TODO: GAME OVER
+        Debug.Log("game Over");
+    }
+
+    private void GameWon()
+    {
+        //TODO: GAME WON
+        Debug.Log("game Won!");
+    }
+
+    private void NewDay()
+    {
+        DayCounter++;
+        if(DayCounter > MaxDays)
+        {
+            GameOver();
+            return;
+        }
+
+
+        LevelManager.Instance.ResetLevel();
     }
     
     private void OnEnable()
@@ -61,7 +139,14 @@ public class GameManager : MonoBehaviour
         Collectible.OnCollect += IncraseScore;
         //Level manager event
         LevelManager.OnLevelReady += UnPauseGame;
+        LevelManager.OnTimerEnded += NewDay;
         //Pause Game
         InputManager.OnMenuCalled += MenuCalled;
+        //Enemy Connection
+        EnemyController.OnPlayerDamaged += LoseScore;
+        //Player connection
+        PlayerController.OnPlayerDefeated += GameOver;
+        //Dem connection
+        Dem.OnPlayerSecured += SecureScore;
     }
 }
