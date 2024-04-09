@@ -110,6 +110,18 @@ public class InputManager : MonoBehaviour
         OnDirectionChanged(dir);
     }
 
+    private void MenuInput()
+    {
+        InputActions.Gameplay.Disable();
+        InputActions.Menu.Enable();
+    }
+
+    private void GameInput()
+    {
+        InputActions.Gameplay.Enable();
+        InputActions.Menu.Disable();
+    }
+
     #region EVENTS FUNCTIONS
     //---------------------------GAMEPLAY---------------------------
     //Movement
@@ -123,7 +135,15 @@ public class InputManager : MonoBehaviour
     private void CallParry(InputAction.CallbackContext context) => OnParry();
     //-----------------------------GAME-----------------------------
     //Menu
-    private void CallMenu(InputAction.CallbackContext context) => OnMenuCalled();
+    private void CallMenu(InputAction.CallbackContext context)
+    {
+        OnMenuCalled();
+
+        if (GameManager.OnPause)
+            MenuInput();
+        else
+            GameInput();
+    }
     //------------------------------UI------------------------------
     //UI Movement
     private void CallUIMovement(InputAction.CallbackContext context) => OnUIDirectionChanged(context.ReadValue<Vector2>());

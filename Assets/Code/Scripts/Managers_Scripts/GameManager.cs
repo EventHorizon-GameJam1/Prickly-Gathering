@@ -7,6 +7,11 @@ public class GameManager : MonoBehaviour
     //Sigleton
     public static GameManager Instance;
 
+    //Evenets
+    public delegate void GameStateChanged();
+    public static GameStateChanged OnGameStateChanged = () => {};
+
+    public static bool OnPause { private set; get; } = false;
     private float Score = 0f;
 
     private void Awake()
@@ -22,9 +27,27 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    private void StartGame()
+    private void MenuCalled()
+    {
+        if (OnPause)
+            UnPauseGame();
+        else
+            PauseGame();
+        OnGameStateChanged();
+    }
+
+    private void UnPauseGame()
     {
         Time.timeScale = 1f;
+        OnPause = false;
+        Debug.Log(OnPause);
+    }
+
+    private void PauseGame()
+    {
+        Time.timeScale = 0f;
+        OnPause = true;
+        Debug.Log(OnPause);
     }
 
     private void IncraseScore(float score)
@@ -37,6 +60,8 @@ public class GameManager : MonoBehaviour
         //Collectible events
         Collectible.OnCollect += IncraseScore;
         //Level manager event
-        LevelManager.OnLevelReady += StartGame;
+        LevelManager.OnLevelReady += UnPauseGame;
+        //Pause Game
+        InputManager.OnMenuCalled += MenuCalled;
     }
 }
