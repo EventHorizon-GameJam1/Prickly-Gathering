@@ -115,6 +115,11 @@ public class InputManager : MonoBehaviour
         OnDirectionChanged(dir);
     }
 
+    private void OnEnable()
+    {
+        GameManager.OnNewDay += GameInput;
+    }
+
     private void MenuInput()
     {
         InputActions.Gameplay.Disable();

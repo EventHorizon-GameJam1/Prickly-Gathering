@@ -21,8 +21,8 @@ public class Dem : MonoBehaviour
     {
         if (Enabled)
         {
-            OnPlayerSecured(StoredPercentage);
             LevelManager.PlayerSpawnPosition = PlayerSpawnPos;
+            OnPlayerSecured(StoredPercentage);
         }
     }
 

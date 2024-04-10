@@ -44,7 +44,6 @@ public class EnemyZone : MonoBehaviour
             //Disale enemy
             EnemiesSpawned[i].gameObject.SetActive(false);
         }
-        Spawn();
     }
 
     public void Spawn()

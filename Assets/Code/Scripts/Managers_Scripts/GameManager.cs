@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GameManager;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class GameManager : MonoBehaviour
     public delegate void ScoreChanged();
     public static ScoreChanged OnScoreChanged = () => { };
     public static ScoreChanged OnSecuredScoreChanged = () => { };
+
+    public delegate void GameDay();
+    public static GameDay OnNewDay = () => { };
+    public static GameDay OnEndDay = () => { };
 
     [Header("Game Manager Settings")]
     [SerializeField] private int MaxDays = 3;
@@ -104,7 +109,7 @@ public class GameManager : MonoBehaviour
             GameWon();
             return;
         }
-        NewDay();
+        EndDay();
     }
     #endregion
 
@@ -120,7 +125,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("game Won!");
     }
 
-    private void NewDay()
+    private void EndDay()
     {
         DayCounter++;
         if(DayCounter > MaxDays)
@@ -128,9 +133,12 @@ public class GameManager : MonoBehaviour
             GameOver();
             return;
         }
+        OnEndDay();
+    }
 
-
-        LevelManager.Instance.ResetLevel();
+    private void NewDay()
+    {
+        OnNewDay();
     }
     
     private void OnEnable()
@@ -139,7 +147,7 @@ public class GameManager : MonoBehaviour
         Collectible.OnCollect += IncraseScore;
         //Level manager event
         LevelManager.OnLevelReady += UnPauseGame;
-        LevelManager.OnTimerEnded += NewDay;
+        LevelManager.OnTimerEnded += EndDay;
         //Pause Game
         InputManager.OnMenuCalled += MenuCalled;
         //Enemy Connection
@@ -148,5 +156,7 @@ public class GameManager : MonoBehaviour
         PlayerController.OnPlayerDefeated += GameOver;
         //Dem connection
         Dem.OnPlayerSecured += SecureScore;
+        //Continue to new level event
+        UI_FamilyNecessities.OnContinueToNewDay += NewDay;
     }
 }

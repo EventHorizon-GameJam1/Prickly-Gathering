@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -120,6 +121,10 @@ public class LevelManager : MonoBehaviour
 
         //Reset Player Pos
         Player.transform.position = PlayerSpawnPosition.position;
+
+        LightCycleCoroutine = StartCoroutine(LightCycle());
+
+        SpawnAll();
     }
 
     private void UpdateLoadProgress()
@@ -130,6 +135,11 @@ public class LevelManager : MonoBehaviour
         
         if( LevelLoadProgress > 0.99999f )
             OnLevelReady();
+    }
+
+    private void StopDayCycle()
+    {
+        StopCoroutine(LightCycleCoroutine);
     }
 
     private void SetPlayerTransform(PlayerController controller)
@@ -154,5 +164,9 @@ public class LevelManager : MonoBehaviour
 
         //Player events
         PlayerController.OnPlayerReady += SetPlayerTransform;
+
+        //Game manager
+        GameManager.OnNewDay += ResetLevel;
+        GameManager.OnEndDay += StopDayCycle;
     }
 }

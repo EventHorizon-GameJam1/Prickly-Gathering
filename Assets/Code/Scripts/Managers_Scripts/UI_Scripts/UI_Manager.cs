@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Search;
 using UnityEngine;
 
 public class UI_Manager : MonoBehaviour
@@ -24,15 +20,15 @@ public class UI_Manager : MonoBehaviour
         {
             //Show pause menu
             Game_UI.Canvas.gameObject.SetActive(false);
-            FamilyNecessities_UI.gameObject.SetActive(false);
             Pause_UI.Canvas.gameObject.SetActive(true);
+            FamilyNecessities_UI.gameObject.SetActive(false);
         }
         else
         {
             //Show game menu
             Game_UI.Canvas.gameObject.SetActive(true);
-            FamilyNecessities_UI.gameObject.SetActive(false);
             Pause_UI.Canvas.gameObject.SetActive(false);
+            FamilyNecessities_UI.gameObject.SetActive(false);
         }
     }
 
@@ -47,14 +43,25 @@ public class UI_Manager : MonoBehaviour
         CommunicationText.gameObject.SetActive(false);
     }
 
-    private void ShowFamilyNecessities(bool x)
+    private void ShowFamilyNecessities()
     {
-        FamilyNecessities_UI.gameObject.SetActive(x);
+        FamilyNecessities_UI.gameObject.SetActive(true);
+        Game_UI.Canvas.gameObject.SetActive(false);
+        Pause_UI.Canvas.gameObject.SetActive(false);
+    }
+
+    private void HideFamilyNecessities()
+    {
+        FamilyNecessities_UI.gameObject.SetActive(false);
+        Game_UI.Canvas.gameObject.SetActive(true);
+        Pause_UI.Canvas.gameObject.SetActive(false);
     }
 
     private void OnEnable()
     {
+        UI_FamilyNecessities.OnContinueToNewDay += HideFamilyNecessities;
         GameManager.OnGameStateChanged += ChangeState;
+        GameManager.OnEndDay += ShowFamilyNecessities;
         Dem.OnSecureAvailable += CommunicateStoreValue;
         Dem.OnSecureNotAvailable += HideCommunication;
     }

@@ -20,6 +20,9 @@ public class UI_GameScreen : UI_Screen
     private Quaternion TimerImageStartRotation;
     private Quaternion TimerImageFinalRotation;
 
+    private float PlayerStartHP;
+    private float PlayerHP;
+
     private Coroutine TimerCoroutine;
 
     private void Awake()
@@ -28,14 +31,10 @@ public class UI_GameScreen : UI_Screen
         TimerImageFinalRotation = Quaternion.Euler(FinalRotation);
     }
 
-    private void Start()
-    {
-        StartTimer();
-    }
-
     private void UpdatePlayer_HP()
     {
-
+        PlayerHP = Player.PlayerHP;
+        Hp_Bar.fillAmount = PlayerHP / PlayerStartHP;        
     }
 
     private void UpdatePlayer_Sprint()
@@ -79,6 +78,7 @@ public class UI_GameScreen : UI_Screen
     private void GetPlayer(PlayerController player)
     {
         Player = player;
+        PlayerStartHP = Player.PlayerHP;
     }
 
     private void OnEnable()
@@ -86,6 +86,9 @@ public class UI_GameScreen : UI_Screen
         GameManager.OnScoreChanged += UpdateScore;
         GameManager.OnSecuredScoreChanged += UpdateSecuredScore;
         PlayerController.OnPlayerReady += GetPlayer;
+        PlayerController.OnPlayerDamaged += UpdatePlayer_HP;
+
+        StartTimer();
     }
 
     private void OnDisable()
@@ -93,6 +96,7 @@ public class UI_GameScreen : UI_Screen
         GameManager.OnScoreChanged -= UpdateScore;
         GameManager.OnSecuredScoreChanged -= UpdateSecuredScore;
         PlayerController.OnPlayerReady -= GetPlayer;
+        PlayerController.OnPlayerDamaged -= UpdatePlayer_HP;
 
         if (TimerCoroutine != null)
             StopCoroutine(TimerCoroutine);

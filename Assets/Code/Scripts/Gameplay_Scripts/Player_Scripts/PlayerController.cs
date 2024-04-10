@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public delegate void PlayerDefeated();
     public static event PlayerDefeated OnPlayerDefeated = () => { };
 
+    public delegate void PlayerDamaged();
+    public static event PlayerDamaged OnPlayerDamaged = () => { };
+
     [SerializeField] private PlayerSettings PlayerSettings;
     [SerializeField] private SpriteRenderer SpriteRenderer;
     [SerializeField] private Transform ParticleHolder;
@@ -19,7 +22,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody Body;
     private Animator Animator;
     //TODO: Consume Stamina
-    private float Stamina => PlayerSettings.PlayerStartStamina;
+    public float Stamina { private set; get; }
+    public float PlayerHP { private set; get; }
 
     //Parry var
     private Coroutine ParryCorout = null;
@@ -27,8 +31,6 @@ public class PlayerController : MonoBehaviour
     private WaitForSeconds InvulnerabilityWait;
     //Parry Time After Invulnerability (TAI)
     private float Parry_TAI => PlayerSettings.ParrySustainTime - PlayerSettings.ParryInvulnerabilityTime;
-
-    private float PlayerHP;
 
     private void Awake()
     {
@@ -43,6 +45,7 @@ public class PlayerController : MonoBehaviour
         InvulnerabilityWait = new WaitForSeconds(PlayerSettings.ParryInvulnerabilityTime);
         ParryWait = new WaitForSeconds(Parry_TAI);
         PlayerHP = PlayerSettings.PlayerHP;
+        Stamina = PlayerSettings.PlayerStartStamina;
     }
 
     private void EnablePlayerController()
@@ -84,6 +87,7 @@ public class PlayerController : MonoBehaviour
     private void TakeDamage(float damage, float percentageLost)
     {
         PlayerHP -= damage;
+        OnPlayerDamaged();
         if (PlayerHP <= 0)
             OnPlayerDefeated();
     }
@@ -110,7 +114,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
-        OnPlayerReady += OnPlayerReady;
+        OnPlayerReady -= OnPlayerReady;
+        OnPlayerDamaged -= OnPlayerDamaged;
         //Controller Connections
         InputManager.OnParry -= Parry;
         //Movement Disconnections

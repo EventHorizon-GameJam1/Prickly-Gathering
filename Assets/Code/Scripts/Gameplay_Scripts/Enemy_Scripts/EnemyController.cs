@@ -39,7 +39,7 @@ public class EnemyController : MonoBehaviour
     [Header("Debug Settings")]
     [SerializeField] private bool DrawGizmos = true;
     //Patrolling
-    [HideInInspector] public PatrollingData EnemyPatrollingPath = new PatrollingData();
+    [HideInInspector] public PatrollingData EnemyPatrollingPath;
     [HideInInspector] private Transform PlayerTransform => LevelManager.PlayerTransform;
 
     //Components
@@ -117,7 +117,8 @@ public class EnemyController : MonoBehaviour
                 }
 
                 EnemyActions += PatrolState;
-                SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Patrolling_SFX);
+                if(EnemySettings.Patrolling_SFX!=null)
+                    SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Patrolling_SFX);
                 break;
             }
             case State.FLEE:
