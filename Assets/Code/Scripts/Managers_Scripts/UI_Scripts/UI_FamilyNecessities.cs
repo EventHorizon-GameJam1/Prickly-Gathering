@@ -87,23 +87,31 @@ public class UI_FamilyNecessities : MonoBehaviour
     {
         ScoreBudget = GameManager.SecuredScore;
 
-        for (int i = 0; i< FamilyNecessities.Count; i++)
+        for (int i = 0; i < FamilyNecessities.Count; i++)
         {
-            StartCoroutine(AnimateFamilyNecessities(i));
+            float fillAmount = ScoreBudget / FamilyNecessities[i].ScoreRequested;
+            if (fillAmount >= 1f)
+                fillAmount = 1f;
+            if (fillAmount <= 0f)
+                fillAmount = 0f;
+
+            ScoreBudget -= FamilyNecessities[i].ScoreRequested;
+
+            StartCoroutine(AnimateFamilyNecessities(i, fillAmount));
             yield return WaitTime;
         }
         ContinueButton.interactable = true;
     }
 
-    private IEnumerator AnimateFamilyNecessities(int i)
+    private IEnumerator AnimateFamilyNecessities(int i, float fillAmount)
     {
         float progress = 0f;
         float animationSpeed = 1f / FamilyNecessitiesTime;
         
-        while (progress<1f)
+        while (progress <= fillAmount)
         {
             FamilyNecessities_UIElements[i].SliderImage.fillAmount = FamilyNecessitiesAnimationCurve.Evaluate(progress);
-            FamilyNecessities_UIElements[i].Necessities_Text.text = (int)(FamilyNecessities_UIElements[i].SliderImage.fillAmount*FamilyNecessities[i].ScoreRequested) +"/" + FamilyNecessities[i].ScoreRequested.ToString();
+            FamilyNecessities_UIElements[i].Necessities_Text.text = (fillAmount * FamilyNecessities[i].ScoreRequested) +"/" + FamilyNecessities[i].ScoreRequested.ToString();
             progress += Time.deltaTime * animationSpeed;
             yield return null;
         }

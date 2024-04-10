@@ -92,12 +92,17 @@ public class PlayerController : MonoBehaviour
             OnPlayerDefeated();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        Body.velocity = collision.contacts[0].normal;
+    }
+
     private void OnEnable()
     {
         //Controller Connections
         InputManager.OnParry += Parry;
         //Movement Connections
-        InputManager.OnDirectionChanged += PlayerSettings.Movement.ApplySpeed;
+        InputManager.OnDirectionChanged += PlayerSettings.Movement.Move;
         InputManager.OnSprint += PlayerSettings.Movement.Sprint;
         InputManager.OnSprintCancelled += PlayerSettings.Movement.CancelSprint;
         InputManager.OnJump += PlayerSettings.Movement.Jump;
@@ -119,7 +124,7 @@ public class PlayerController : MonoBehaviour
         //Controller Connections
         InputManager.OnParry -= Parry;
         //Movement Disconnections
-        InputManager.OnDirectionChanged -= PlayerSettings.Movement.ApplySpeed;
+        InputManager.OnDirectionChanged -= PlayerSettings.Movement.Move;
         InputManager.OnSprint -= PlayerSettings.Movement.Sprint;
         InputManager.OnSprintCancelled -= PlayerSettings.Movement.CancelSprint;
         InputManager.OnJump -= PlayerSettings.Movement.Jump;

@@ -91,19 +91,7 @@ public class GameManager : MonoBehaviour
         Score -= Score*percentage;
         OnSecuredScoreChanged();
         OnScoreChanged();
-        //Update Family Necessities
         //TODO: check family necessities
-        /*
-        float checkedScore = SecuredScore;
-        for (int i = 0; i < GameFamilySetting.FamilyNecessities.Count; i++)
-        {
-            if (GameFamilySetting.FamilyNecessities[i].ScoreRequested >= SecuredScore)
-            {
-                checkedScore -= GameFamilySetting.FamilyNecessities[i].ScoreRequested;
-                FamilyMemberSatisfied++;
-            }
-        }
-        */
         if (FamilyMemberSatisfied >= GameFamilySetting.FamilyNecessities.Count)
         {
             GameWon();

@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: FamilyNecessities
   m_EditorClassIdentifier: 
   FamilyNecessities:
-  - Name: Pim
-    ScoreRequested: 100
-  - Name: Pom
-    ScoreRequested: 100
-  - Name: Son 1
-    ScoreRequested: 100
-  - Name: Son 2
-    ScoreRequested: 100
-  - Name: Son 3
+  - Name: Son 5
     ScoreRequested: 100
   - Name: Son 4
     ScoreRequested: 100
-  - Name: Son 5
+  - Name: Son 3
+    ScoreRequested: 100
+  - Name: Son 2
+    ScoreRequested: 100
+  - Name: Son 1
+    ScoreRequested: 100
+  - Name: Pom
+    ScoreRequested: 100
+  - Name: Pim
     ScoreRequested: 100
