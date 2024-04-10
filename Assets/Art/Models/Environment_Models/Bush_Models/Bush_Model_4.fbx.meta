@@ -5,6 +5,11 @@ ModelImporter:
   internalIDToNameTable: []
   externalObjects:
   - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: c_1v
+    second: {fileID: 2100000, guid: 55d64bb9c197e6b4397b47ad11b5fef9, type: 2}
+  - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: cespuglio 2 da texturizzare_lambert1_BaseColor
