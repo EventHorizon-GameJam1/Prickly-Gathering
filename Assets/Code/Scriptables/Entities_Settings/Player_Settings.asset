@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 015fce4922f06d14085df17eea69a6b6, type: 3}
   m_Name: Player_Settings
   m_EditorClassIdentifier: 
-  EnergyAmount: 10
+  m_PlayerStamina: 10
+  m_PlayerHP: 10
   m_ParrySustainTime: 0.5
   m_ParryInvulnerabilityTime: 0.25
   Movement:
     MovementSpeed: 5
-    SprintMultiplier: 2
+    SprintMultiplier: 1
     Rigidbody: {fileID: 0}
     JumpHeight: 1.5
     JumpAnimationSpeed: 2

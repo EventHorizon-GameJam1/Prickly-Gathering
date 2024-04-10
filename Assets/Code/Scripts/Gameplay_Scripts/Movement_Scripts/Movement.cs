@@ -14,7 +14,7 @@ public abstract class Movement
 
     protected bool Disabled = false;
 
-    public void ApplySpeed(Vector3 direction)
+    public void Move(Vector3 direction)
     {
         if(Disabled) return;
 
@@ -27,8 +27,9 @@ public abstract class Movement
 
         if (IsSprinting)
             return;
+
         ActualSprint = SprintValue;
-        ApplySpeed(Rigidbody.velocity.normalized);
+        Move(Rigidbody.velocity.normalized);
         IsSprinting = true;
     }
 
@@ -36,8 +37,8 @@ public abstract class Movement
     {
         if (Disabled) return;
 
-        ActualSprint = 1f;
-        ApplySpeed(Rigidbody.velocity.normalized);
+        ActualSprint = 0f;
+        Move(Rigidbody.velocity.normalized);
         IsSprinting = false;
     }
 
