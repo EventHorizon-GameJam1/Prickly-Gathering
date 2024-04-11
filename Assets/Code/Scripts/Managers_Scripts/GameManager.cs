@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
             UnPauseGame();
         else
             PauseGame();
+
         OnGameStateChanged();
     }
 

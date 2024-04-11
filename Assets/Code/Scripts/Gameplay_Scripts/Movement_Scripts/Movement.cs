@@ -5,10 +5,10 @@ public abstract class Movement
 {
     [Header("Movement")]
     [SerializeField] public float MovementSpeed = 5f;
-    [SerializeField] public float SprintMultiplier = 2f;
+    [SerializeField] public float SpeedMultiplier = 2f;
     [HideInInspector] public Rigidbody Rigidbody;
 
-    protected float SprintValue => MovementSpeed * SprintMultiplier;
+    protected float SprintValue => MovementSpeed * SpeedMultiplier;
     private float ActualSprint = 1f;
     private bool IsSprinting = false;
 
@@ -18,7 +18,7 @@ public abstract class Movement
     {
         if(Disabled) return;
 
-        Rigidbody.velocity = direction.normalized * (MovementSpeed + ActualSprint);
+        Rigidbody.velocity = direction.normalized * ActualSprint;
     }
 
     public void Sprint()
@@ -37,7 +37,7 @@ public abstract class Movement
     {
         if (Disabled) return;
 
-        ActualSprint = 0f;
+        ActualSprint = MovementSpeed;
         Move(Rigidbody.velocity.normalized);
         IsSprinting = false;
     }

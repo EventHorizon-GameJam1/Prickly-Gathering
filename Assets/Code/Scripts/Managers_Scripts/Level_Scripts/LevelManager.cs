@@ -169,4 +169,26 @@ public class LevelManager : MonoBehaviour
         GameManager.OnNewDay += ResetLevel;
         GameManager.OnEndDay += StopDayCycle;
     }
+
+    private void OnDisable()
+    {
+        //Level Manager Events
+        OnLevelReady -= StartLevel;
+
+        //Spawner events
+        //Set up collectible events
+        for (int i = 0; i < CollectibleSpawners.Count; i++)
+            CollectibleSpawners[i].OnReady -= UpdateLoadProgress;
+
+        //Set up Enemy events
+        for (int i = 0; i < EnemyZones.Count; i++)
+            EnemyZones[i].OnReady -= UpdateLoadProgress;
+
+        //Player events
+        PlayerController.OnPlayerReady -= SetPlayerTransform;
+
+        //Game manager
+        GameManager.OnNewDay -= ResetLevel;
+        GameManager.OnEndDay -= StopDayCycle;
+    }
 }

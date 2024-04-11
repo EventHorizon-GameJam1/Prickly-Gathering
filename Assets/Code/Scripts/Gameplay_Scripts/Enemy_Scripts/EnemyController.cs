@@ -70,7 +70,7 @@ public class EnemyController : MonoBehaviour
         EnemyMovement.StoppingDistance = EnemySettings.Movement.StoppingDistance;
         NavMeshAgent.stoppingDistance = EnemyMovement.StoppingDistance;
         EnemyMovement.Agent = NavMeshAgent;
-        EnemyMovement.SprintMultiplier = EnemySettings.Movement.SprintMultiplier;
+        EnemyMovement.SpeedMultiplier = EnemySettings.Movement.SpeedMultiplier;
         EnemyMovement.MovementSpeed = EnemySettings.Movement.MovementSpeed;
         //Animation Set Up
         EnemyAnimation.Renderer = SpriteRenderer;

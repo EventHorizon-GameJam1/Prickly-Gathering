@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
@@ -30,11 +31,11 @@ public class InputManager : MonoBehaviour
     public static event IntercatCalled OnSelect = () => { };
     //------------------------------UI------------------------------
     //UI Movement
-    public delegate void UI_DirectionChanged(Vector3 direction);
-    public static event UI_DirectionChanged OnUIDirectionChanged = (Vector3 direction) => { };
+    //public delegate void UI_DirectionChanged(Vector3 direction);
+    //public static event UI_DirectionChanged OnUIDirectionChanged = (Vector3 direction) => { };
     //UI Select
-    public delegate void UI_Select();
-    public static event UI_Select OnUISelect = () => { };
+    //public delegate void UI_Select();
+    //public static event UI_Select OnUISelect = () => { };
     //--------------------------------------------------------------
     #endregion
 
@@ -59,7 +60,6 @@ public class InputManager : MonoBehaviour
 
         //setup InputMap
         InputActions = new InputMap();
-        InputActions.Enable();
         
         //set up enabled action
         if (StartOnMenu)
@@ -72,32 +72,6 @@ public class InputManager : MonoBehaviour
             InputActions.Gameplay.Enable();
             InputActions.Menu.Disable();
         }
-
-        #region Events Setup
-        //Setup events
-        //---------------------------GAMEPLAY---------------------------
-        //Movement
-        InputActions.Gameplay.Movement.performed += CallMovement;
-        //Sprint
-        InputActions.Gameplay.Sprint.started += CallSprint;
-        InputActions.Gameplay.Sprint.canceled += CancelSprint;
-        //Jump
-        //InputActions.Gameplay.Jump.performed += CallJump;
-        //Parry
-        InputActions.Gameplay.Parry.performed += CallParry;
-        //-----------------------------GAME-----------------------------
-        //Menu
-        InputActions.Gameplay.EnterMenu.performed += CallMenu;
-        InputActions.Menu.ExitMenu.performed += CallMenu;
-        //Interact
-        InputActions.Gameplay.Select.performed += CallSelect;
-        //------------------------------UI------------------------------
-        //UI Movement
-        InputActions.Menu.MenuNavigation.performed += CallUIMovement;
-        //UI Select
-        InputActions.Menu.Select.performed += CallUISelect;
-        //--------------------------------------------------------------
-        #endregion
     }
 
     private void Start()
@@ -111,7 +85,7 @@ public class InputManager : MonoBehaviour
         Vector3 dir = Vector3.zero;
         if (InputActions.Gameplay.Movement.inProgress)
             dir  = InputActions.Gameplay.Movement.ReadValue<Vector3>();
-
+        
         OnDirectionChanged(dir);
     }
 
@@ -153,14 +127,40 @@ public class InputManager : MonoBehaviour
     private void CallSelect(InputAction.CallbackContext context) => OnSelect();
     //------------------------------UI------------------------------
     //UI Movement
-    private void CallUIMovement(InputAction.CallbackContext context) => OnUIDirectionChanged(context.ReadValue<Vector2>());
+    //private void CallUIMovement(InputAction.CallbackContext context) => OnUIDirectionChanged(context.ReadValue<Vector2>());
     //UI Select
-    private void CallUISelect(InputAction.CallbackContext context) => OnUISelect();
+    //private void CallUISelect(InputAction.CallbackContext context) => OnUISelect();
     //--------------------------------------------------------------
     #endregion
 
     private void OnEnable()
     {
+        #region Events Setup
+        //Setup events
+        //---------------------------GAMEPLAY---------------------------
+        //Movement
+        InputActions.Gameplay.Movement.performed += CallMovement;
+        //Sprint
+        InputActions.Gameplay.Sprint.started += CallSprint;
+        InputActions.Gameplay.Sprint.canceled += CancelSprint;
+        //Jump
+        //InputActions.Gameplay.Jump.performed += CallJump;
+        //Parry
+        InputActions.Gameplay.Parry.performed += CallParry;
+        //-----------------------------GAME-----------------------------
+        //Menu
+        InputActions.Gameplay.EnterMenu.performed += CallMenu;
+        InputActions.Menu.ExitMenu.performed += CallMenu;
+        //Interact
+        InputActions.Gameplay.Select.performed += CallSelect;
+        //------------------------------UI------------------------------
+        //UI Movement
+        //InputActions.Menu.MenuNavigation.performed += CallUIMovement;
+        //UI Select
+        //InputActions.Menu.Select.performed += CallUISelect;
+        //--------------------------------------------------------------
+        #endregion
+
         GameManager.OnNewDay += GameInput;
         GameManager.OnEndDay += MenuInput;
     }
@@ -175,7 +175,7 @@ public class InputManager : MonoBehaviour
         OnSprint -= OnSprint;
         OnSprintCancelled -= OnSprintCancelled;
         //Jump
-        //OnJump -= OnJump;
+        OnJump -= OnJump;
         //Parry
         OnParry -= OnParry;
         //-----------------------------GAME-----------------------------
@@ -185,12 +185,14 @@ public class InputManager : MonoBehaviour
         OnSelect -= OnSelect;
         //------------------------------UI------------------------------
         //UI Movement
-        OnUIDirectionChanged -= OnUIDirectionChanged;
+        //OnUIDirectionChanged -= OnUIDirectionChanged;
         //UI Select
-        OnUISelect -= OnUISelect;
+        //OnUISelect -= OnUISelect;
         //--------------------------------------------------------------
 
         GameManager.OnNewDay -= GameInput;
         GameManager.OnEndDay -= MenuInput;
+
+        InputActions.Disable();
     }
 }

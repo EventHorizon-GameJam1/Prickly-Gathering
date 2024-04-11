@@ -16,7 +16,7 @@ public class UI_GameScreen : UI_Screen
     [SerializeField] private Vector3 FinalRotation;
     [SerializeField] private TMP_Text TimerText;
 
-    private PlayerController Player;
+    public PlayerController Player;
     private Quaternion TimerImageStartRotation;
     private Quaternion TimerImageFinalRotation;
 
@@ -76,29 +76,23 @@ public class UI_GameScreen : UI_Screen
         SecuredScoreText.text = GameManager.SecuredScore.ToString();
     }
 
-    private void GetPlayer(PlayerController player)
-    {
-        Player = player;
-        PlayerStartHP = Player.PlayerHP;
-        PlayerStartStamina = Player.Stamina;
-    }
-
     private void OnEnable()
     {
         GameManager.OnScoreChanged += UpdateScore;
         GameManager.OnSecuredScoreChanged += UpdateSecuredScore;
-        PlayerController.OnPlayerReady += GetPlayer;
+        GameManager.OnNewDay += StartTimer;
         PlayerController.OnHPChanged += UpdatePlayer_HP;
         PlayerController.OnStaminaChanged += UpdatePlayer_Stamina;
-        StartTimer();
     }
 
     private void OnDisable()
     {
         GameManager.OnScoreChanged -= UpdateScore;
         GameManager.OnSecuredScoreChanged -= UpdateSecuredScore;
-        PlayerController.OnPlayerReady -= GetPlayer;
+        GameManager.OnNewDay -= StartTimer;
         PlayerController.OnHPChanged -= UpdatePlayer_HP;
+        PlayerController.OnStaminaChanged -= UpdatePlayer_Stamina;
+
 
         if (TimerCoroutine != null)
             StopCoroutine(TimerCoroutine);

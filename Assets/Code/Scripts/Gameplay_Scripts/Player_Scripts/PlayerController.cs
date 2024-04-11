@@ -54,10 +54,14 @@ public class PlayerController : MonoBehaviour
         Stamina = PlayerSettings.PlayerStartStamina;
     }
 
+    private void Start()
+    {
+        OnPlayerReady(this);
+    }
+
     private void EnablePlayerController()
     {
         PlayerSettings.Movement.Enable();
-        OnPlayerReady(this);
     }
 
     private void Parry()

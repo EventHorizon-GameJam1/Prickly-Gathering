@@ -98,6 +98,11 @@ public class CollectibleSpawner : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        OnReady -= OnReady;
+        SpawnedCollectible = null;
+    }
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()

@@ -10,8 +10,14 @@ public class UI_Manager : MonoBehaviour
 
     private void Start()
     {
-        CommunicationText.gameObject.SetActive(false);
-        ChangeState();
+        Game_UI.Canvas.gameObject.SetActive(true);
+        Pause_UI.Canvas.gameObject.SetActive(false);
+        FamilyNecessities_UI.gameObject.SetActive(false);
+    }
+
+    private void SetPlayer(PlayerController Player)
+    {
+        Game_UI.Player = Player;
     }
 
     private void ChangeState()
@@ -34,8 +40,11 @@ public class UI_Manager : MonoBehaviour
 
     private void CommunicateStoreValue(float percentage)
     {
-        CommunicationText.gameObject.SetActive(true);
-        CommunicationText.text = "Interact To End The Day And Store "+ percentage*100 + "% of Resources";
+        if(CommunicationText.gameObject != null)
+        {
+            CommunicationText.gameObject.SetActive(true);
+            CommunicationText.text = "Interact To End The Day And Store "+ percentage*100 + "% of Resources";
+        }
     }
 
     private void HideCommunication(float percentage)
@@ -62,7 +71,18 @@ public class UI_Manager : MonoBehaviour
         UI_FamilyNecessities.OnContinueToNewDay += HideFamilyNecessities;
         GameManager.OnGameStateChanged += ChangeState;
         GameManager.OnEndDay += ShowFamilyNecessities;
+        PlayerController.OnPlayerReady += SetPlayer;
         Dem.OnSecureAvailable += CommunicateStoreValue;
         Dem.OnSecureNotAvailable += HideCommunication;
+    }
+
+    private void OnDisable()
+    {
+        UI_FamilyNecessities.OnContinueToNewDay -= HideFamilyNecessities;
+        GameManager.OnGameStateChanged -= ChangeState;
+        GameManager.OnEndDay -= ShowFamilyNecessities;
+        PlayerController.OnPlayerReady -= SetPlayer;
+        Dem.OnSecureAvailable -= CommunicateStoreValue;
+        Dem.OnSecureNotAvailable -= HideCommunication;
     }
 }
