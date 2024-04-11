@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 22aee01af6a17ae4eadefa5d2195de2f
+guid: fa740181f0a8ec34ca8ab8b8e7a1d3f4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,70 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PinParry_Sprites_0
+      name: PinParry_Sprite_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2048
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8deb5d36b6f1044b85326af87aff5f7
+      internalID: -433770981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PinParry_Sprite_1
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2048
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a85a5a7356792a4d9f18622ad371c4b
+      internalID: 920756141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PinParry_Sprite_2
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2048
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3357ba6824a2db4c8c891cf0ec1c067
+      internalID: -2116461733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PinParry_Sprite_3
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2738b83d408e59f469c086c684db3db9
-      internalID: 90700840
+      spriteID: 4ae58bf18d721164b9d6aeccba2b44c5
+      internalID: 34130160
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_Sprites_1
+      name: PinParry_Sprite_4
       rect:
         serializedVersion: 2
         x: 1024
@@ -132,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68d45aabcde6d1a4396865f100956778
-      internalID: 1369012133
+      spriteID: 1a5594869091c674689fb6dcf200e98b
+      internalID: -65429115
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_Sprites_2
+      name: PinParry_Sprite_5
       rect:
         serializedVersion: 2
         x: 2048
@@ -153,56 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 961f89e64ed0cd34abba9f68a341a6ac
-      internalID: 44212257
+      spriteID: a73f8c4f2d0e5564a9c03a6501ed547b
+      internalID: -1383643998
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_Sprites_3
-      rect:
-        serializedVersion: 2
-        x: 3072
-        y: 1024
-        width: 1024
-        height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 50b18fcf8c1ada2499dabf3db6fcdfd5
-      internalID: 215361303
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PinParry_Sprites_4
-      rect:
-        serializedVersion: 2
-        x: 4096
-        y: 1024
-        width: 1024
-        height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3cd897a64a37a564a97ad916ff8c8519
-      internalID: -368172634
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PinParry_Sprites_5
+      name: PinParry_Sprite_6
       rect:
         serializedVersion: 2
         x: 0
@@ -216,50 +237,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a02827d85d4f904488464724ec4494bf
-      internalID: -1791263671
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PinParry_Sprites_6
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 0
-        width: 1024
-        height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7fcaf24cee34143428d1015d679fad70
-      internalID: 1920390065
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PinParry_Sprites_7
-      rect:
-        serializedVersion: 2
-        x: 2048
-        y: 0
-        width: 1024
-        height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 160be0c35b2e3bf4bbd1aabca4d78910
-      internalID: 1048520621
+      spriteID: 601013f95ad964c4b8bd94f22c9c514a
+      internalID: 458573910
       vertices: []
       indices: 
       edges: []
@@ -267,7 +246,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5a15e41fd4e915a439bc990f7982e32d
+    spriteID: 5e7b7fe7bd2dc6e43b5794b3d2ea50e6
     internalID: 0
     vertices: []
     indices: 
@@ -275,14 +254,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PinParry_Sprites_0: 90700840
-      PinParry_Sprites_1: 1369012133
-      PinParry_Sprites_2: 44212257
-      PinParry_Sprites_3: 215361303
-      PinParry_Sprites_4: -368172634
-      PinParry_Sprites_5: -1791263671
-      PinParry_Sprites_6: 1920390065
-      PinParry_Sprites_7: 1048520621
+      PinParry_Sprite_0: -433770981
+      PinParry_Sprite_1: 920756141
+      PinParry_Sprite_2: -2116461733
+      PinParry_Sprite_3: 34130160
+      PinParry_Sprite_4: -65429115
+      PinParry_Sprite_5: -1383643998
+      PinParry_Sprite_6: 458573910
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
