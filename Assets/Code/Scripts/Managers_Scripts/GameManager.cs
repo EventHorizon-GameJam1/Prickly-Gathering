@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour
     public static GameDay OnNewDay = () => { };
     public static GameDay OnEndDay = () => { };
 
+    public delegate void EndGame();
+    public static EndGame OnGameWon = () => { };
+    public static EndGame OnGameOver = () => { };
+
     [Header("Game Manager Settings")]
     [SerializeField] private int MaxDays = 3;
     [SerializeField] public FamilySettings GameFamilySetting;
@@ -29,8 +33,7 @@ public class GameManager : MonoBehaviour
     public static float SecuredScore { private set; get; } = 0f;
 
     private int DayCounter = 0;
-    private List<int> FamilyScore = new List<int>();
-    private int FamilyMemberSatisfied = 0;
+    private float ScoreToReach = 0;
 
     private void Awake()
     {
@@ -45,8 +48,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
 
         for (int i = 0; i < GameFamilySetting.FamilyNecessities.Count; i++)
-            FamilyScore.Add(0);
-
+            ScoreToReach += GameFamilySetting.FamilyNecessities[i].ScoreRequested;
     }
 
     #region MENU
@@ -92,12 +94,7 @@ public class GameManager : MonoBehaviour
         Score -= Score*percentage;
         OnSecuredScoreChanged();
         OnScoreChanged();
-        //TODO: check family necessities
-        if (FamilyMemberSatisfied >= GameFamilySetting.FamilyNecessities.Count)
-        {
-            GameWon();
-            return;
-        }
+        
         EndDay();
     }
     #endregion
@@ -116,17 +113,25 @@ public class GameManager : MonoBehaviour
 
     private void EndDay()
     {
-        DayCounter++;
-        if(DayCounter > MaxDays)
-        {
-            GameOver();
-            return;
-        }
         OnEndDay();
     }
 
     private void NewDay()
     {
+        DayCounter++;
+
+        if (Score >= ScoreToReach)
+        {
+            GameWon();
+            return;
+        }
+
+        if (DayCounter > MaxDays)
+        {
+            GameOver();
+            return;
+        }
+
         OnNewDay();
     }
     
@@ -147,5 +152,32 @@ public class GameManager : MonoBehaviour
         Dem.OnPlayerSecured += SecureScore;
         //Continue to new level event
         UI_FamilyNecessities.OnContinueToNewDay += NewDay;
+    }
+
+    private void OnDisable()
+    {
+        OnGameStateChanged -= OnGameStateChanged;
+        OnScoreChanged -= OnScoreChanged;
+        OnSecuredScoreChanged -= OnSecuredScoreChanged;
+        OnGameOver -= OnGameOver;
+        OnGameWon -= OnGameWon;
+        OnNewDay -= OnNewDay;
+        OnEndDay -= OnEndDay;
+
+        //Collectible events
+        Collectible.OnCollect -= IncraseScore;
+        //Level manager event
+        LevelManager.OnLevelReady -= UnPauseGame;
+        LevelManager.OnTimerEnded -= EndDay;
+        //Pause Game
+        InputManager.OnMenuCalled -= MenuCalled;
+        //Enemy Connection
+        EnemyController.OnPlayerDamaged -= LoseScore;
+        //Player connection
+        PlayerController.OnPlayerDefeated -= GameOver;
+        //Dem connection
+        Dem.OnPlayerSecured -= SecureScore; 
+        //Continue to new level event
+        UI_FamilyNecessities.OnContinueToNewDay -= NewDay;
     }
 }

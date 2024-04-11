@@ -26,8 +26,8 @@ public class PlayerSettings : ScriptableObject
     [HideInInspector] public AnimationController AnimationController;
     [Space]
     [Header("SFX Settigs")]
-    [SerializeField] public AudioClip Walking_SFX;
-    [SerializeField] public AudioClip Running_SFX;
+    //[SerializeField] public AudioClip Walking_SFX;
+    //[SerializeField] public AudioClip Running_SFX;
     [SerializeField] public AudioClip Parry_SFX;
 
     private void OnEnable()

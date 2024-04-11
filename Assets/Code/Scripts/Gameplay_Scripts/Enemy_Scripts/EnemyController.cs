@@ -279,13 +279,6 @@ public class EnemyController : MonoBehaviour
     }
     #endregion
 
-    private void OnDisable()
-    {
-        EnemyMovement.Disable();
-        NavMeshAgent.speed = 0;
-        OnEnemyReady -= OnEnemyReady;
-    }
-
     private void OnEnable()
     {
         IsFleeing = false;
@@ -297,7 +290,19 @@ public class EnemyController : MonoBehaviour
             HealthIndicators[i].gameObject.SetActive(false);
 
         LevelManager.OnPlayerSecured += StopAttack;
+        PlayerController.OnPlayerDefeated += StopAttack;
     }
+
+    private void OnDisable()
+    {
+        EnemyMovement.Disable();
+        NavMeshAgent.speed = 0;
+        OnEnemyReady -= OnEnemyReady;
+
+        LevelManager.OnPlayerSecured -= StopAttack;
+        PlayerController.OnPlayerDefeated -= StopAttack;
+    }
+
 
     //Gizsmos
 #if UNITY_EDITOR

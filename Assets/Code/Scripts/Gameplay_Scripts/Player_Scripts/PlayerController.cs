@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
         {
             PlayerSettings.Movement.Disable();
             ParryCorout = StartCoroutine(ParryCoroutine());
+            SFX_Manager.Request2DSFX?.Invoke(transform.position, PlayerSettings.Parry_SFX);
         }
     }
 
