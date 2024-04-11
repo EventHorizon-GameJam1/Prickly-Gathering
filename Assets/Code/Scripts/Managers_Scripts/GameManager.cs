@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static GameManager;
 
 public class GameManager : MonoBehaviour
@@ -27,6 +28,8 @@ public class GameManager : MonoBehaviour
     [Header("Game Manager Settings")]
     [SerializeField] private int MaxDays = 3;
     [SerializeField] public FamilySettings GameFamilySetting;
+    [SerializeField] private string Win_Scene = "none";
+    [SerializeField] private string Lose_Scene = "none";
 
     public static bool OnPause { private set; get; } = false;
     public static float Score { private set; get; } = 0f;
@@ -101,14 +104,14 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        //TODO: GAME OVER
-        Debug.Log("Game Over!");
+        if(Lose_Scene != "none")
+            SceneManager.LoadScene(Lose_Scene);
     }
 
     private void GameWon()
     {
-        //TODO: GAME WON
-        Debug.Log("game Won!");
+        if (Win_Scene != "none")
+            SceneManager.LoadScene(Win_Scene);
     }
 
     private void EndDay()
@@ -120,7 +123,7 @@ public class GameManager : MonoBehaviour
     {
         DayCounter++;
 
-        if (Score >= ScoreToReach)
+        if (SecuredScore >= ScoreToReach)
         {
             GameWon();
             return;

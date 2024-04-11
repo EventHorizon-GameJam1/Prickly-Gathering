@@ -115,11 +115,6 @@ public class InputManager : MonoBehaviour
         OnDirectionChanged(dir);
     }
 
-    private void OnEnable()
-    {
-        GameManager.OnNewDay += GameInput;
-    }
-
     private void MenuInput()
     {
         InputActions.Gameplay.Disable();
@@ -164,6 +159,12 @@ public class InputManager : MonoBehaviour
     //--------------------------------------------------------------
     #endregion
 
+    private void OnEnable()
+    {
+        GameManager.OnNewDay += GameInput;
+        GameManager.OnEndDay += MenuInput;
+    }
+
     private void OnDisable()
     {
         //Disconnect events
@@ -188,5 +189,8 @@ public class InputManager : MonoBehaviour
         //UI Select
         OnUISelect -= OnUISelect;
         //--------------------------------------------------------------
+
+        GameManager.OnNewDay -= GameInput;
+        GameManager.OnEndDay -= MenuInput;
     }
 }

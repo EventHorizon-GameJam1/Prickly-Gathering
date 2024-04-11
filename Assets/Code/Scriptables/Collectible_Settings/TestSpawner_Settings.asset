@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d0ce1fb6364d04786ffd6ba6e6d47e, type: 3}
   m_Name: TestSpawner_Settings
   m_EditorClassIdentifier: 
-  MaxCollectibleAmount: 50
-  MinCollectibleAmount: 1
+  MaxCollectibleAmount: 500
+  MinCollectibleAmount: 499
   CollectibleToSpawn:
   - Collectible: {fileID: 2249080998733161602, guid: 8c46b58113074254aacdbdf8f9ac9f76,
       type: 3}

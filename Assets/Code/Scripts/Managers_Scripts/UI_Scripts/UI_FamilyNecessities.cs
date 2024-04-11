@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -58,7 +60,10 @@ public class UI_FamilyNecessities : MonoBehaviour
         float progress = 0f;
         float fadeSpeed = 1f / FadeTime;
 
-        while(progress < FadeTime)
+        for (int i = 0; i < FamilyNecessities.Count; i++)
+            FamilyNecessities_UIElements[i].SliderImage.fillAmount = 0f;
+
+            while (progress < FadeTime)
         {
             FadeImage.color = Color.Lerp(FadeImageStartColor, FadeImageEndColor, progress);
             progress += Time.deltaTime * fadeSpeed;
@@ -90,13 +95,8 @@ public class UI_FamilyNecessities : MonoBehaviour
         for (int i = 0; i < FamilyNecessities.Count; i++)
         {
             float fillAmount = ScoreBudget / FamilyNecessities[i].ScoreRequested;
-            if (fillAmount >= 1f)
-                fillAmount = 1f;
-            if (fillAmount <= 0f)
-                fillAmount = 0f;
-
+            fillAmount = Mathf.Clamp01(fillAmount);
             ScoreBudget -= FamilyNecessities[i].ScoreRequested;
-
             StartCoroutine(AnimateFamilyNecessities(i, fillAmount));
             yield return WaitTime;
         }
@@ -108,9 +108,9 @@ public class UI_FamilyNecessities : MonoBehaviour
         float progress = 0f;
         float animationSpeed = 1f / FamilyNecessitiesTime;
         
-        while (progress <= fillAmount)
+        while (progress < 1f)
         {
-            FamilyNecessities_UIElements[i].SliderImage.fillAmount = FamilyNecessitiesAnimationCurve.Evaluate(progress);
+            FamilyNecessities_UIElements[i].SliderImage.fillAmount = FamilyNecessitiesAnimationCurve.Evaluate(progress)*fillAmount;
             FamilyNecessities_UIElements[i].Necessities_Text.text = (fillAmount * FamilyNecessities[i].ScoreRequested) +"/" + FamilyNecessities[i].ScoreRequested.ToString();
             progress += Time.deltaTime * animationSpeed;
             yield return null;
