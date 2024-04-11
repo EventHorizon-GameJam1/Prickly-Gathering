@@ -1299,8 +1299,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxDays: 3
   GameFamilySetting: {fileID: 11400000, guid: fab21519ef5d5df4aa61cf179d77c3a0, type: 2}
-  Win_Scene: none
-  Lose_Scene: none
+  Win_Scene: WinScene
+  Lose_Scene: LoseScene
 --- !u!114 &817279741
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private UI_FamilyNecessities FamilyNecessities_UI;
     [SerializeField] private TMP_Text CommunicationText;
 
+    private bool CanPause;
+
     private void Start()
     {
         Game_UI.Canvas.gameObject.SetActive(true);
@@ -22,6 +24,8 @@ public class UI_Manager : MonoBehaviour
 
     private void ChangeState()
     {
+        if (!CanPause) return;
+
         if(GameManager.OnPause)
         {
             //Show pause menu
@@ -54,6 +58,7 @@ public class UI_Manager : MonoBehaviour
 
     private void ShowFamilyNecessities()
     {
+        CanPause = false;
         FamilyNecessities_UI.gameObject.SetActive(true);
         Game_UI.Canvas.gameObject.SetActive(false);
         Pause_UI.Canvas.gameObject.SetActive(false);
@@ -61,6 +66,7 @@ public class UI_Manager : MonoBehaviour
 
     private void HideFamilyNecessities()
     {
+        CanPause = true;
         FamilyNecessities_UI.gameObject.SetActive(false);
         Game_UI.Canvas.gameObject.SetActive(true);
         Pause_UI.Canvas.gameObject.SetActive(false);

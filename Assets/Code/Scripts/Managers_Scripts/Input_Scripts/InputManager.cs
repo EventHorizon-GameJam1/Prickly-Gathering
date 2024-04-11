@@ -42,6 +42,8 @@ public class InputManager : MonoBehaviour
     //Serialized Var
     [SerializeField] private bool StartOnMenu = false;
 
+    private bool CanPause = true;
+
     private InputMap InputActions;
 
     private void Awake()
@@ -89,6 +91,11 @@ public class InputManager : MonoBehaviour
         OnDirectionChanged(dir);
     }
 
+    private void SuspendPause()
+    {
+        CanPause = false;
+    }
+
     private void MenuInput()
     {
         InputActions.Gameplay.Disable();
@@ -116,12 +123,15 @@ public class InputManager : MonoBehaviour
     //Menu
     private void CallMenu(InputAction.CallbackContext context)
     {
-        OnMenuCalled();
+        if(CanPause)
+        {
+            OnMenuCalled();
 
-        if (GameManager.OnPause)
-            MenuInput();
-        else
-            GameInput();
+            if (GameManager.OnPause)
+                MenuInput();
+            else
+                GameInput();
+        }
     }
     //Select
     private void CallSelect(InputAction.CallbackContext context) => OnSelect();
