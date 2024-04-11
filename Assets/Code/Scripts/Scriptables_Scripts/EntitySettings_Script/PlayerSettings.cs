@@ -11,10 +11,14 @@ public class PlayerSettings : ScriptableObject
     [SerializeField] private int m_PlayerHP = 10;
     [SerializeField] private float m_ParrySustainTime = 0.5f;
     [SerializeField] private float m_ParryInvulnerabilityTime = 0.25f;
+    [SerializeField, Range(0f, 1f)] private float m_EnergyRecoveredOnParry = 0.1f;
+    [Tooltip("Energy usage per sprint frame")]
+    [SerializeField, Min(0.0001f)] public float EnergyUsage = 0.1f;
     public float ParrySustainTime { private set; get; }
     public float ParryInvulnerabilityTime { private set; get; }
     public float PlayerStartStamina { private set; get; }
     public int PlayerHP { private set; get; }
+    public float EnergyRecoveredOnParry { private set; get; }
 
     [Header("Movement Settings")]
     [SerializeField] public PlayerMovement Movement;
@@ -32,5 +36,6 @@ public class PlayerSettings : ScriptableObject
         ParryInvulnerabilityTime = m_ParryInvulnerabilityTime;
         PlayerStartStamina = m_PlayerStamina;
         PlayerHP = m_PlayerHP;
+        EnergyRecoveredOnParry = m_EnergyRecoveredOnParry;
     }
 }

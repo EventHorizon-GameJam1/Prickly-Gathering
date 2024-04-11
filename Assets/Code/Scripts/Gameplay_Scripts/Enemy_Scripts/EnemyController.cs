@@ -57,6 +57,7 @@ public class EnemyController : MonoBehaviour
     private Coroutine IdleCoroutine;
 
     private bool IsFleeing = false;
+    private bool CanDamage = true;
     private bool ClosestAlreadyGot = false;
 
     private void Awake()
@@ -109,8 +110,9 @@ public class EnemyController : MonoBehaviour
             {
                 EnemyActions -= EnemyActions;
                 NavMeshAgent.stoppingDistance = EnemyMovement.StoppingDistance;
+                NavMeshAgent.speed = EnemyMovement.MovementSpeed;
 
-                if(!ClosestAlreadyGot)
+                if (!ClosestAlreadyGot)
                 {
                     ClosestAlreadyGot = true;
                     GetClosestPatrollingPoint();
@@ -133,6 +135,8 @@ public class EnemyController : MonoBehaviour
             }
             case State.ATTACK:
             {
+                CanDamage = true;
+
                 if (IdleCoroutine != null)
                     StopCoroutine(IdleCoroutine);
 
@@ -184,11 +188,19 @@ public class EnemyController : MonoBehaviour
         EnemyMovement.Sprint();
         EnemyAnimation.PlaySprint();
 
-        //Play Attack Animation
-        if (dist < EnemySettings.AttackDistance)
-            EnemyAnimation.PlaySpecial();
-        else
-            EnemyAnimation.StopSpecial();
+        if(CanDamage)
+        {
+            //Play Attack Animation
+            if (dist < EnemySettings.AttackDistance)
+                EnemyAnimation.PlaySpecial();
+            else
+                EnemyAnimation.StopSpecial();
+        }
+    }
+
+    private void StopAttack()
+    {
+        CanDamage = false;
     }
 
     //Called by animation
@@ -270,6 +282,7 @@ public class EnemyController : MonoBehaviour
     private void OnDisable()
     {
         EnemyMovement.Disable();
+        NavMeshAgent.speed = 0;
         OnEnemyReady -= OnEnemyReady;
     }
 
@@ -282,6 +295,8 @@ public class EnemyController : MonoBehaviour
 
         for (int i = 0; i < HealthIndicators.Count; i++)
             HealthIndicators[i].gameObject.SetActive(false);
+
+        LevelManager.OnPlayerSecured += StopAttack;
     }
 
     //Gizsmos

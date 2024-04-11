@@ -81,7 +81,8 @@ public class GameManager : MonoBehaviour
 
     private void LoseScore(float damage, float percentage)
     {
-        Score = Score * percentage;
+        Score = (int)(Score * percentage);
+        OnScoreChanged();
     }
 
     private void SecureScore(float percentage)
@@ -104,7 +105,7 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         //TODO: GAME OVER
-        Debug.Log("game Over");
+        Debug.Log("Game Over!");
     }
 
     private void GameWon()

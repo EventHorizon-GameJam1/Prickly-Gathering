@@ -16,6 +16,8 @@ MonoBehaviour:
   m_PlayerHP: 10
   m_ParrySustainTime: 0.5
   m_ParryInvulnerabilityTime: 0.25
+  m_EnergyRecoveredOnParry: 0.1
+  EnergyUsage: 1
   Movement:
     MovementSpeed: 5
     SprintMultiplier: 1

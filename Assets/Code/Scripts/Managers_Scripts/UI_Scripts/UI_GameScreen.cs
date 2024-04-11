@@ -7,7 +7,7 @@ public class UI_GameScreen : UI_Screen
 {
     [Header("Bar Indicators")]
     [SerializeField] private Image Hp_Bar;
-    [SerializeField] private Image Sprint_Bar;
+    [SerializeField] private Image Stamina_Bar;
     [Header("Score Indicator")]
     [SerializeField] private TMP_Text ScoreText;
     [SerializeField] private TMP_Text SecuredScoreText;
@@ -21,6 +21,7 @@ public class UI_GameScreen : UI_Screen
     private Quaternion TimerImageFinalRotation;
 
     private float PlayerStartHP;
+    private float PlayerStartStamina;
     private float PlayerHP;
 
     private Coroutine TimerCoroutine;
@@ -37,9 +38,9 @@ public class UI_GameScreen : UI_Screen
         Hp_Bar.fillAmount = PlayerHP / PlayerStartHP;        
     }
 
-    private void UpdatePlayer_Sprint()
+    private void UpdatePlayer_Stamina()
     {
-
+        Stamina_Bar.fillAmount = Player.Stamina / PlayerStartStamina;
     }
 
     private void StartTimer()
@@ -79,6 +80,7 @@ public class UI_GameScreen : UI_Screen
     {
         Player = player;
         PlayerStartHP = Player.PlayerHP;
+        PlayerStartStamina = Player.Stamina;
     }
 
     private void OnEnable()
@@ -86,8 +88,8 @@ public class UI_GameScreen : UI_Screen
         GameManager.OnScoreChanged += UpdateScore;
         GameManager.OnSecuredScoreChanged += UpdateSecuredScore;
         PlayerController.OnPlayerReady += GetPlayer;
-        PlayerController.OnPlayerDamaged += UpdatePlayer_HP;
-
+        PlayerController.OnHPChanged += UpdatePlayer_HP;
+        PlayerController.OnStaminaChanged += UpdatePlayer_Stamina;
         StartTimer();
     }
 
@@ -96,7 +98,7 @@ public class UI_GameScreen : UI_Screen
         GameManager.OnScoreChanged -= UpdateScore;
         GameManager.OnSecuredScoreChanged -= UpdateSecuredScore;
         PlayerController.OnPlayerReady -= GetPlayer;
-        PlayerController.OnPlayerDamaged -= UpdatePlayer_HP;
+        PlayerController.OnHPChanged -= UpdatePlayer_HP;
 
         if (TimerCoroutine != null)
             StopCoroutine(TimerCoroutine);
