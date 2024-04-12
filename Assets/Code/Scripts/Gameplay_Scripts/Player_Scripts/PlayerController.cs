@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerSettings PlayerSettings;
     [SerializeField] private SpriteRenderer SpriteRenderer;
     [SerializeField] private Transform ParticleHolder;
+    [SerializeField] private ParticleSystem HitParticles;
 
     public bool IsInvulnerable { private set; get; } = false;
 
@@ -91,6 +92,10 @@ public class PlayerController : MonoBehaviour
     {
         PlayerHP -= damage;
         OnHPChanged();
+
+        if (GameManager.Score > 0f)
+            HitParticles.Play();
+
         if (PlayerHP <= 0)
             OnPlayerDefeated();
     }
