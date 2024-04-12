@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public abstract class Movement
+public class Movement
 {
     [Header("Movement")]
     [SerializeField] public float MovementSpeed = 5f;
@@ -50,6 +50,7 @@ public abstract class Movement
 
     public void Enable()
     {
+        ActualSprint = MovementSpeed;
         Disabled = false;
     }
 }

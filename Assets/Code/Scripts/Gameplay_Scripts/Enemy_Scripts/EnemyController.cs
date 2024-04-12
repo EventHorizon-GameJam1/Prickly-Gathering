@@ -8,7 +8,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMesh))]
 public class EnemyController : MonoBehaviour
 {
-    private enum State
+    protected enum State
     {
         IDLE,
         PATROLLING,
@@ -26,41 +26,41 @@ public class EnemyController : MonoBehaviour
     public static PlayerDamaged OnPlayerDamaged = (float damage, float suppliesLost) => { };
 
     [Header("Enemy Settings")]
-    [SerializeField] private EnemySettings EnemySettings;
-    [SerializeField] private SpriteRenderer SpriteRenderer;
-    [SerializeField] private Transform ParticleHolder;
-    [SerializeField] private State StartingState = State.PATROLLING;
+    [SerializeField] protected EnemySettings EnemySettings;
+    [SerializeField] protected SpriteRenderer SpriteRenderer;
+    [SerializeField] protected Transform ParticleHolder;
+    [SerializeField] protected State StartingState = State.PATROLLING;
     [Space]
     [Header("Health Indicator settings")]
-    [SerializeField] private Sprite FullHealth;
-    [SerializeField] private Sprite EmptyHealth;
-    [SerializeField] private List<SpriteRenderer> HealthIndicators = new List<SpriteRenderer>(); 
+    [SerializeField] protected Sprite FullHealth;
+    [SerializeField] protected Sprite EmptyHealth;
+    [SerializeField] protected List<SpriteRenderer> HealthIndicators = new List<SpriteRenderer>(); 
     [Space]
     [Header("Debug Settings")]
-    [SerializeField] private bool DrawGizmos = true;
+    [SerializeField] protected bool DrawGizmos = true;
     //Patrolling
     [HideInInspector] public PatrollingData EnemyPatrollingPath;
-    [HideInInspector] private Transform PlayerTransform => LevelManager.PlayerTransform;
+    [HideInInspector] protected Transform PlayerTransform => LevelManager.PlayerTransform;
 
     //Components
-    private EnemyMovement EnemyMovement = new EnemyMovement();
-    private AnimationController EnemyAnimation = new AnimationController();
-    private Rigidbody Body;
-    private Animator Animator;
-    private NavMeshAgent NavMeshAgent;
-    
-    private int EnemyDetermination = 0;
+    protected EnemyMovement EnemyMovement = new EnemyMovement();
+    protected AnimationController EnemyAnimation = new AnimationController();
+    protected Rigidbody Body;
+    protected Animator Animator;
+    protected NavMeshAgent NavMeshAgent;
 
-    private delegate void EnemyAction();
-    private EnemyAction EnemyActions;
+    protected int EnemyDetermination = 0;
 
-    private Coroutine IdleCoroutine;
+    protected delegate void EnemyAction();
+    protected EnemyAction EnemyActions;
 
-    private bool IsFleeing = false;
-    private bool CanDamage = true;
-    private bool ClosestAlreadyGot = false;
+    protected Coroutine IdleCoroutine;
 
-    private void Awake()
+    protected bool IsFleeing = false;
+    protected bool CanDamage = true;
+    protected bool ClosestAlreadyGot = false;
+
+    protected void Awake()
     {
         Animator = GetComponent<Animator>();
         Body = GetComponent<Rigidbody>();
@@ -111,7 +111,7 @@ public class EnemyController : MonoBehaviour
                 EnemyActions -= EnemyActions;
                 NavMeshAgent.stoppingDistance = EnemyMovement.StoppingDistance;
                 NavMeshAgent.speed = EnemyMovement.MovementSpeed;
-
+                
                 if (!ClosestAlreadyGot)
                 {
                     ClosestAlreadyGot = true;
@@ -180,7 +180,7 @@ public class EnemyController : MonoBehaviour
     #endregion
 
     #region ATTACK
-    private void AttackState()
+    protected virtual void AttackState()
     {
         EnemyMovement.SetTargetTransform(PlayerTransform);
         float dist = EnemyMovement.GetDistance();
@@ -204,7 +204,7 @@ public class EnemyController : MonoBehaviour
     }
 
     //Called by animation
-    private void ApplyDamage()
+    protected virtual void ApplyDamage()
     {
         if(LevelManager.Player.IsInvulnerable) //Parryed
             TakeDamage();

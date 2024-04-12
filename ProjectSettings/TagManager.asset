@@ -14,8 +14,8 @@ TagManager:
   - Ignore Nav Mesh
   - Ignore Camera
   - Player
-  - 
-  - 
+  - Enemy
+  - Projectile
   - 
   - 
   - 

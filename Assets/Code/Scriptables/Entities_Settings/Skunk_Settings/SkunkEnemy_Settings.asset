@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d844a59864327714abf9a22019b63020, type: 3}
+  m_Name: SkunkEnemy_Settings
+  m_EditorClassIdentifier: 
+  EnemyDetermination: 3
+  Damage: 1
+  PercentageLost: 0.25
+  AttackDistance: 10
+  SprintDistance: 10
+  TriggerDistance: 15
+  Movement:
+    MovementSpeed: 5
+    SpeedMultiplier: 2
+    Rigidbody: {fileID: 0}
+    StoppingDistance: 1.25
+    Agent: {fileID: 0}
+    FleeingPosition: {x: 0, y: 0, z: 0}
+  IdleProbability: 0.25
+  IdleTime_Min: 1
+  IdleTime_Max: 2
+  Idling_SFX: {fileID: 0}
+  Patrolling_SFX: {fileID: 0}
+  Attack_SFX: {fileID: 0}
+  Fleeing_SFX: {fileID: 0}
+  EnemySpotted_SFX: {fileID: 0}
+  TriggerRadiousColor: {r: 0.5019608, g: 0.21568628, b: 0.67058825, a: 1}
+  AttackRadiousColor: {r: 0.7921569, g: 0.1882353, b: 0.1882353, a: 1}
+  SprintRadiousColor: {r: 0.85882354, g: 0.41568628, b: 0, a: 0.49803922}
