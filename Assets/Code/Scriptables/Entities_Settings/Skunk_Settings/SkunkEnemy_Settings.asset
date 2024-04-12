@@ -18,9 +18,10 @@ MonoBehaviour:
   AttackDistance: 10
   SprintDistance: 10
   TriggerDistance: 15
+  UntriggerDistance: 25
   Movement:
-    MovementSpeed: 5
-    SpeedMultiplier: 2
+    MovementSpeed: 3
+    SpeedMultiplier: 1.5
     Rigidbody: {fileID: 0}
     StoppingDistance: 1.25
     Agent: {fileID: 0}

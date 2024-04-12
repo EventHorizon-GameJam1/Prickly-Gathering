@@ -14,6 +14,7 @@ public class EnemySettings : ScriptableObject
     [SerializeField] public float AttackDistance = 1.5f;
     [SerializeField] public float SprintDistance = 10f;
     [SerializeField] public float TriggerDistance = 5f;
+    [SerializeField] public float UntriggerDistance = 25f;
     [SerializeField] public EnemyMovement Movement;
     [Header("Idle Settings")]
     [SerializeField][Range(0f, 1f)] public float IdleProbability = 0.25f;

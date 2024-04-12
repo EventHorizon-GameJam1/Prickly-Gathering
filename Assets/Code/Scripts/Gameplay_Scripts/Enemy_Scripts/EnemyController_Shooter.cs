@@ -42,24 +42,6 @@ public class EnemyController_Shooter: EnemyController
         }
     }
 
-    protected override void AttackState()
-    {
-        EnemyMovement.SetTargetTransform(PlayerTransform);
-        float dist = EnemyMovement.GetDistance();
-
-        EnemyMovement.Sprint();
-        EnemyAnimation.PlaySprint();
-
-        if (CanDamage)
-        {
-            //Play Attack Animation
-            if (dist < EnemySettings.AttackDistance)
-                EnemyAnimation.PlaySpecial();
-            else
-                EnemyAnimation.StopSpecial();
-        }
-    }
-
     protected override void ApplyDamage()
     {
         ShootProjectile();

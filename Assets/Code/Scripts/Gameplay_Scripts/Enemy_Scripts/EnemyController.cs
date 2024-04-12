@@ -125,6 +125,7 @@ public class EnemyController : MonoBehaviour
             }
             case State.FLEE:
             {
+                StartCoroutine(FleeEnum());
                 EnemyActions -= EnemyActions;
                 IsFleeing = true;
                 EnemyAnimation.StopSpecial();
@@ -196,6 +197,9 @@ public class EnemyController : MonoBehaviour
             else
                 EnemyAnimation.StopSpecial();
         }
+
+        if (dist > EnemySettings.UntriggerDistance)
+            ChangeState(State.PATROLLING);
     }
 
     private void StopAttack()
@@ -276,6 +280,12 @@ public class EnemyController : MonoBehaviour
     {
         EnemyMovement.Sprint();
         EnemyAnimation.PlaySprint();
+    }
+
+    private IEnumerator FleeEnum()
+    {
+        yield return new WaitForSeconds(7f);
+        this.gameObject.SetActive(false);
     }
     #endregion
 

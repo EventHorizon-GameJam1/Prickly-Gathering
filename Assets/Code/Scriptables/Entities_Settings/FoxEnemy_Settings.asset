@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDetermination: 3
   Damage: 1
+  PercentageLost: 0.25
   AttackDistance: 3
   SprintDistance: 23
   TriggerDistance: 15
+  UntriggerDistance: 25
   Movement:
     MovementSpeed: 5
-    SprintMultiplier: 2
+    SpeedMultiplier: 2
     Rigidbody: {fileID: 0}
     StoppingDistance: 2.5
     Agent: {fileID: 0}

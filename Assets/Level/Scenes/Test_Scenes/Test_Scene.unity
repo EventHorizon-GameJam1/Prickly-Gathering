@@ -245,13 +245,13 @@ MonoBehaviour:
   SpawnData:
   - EnemyToSpawn: {fileID: 8075195217387524148, guid: 45d6d9c89e4445b4a836e83cf4409707,
       type: 3}
-    Probability: 0
+    Probability: 0.33333334
   - EnemyToSpawn: {fileID: 3786070655297138125, guid: 70e75032df942ff41b300c5afe3a3fb7,
       type: 3}
-    Probability: 0
+    Probability: 0.33333334
   - EnemyToSpawn: {fileID: 6107307546335166610, guid: 80edbd0a31a772d4d979b411721bfa6a,
       type: 3}
-    Probability: 1
+    Probability: 0.33333334
   EnemyPath:
     PatrollingPositions:
     - {fileID: 172041505}
@@ -1797,13 +1797,13 @@ MonoBehaviour:
   SpawnData:
   - EnemyToSpawn: {fileID: 8075195217387524148, guid: 45d6d9c89e4445b4a836e83cf4409707,
       type: 3}
-    Probability: 0
+    Probability: 0.33333334
   - EnemyToSpawn: {fileID: 3786070655297138125, guid: 70e75032df942ff41b300c5afe3a3fb7,
       type: 3}
-    Probability: 0
+    Probability: 0.33333334
   - EnemyToSpawn: {fileID: 6107307546335166610, guid: 80edbd0a31a772d4d979b411721bfa6a,
       type: 3}
-    Probability: 1
+    Probability: 0.33333334
   EnemyPath:
     PatrollingPositions:
     - {fileID: 1568334960}
@@ -2609,13 +2609,13 @@ MonoBehaviour:
   SpawnData:
   - EnemyToSpawn: {fileID: 8075195217387524148, guid: 45d6d9c89e4445b4a836e83cf4409707,
       type: 3}
-    Probability: 0
+    Probability: 0.33333334
   - EnemyToSpawn: {fileID: 3786070655297138125, guid: 70e75032df942ff41b300c5afe3a3fb7,
       type: 3}
-    Probability: 0
+    Probability: 0.33333334
   - EnemyToSpawn: {fileID: 6107307546335166610, guid: 80edbd0a31a772d4d979b411721bfa6a,
       type: 3}
-    Probability: 1
+    Probability: 0.33333334
   EnemyPath:
     PatrollingPositions:
     - {fileID: 426670535}
@@ -2820,13 +2820,13 @@ MonoBehaviour:
   SpawnData:
   - EnemyToSpawn: {fileID: 8075195217387524148, guid: 45d6d9c89e4445b4a836e83cf4409707,
       type: 3}
-    Probability: 0
+    Probability: 0.33333334
   - EnemyToSpawn: {fileID: 3786070655297138125, guid: 70e75032df942ff41b300c5afe3a3fb7,
       type: 3}
-    Probability: 0
+    Probability: 0.33333334
   - EnemyToSpawn: {fileID: 6107307546335166610, guid: 80edbd0a31a772d4d979b411721bfa6a,
       type: 3}
-    Probability: 1
+    Probability: 0.33333334
   EnemyPath:
     PatrollingPositions:
     - {fileID: 1830336765}
