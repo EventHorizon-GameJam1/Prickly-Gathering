@@ -26,7 +26,6 @@ public class UI_FamilyNecessities : MonoBehaviour
     private WaitForSeconds WaitTime;
 
     private float ScoreBudget;
-    private float ScoreAdded = 0f;
 
     private void Start()
     {
