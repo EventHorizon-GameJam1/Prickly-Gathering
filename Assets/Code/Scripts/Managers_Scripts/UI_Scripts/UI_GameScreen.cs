@@ -20,8 +20,8 @@ public class UI_GameScreen : UI_Screen
     private Quaternion TimerImageStartRotation;
     private Quaternion TimerImageFinalRotation;
 
-    private float PlayerStartHP;
-    private float PlayerStartStamina;
+    public float PlayerStartHP;
+    public float PlayerStartStamina;
     private float PlayerHP;
 
     private Coroutine TimerCoroutine;

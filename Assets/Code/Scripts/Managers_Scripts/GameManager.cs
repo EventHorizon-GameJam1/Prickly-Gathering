@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static GameManager;
 
 public class GameManager : MonoBehaviour
 {
@@ -52,6 +49,11 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < GameFamilySetting.FamilyNecessities.Count; i++)
             ScoreToReach += GameFamilySetting.FamilyNecessities[i].ScoreRequested;
+    }
+
+    private void Start()
+    {
+        OnNewDay();
     }
 
     #region MENU

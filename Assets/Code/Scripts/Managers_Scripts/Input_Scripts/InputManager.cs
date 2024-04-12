@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -6,6 +7,9 @@ public class InputManager : MonoBehaviour
 {
     //Singleton
     public static InputManager Instance;
+
+    public static Action OnEnablePause = () => { };
+    public static Action OnDisablePause = () => { };
 
     #region EVENTS
     //---------------------------GAMEPLAY---------------------------
@@ -96,6 +100,11 @@ public class InputManager : MonoBehaviour
         CanPause = false;
     }
 
+    private void EnablePause()
+    {
+        CanPause = true;
+    }
+
     private void MenuInput()
     {
         InputActions.Gameplay.Disable();
@@ -123,15 +132,15 @@ public class InputManager : MonoBehaviour
     //Menu
     private void CallMenu(InputAction.CallbackContext context)
     {
-        if(CanPause)
-        {
-            OnMenuCalled();
+        if (!CanPause)
+            return;
 
-            if (GameManager.OnPause)
-                MenuInput();
-            else
-                GameInput();
-        }
+        OnMenuCalled();
+
+        if (GameManager.OnPause)
+            MenuInput();
+        else
+            GameInput();
     }
     //Select
     private void CallSelect(InputAction.CallbackContext context) => OnSelect();
@@ -171,8 +180,10 @@ public class InputManager : MonoBehaviour
         //--------------------------------------------------------------
         #endregion
 
-        GameManager.OnNewDay += GameInput;
         GameManager.OnEndDay += MenuInput;
+        GameManager.OnEndDay += SuspendPause;
+        GameManager.OnNewDay += GameInput;
+        GameManager.OnNewDay += EnablePause;
     }
 
     private void OnDisable()
@@ -200,8 +211,13 @@ public class InputManager : MonoBehaviour
         //OnUISelect -= OnUISelect;
         //--------------------------------------------------------------
 
-        GameManager.OnNewDay -= GameInput;
         GameManager.OnEndDay -= MenuInput;
+        GameManager.OnEndDay -= SuspendPause;
+        GameManager.OnNewDay -= GameInput;
+        GameManager.OnNewDay -= EnablePause;
+
+        OnEnablePause -= SuspendPause;
+        OnDisablePause -= EnablePause;
 
         InputActions.Disable();
     }
