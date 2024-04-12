@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 549d7c4c537bffa4795a38f31b407ecd
+guid: 930b5eb32b978d644a283435f1e71a43
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PonWalk_Sprites_0
+      name: DogAttack_Sprite_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af1594ec1eeebaa44915eec76caef2f5
-      internalID: 765516673
+      spriteID: 6378a2ce0e55c4041bec947a9c851502
+      internalID: 1992123970
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PonWalk_Sprites_1
+      name: DogAttack_Sprite_1
       rect:
         serializedVersion: 2
         x: 1024
@@ -132,14 +132,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70ec1fbfc5114234d9a3137bca6193db
-      internalID: 664248738
+      spriteID: 6a24f3e37517f0f4588266b5a042e9b1
+      internalID: 1815781738
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PonWalk_Sprites_2
+      name: DogAttack_Sprite_2
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1024
+        width: 1024
+        height: 1024
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f45c2930780df074eaf36a5bca2bbda1
+      internalID: 1315783294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DogAttack_Sprite_3
       rect:
         serializedVersion: 2
         x: 0
@@ -153,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65c73e110fb56a243a90b4b4057979c5
-      internalID: -1193634783
+      spriteID: 48296808fbda26c449a603b08ef4b161
+      internalID: 1087311287
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PonWalk_Sprites_3
+      name: DogAttack_Sprite_4
       rect:
         serializedVersion: 2
         x: 1024
@@ -174,8 +195,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6179bf5b22f238c4990d32afd6e5d6af
-      internalID: 989469820
+      spriteID: dd55aa0b50b319a46a56b21283987915
+      internalID: 1991223834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DogAttack_Sprite_5
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 1024
+        height: 1024
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3415d6d0dad4e5449b55b7c7b6733463
+      internalID: 1885487060
       vertices: []
       indices: 
       edges: []
@@ -183,7 +225,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: fa8e45d79249e134296aba3661913517
+    spriteID: 9cc4a47ef0f750e4da94e51ccad36196
     internalID: 0
     vertices: []
     indices: 
@@ -191,10 +233,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PonWalk_Sprites_0: 765516673
-      PonWalk_Sprites_1: 664248738
-      PonWalk_Sprites_2: -1193634783
-      PonWalk_Sprites_3: 989469820
+      DogAttack_Sprite_0: 1992123970
+      DogAttack_Sprite_1: 1815781738
+      DogAttack_Sprite_2: 1315783294
+      DogAttack_Sprite_3: 1087311287
+      DogAttack_Sprite_4: 1991223834
+      DogAttack_Sprite_5: 1885487060
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

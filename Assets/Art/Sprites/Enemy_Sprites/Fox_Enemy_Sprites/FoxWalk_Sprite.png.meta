@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fa740181f0a8ec34ca8ab8b8e7a1d3f4
+guid: 5588094912f98c348903c0d591084322
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,10 +69,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,148 +97,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PinParry_Sprite_0
+      name: FoxWalk_Sprite_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2048
+        y: 1232
         width: 1024
-        height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 814
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8deb5d36b6f1044b85326af87aff5f7
-      internalID: -433770981
+      spriteID: abd05d50f6076a7408987101c851474a
+      internalID: -1860377047
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_Sprite_1
+      name: FoxWalk_Sprite_1
       rect:
         serializedVersion: 2
         x: 1024
-        y: 2048
+        y: 1224
         width: 1024
-        height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 824
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a85a5a7356792a4d9f18622ad371c4b
-      internalID: 920756141
+      spriteID: 60ec5db6602867e48843c8a5a2bdaa43
+      internalID: -984471926
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_Sprite_2
-      rect:
-        serializedVersion: 2
-        x: 2048
-        y: 2048
-        width: 1024
-        height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b3357ba6824a2db4c8c891cf0ec1c067
-      internalID: -2116461733
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PinParry_Sprite_3
+      name: FoxWalk_Sprite_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 1024
+        y: 210
         width: 1024
-        height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 814
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ae58bf18d721164b9d6aeccba2b44c5
-      internalID: 34130160
+      spriteID: df2574e590c3cf34da2b7b295feee5a0
+      internalID: 486525932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_Sprite_4
+      name: FoxWalk_Sprite_3
       rect:
         serializedVersion: 2
         x: 1024
-        y: 1024
+        y: 207
         width: 1024
-        height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 817
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a5594869091c674689fb6dcf200e98b
-      internalID: -65429115
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PinParry_Sprite_5
-      rect:
-        serializedVersion: 2
-        x: 2048
-        y: 1024
-        width: 1024
-        height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a73f8c4f2d0e5564a9c03a6501ed547b
-      internalID: -1383643998
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PinParry_Sprite_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1024
-        height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 601013f95ad964c4b8bd94f22c9c514a
-      internalID: 458573910
+      spriteID: c0ad5bee33da06d48b148258fe5e9575
+      internalID: 1682911600
       vertices: []
       indices: 
       edges: []
@@ -246,7 +183,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e7b7fe7bd2dc6e43b5794b3d2ea50e6
+    spriteID: 092ddee2d815c0542be0c3588e6b9a41
     internalID: 0
     vertices: []
     indices: 
@@ -254,13 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PinParry_Sprite_0: -433770981
-      PinParry_Sprite_1: 920756141
-      PinParry_Sprite_2: -2116461733
-      PinParry_Sprite_3: 34130160
-      PinParry_Sprite_4: -65429115
-      PinParry_Sprite_5: -1383643998
-      PinParry_Sprite_6: 458573910
+      FoxWalk_Sprite_0: -1860377047
+      FoxWalk_Sprite_1: -984471926
+      FoxWalk_Sprite_2: 486525932
+      FoxWalk_Sprite_3: 1682911600
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

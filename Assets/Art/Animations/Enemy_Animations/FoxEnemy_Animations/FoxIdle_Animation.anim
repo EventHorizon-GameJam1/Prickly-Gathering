@@ -30,7 +30,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.26666668
-        value: {x: 1, y: 0.8, z: 1}
+        value: {x: 1, y: 0.95, z: 1}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -55,9 +55,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 872139700, guid: 758446af0abdc9045aa8ad0bf0d3e5f5, type: 3}
+      value: {fileID: -984471926, guid: 5588094912f98c348903c0d591084322, type: 3}
     - time: 0.5
-      value: {fileID: 872139700, guid: 758446af0abdc9045aa8ad0bf0d3e5f5, type: 3}
+      value: {fileID: -984471926, guid: 5588094912f98c348903c0d591084322, type: 3}
     attribute: m_Sprite
     path: -- MESH --/Sprite
     classID: 212
@@ -89,8 +89,8 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 872139700, guid: 758446af0abdc9045aa8ad0bf0d3e5f5, type: 3}
-    - {fileID: 872139700, guid: 758446af0abdc9045aa8ad0bf0d3e5f5, type: 3}
+    - {fileID: -984471926, guid: 5588094912f98c348903c0d591084322, type: 3}
+    - {fileID: -984471926, guid: 5588094912f98c348903c0d591084322, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -166,7 +166,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.26666668
-        value: 0.8
+        value: 0.95
         inSlope: 0
         outSlope: 0
         tangentMode: 136

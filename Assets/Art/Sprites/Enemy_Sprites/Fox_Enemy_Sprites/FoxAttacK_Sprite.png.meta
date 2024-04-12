@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 549d7c4c537bffa4795a38f31b407ecd
+guid: 0a30d19f765e85e489cc6d39da253055
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,10 +97,10 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PonWalk_Sprites_0
+      name: FoxAttacK_Sprite_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 3
         y: 1024
         width: 1024
         height: 1024
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af1594ec1eeebaa44915eec76caef2f5
-      internalID: 765516673
+      spriteID: 2463df8491360bd40b8a4995970f3baa
+      internalID: 1722505362
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PonWalk_Sprites_1
+      name: FoxAttacK_Sprite_1
       rect:
         serializedVersion: 2
         x: 1024
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70ec1fbfc5114234d9a3137bca6193db
-      internalID: 664248738
+      spriteID: 6f4680d439f32cb46b8fbd3a4ae8242e
+      internalID: 678556695
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PonWalk_Sprites_2
+      name: FoxAttacK_Sprite_2
       rect:
         serializedVersion: 2
         x: 0
@@ -153,29 +153,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65c73e110fb56a243a90b4b4057979c5
-      internalID: -1193634783
+      spriteID: ff4d227c010bc5e4597947ad3b45ac1d
+      internalID: -1737871783
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PonWalk_Sprites_3
+      name: FoxAttacK_Sprite_3
       rect:
         serializedVersion: 2
         x: 1024
         y: 0
         width: 1024
         height: 1024
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6179bf5b22f238c4990d32afd6e5d6af
-      internalID: 989469820
+      spriteID: 6eebf0635f9ff5e41ba80f82f662898b
+      internalID: -1839004231
       vertices: []
       indices: 
       edges: []
@@ -183,7 +183,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: fa8e45d79249e134296aba3661913517
+    spriteID: 3b0db18d75304d74bab1cb067f7990d0
     internalID: 0
     vertices: []
     indices: 
@@ -191,10 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PonWalk_Sprites_0: 765516673
-      PonWalk_Sprites_1: 664248738
-      PonWalk_Sprites_2: -1193634783
-      PonWalk_Sprites_3: 989469820
+      FoxAttacK_Sprite_0: 1722505362
+      FoxAttacK_Sprite_1: 678556695
+      FoxAttacK_Sprite_2: -1737871783
+      FoxAttacK_Sprite_3: -1839004231
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 549d7c4c537bffa4795a38f31b407ecd
+guid: 70b373e903b8a5f409fc149c3f25948b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PonWalk_Sprites_0
+      name: DogWalk_Sprite_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af1594ec1eeebaa44915eec76caef2f5
-      internalID: 765516673
+      spriteID: 4652c297ff443a04793d8147827ec7b6
+      internalID: -1715090256
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PonWalk_Sprites_1
+      name: DogWalk_Sprite_1
       rect:
         serializedVersion: 2
         x: 1024
@@ -132,14 +132,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70ec1fbfc5114234d9a3137bca6193db
-      internalID: 664248738
+      spriteID: 12cff129e42bb8f43953a4636368606a
+      internalID: -1168380878
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PonWalk_Sprites_2
+      name: DogWalk_Sprite_2
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1024
+        width: 1024
+        height: 1024
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caa00b88b5ce72f45b611fe59f2a4ee7
+      internalID: -1036497201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DogWalk_Sprite_3
       rect:
         serializedVersion: 2
         x: 0
@@ -153,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65c73e110fb56a243a90b4b4057979c5
-      internalID: -1193634783
+      spriteID: f7b3fa7d5caa86d459805b4494ea3182
+      internalID: 2021051622
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PonWalk_Sprites_3
+      name: DogWalk_Sprite_4
       rect:
         serializedVersion: 2
         x: 1024
@@ -174,8 +195,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6179bf5b22f238c4990d32afd6e5d6af
-      internalID: 989469820
+      spriteID: 4b26881a4d3db084dbba5a9f27bbb322
+      internalID: 340738267
       vertices: []
       indices: 
       edges: []
@@ -183,7 +204,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: fa8e45d79249e134296aba3661913517
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -191,10 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PonWalk_Sprites_0: 765516673
-      PonWalk_Sprites_1: 664248738
-      PonWalk_Sprites_2: -1193634783
-      PonWalk_Sprites_3: 989469820
+      DogWalk_Sprite_0: -1715090256
+      DogWalk_Sprite_1: -1168380878
+      DogWalk_Sprite_2: -1036497201
+      DogWalk_Sprite_3: 2021051622
+      DogWalk_Sprite_4: 340738267
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

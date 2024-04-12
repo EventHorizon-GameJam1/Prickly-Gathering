@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 358db9dba3afbd440b643c03f0d7ffde
+guid: 155bb2f75abc5d8499efbe2a4c7dd39c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,10 +69,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,85 +97,190 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PinWalk_Sprites_0
+      name: OwlFly_Sprite_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2048
+        width: 1024
+        height: 1024
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4cfac1c831512b439fe59fb4935298b
+      internalID: -1085686296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OwlFly_Sprite_1
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2048
+        width: 1024
+        height: 1024
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 821f14d9bda56b84e93ff317a0c445d0
+      internalID: 204254495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OwlFly_Sprite_2
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2048
+        width: 1024
+        height: 1024
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfaed636083ad2a458c06f1f3a5e827e
+      internalID: -1622929507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OwlFly_Sprite_3
       rect:
         serializedVersion: 2
         x: 0
         y: 1024
         width: 1024
         height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c9d350f53c26e54abbb001be6d61308
-      internalID: -203954926
+      spriteID: 6e6fe02be2ff4f14983a74e6d2215b9c
+      internalID: 192441304
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinWalk_Sprites_1
+      name: OwlFly_Sprite_4
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 1029
         y: 1024
         width: 1024
         height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ced9440c2bc22294e83279076c574363
-      internalID: -1671591202
+      spriteID: 6bce41298ff1ec444b85c0383dbab84a
+      internalID: -737576031
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinWalk_Sprites_2
+      name: OwlFly_Sprite_5
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1024
+        width: 1024
+        height: 1024
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 808edfee157ca4247a56f082d8ca83c2
+      internalID: 954229335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OwlFly_Sprite_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 1024
         height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c47aa1f46bae284280fc4c6b08780c3
-      internalID: -269444959
+      spriteID: e023ed1a68cb7584da45b2ef2c0afea6
+      internalID: -682592389
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinWalk_Sprites_3
+      name: OwlFly_Sprite_7
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 1019
         y: 0
         width: 1024
         height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1ad68973a3fa1c41a3264f357d40afc
-      internalID: -1618507
+      spriteID: dff07ff04b9325347907e55a85109d93
+      internalID: -1669340450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OwlFly_Sprite_8
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 1024
+        height: 1024
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 481349bf3dc886342857922e8aaeacc2
+      internalID: 1927693261
       vertices: []
       indices: 
       edges: []
@@ -183,7 +288,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 424b8d2e90fd9ff489f6116307fb9ada
+    spriteID: e6e2d141b52d8834f9ecca1f6d0a40a8
     internalID: 0
     vertices: []
     indices: 
@@ -191,10 +296,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PinWalk_Sprites_0: -203954926
-      PinWalk_Sprites_1: -1671591202
-      PinWalk_Sprites_2: -269444959
-      PinWalk_Sprites_3: -1618507
+      OwlFly_Sprite_0: -1085686296
+      OwlFly_Sprite_1: 204254495
+      OwlFly_Sprite_2: -1622929507
+      OwlFly_Sprite_3: 192441304
+      OwlFly_Sprite_4: -737576031
+      OwlFly_Sprite_5: 954229335
+      OwlFly_Sprite_6: -682592389
+      OwlFly_Sprite_7: -1669340450
+      OwlFly_Sprite_8: 1927693261
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

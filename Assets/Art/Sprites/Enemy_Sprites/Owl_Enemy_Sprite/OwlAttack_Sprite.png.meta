@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b652eb8e08729a14e957642f31467d4b
+guid: 5db0526545e0b374f92b4d68b253501b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PinParry_SpriteSheet_0
+      name: OwlAttack_Sprite_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 844a498ef3773ad46aa26b988bea22e6
-      internalID: -315817967
+      spriteID: ab231237c40d5ec4bb29ffbaee0ebe77
+      internalID: -1830349929
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_SpriteSheet_1
+      name: OwlAttack_Sprite_1
       rect:
         serializedVersion: 2
         x: 1024
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08ad9866b9f9cbc459a0c46da0ac0b57
-      internalID: 1867948744
+      spriteID: f5283a22ab3e429449b59f75d92a44b5
+      internalID: -831423024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_SpriteSheet_2
+      name: OwlAttack_Sprite_2
       rect:
         serializedVersion: 2
         x: 2048
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e099e630ee2d0ea46832e107ac9f6bcc
-      internalID: 1866512684
+      spriteID: 0a2eebad577d9304d940cca66e226cfe
+      internalID: 865302330
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_SpriteSheet_3
+      name: OwlAttack_Sprite_3
       rect:
         serializedVersion: 2
         x: 3072
@@ -174,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30241136206b1f24592d36cf769c9fe3
-      internalID: -888697469
+      spriteID: 4a8ebc35b20dbb34dbc43c2a96521ae4
+      internalID: 918973343
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_SpriteSheet_4
+      name: OwlAttack_Sprite_4
       rect:
         serializedVersion: 2
         x: 0
@@ -195,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74737edd9381b05479cd0fd1a382c9e4
-      internalID: 1148909299
+      spriteID: 680bf1e4d39c98d4dbdd94cbab8444ee
+      internalID: 1240832984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_SpriteSheet_5
+      name: OwlAttack_Sprite_5
       rect:
         serializedVersion: 2
         x: 1024
@@ -216,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71026f4077a6348419da55f73a1cde1c
-      internalID: 880673210
+      spriteID: 2b41b10bce3ba0b4b817119c79f230af
+      internalID: 1967365366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_SpriteSheet_6
+      name: OwlAttack_Sprite_6
       rect:
         serializedVersion: 2
         x: 2048
@@ -237,14 +237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c054d95c31851124aa697ee3d456f5e8
-      internalID: 1936814488
+      spriteID: bbae561753a5aef4d9ec84eaaefd18dc
+      internalID: -1674947015
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_SpriteSheet_7
+      name: OwlAttack_Sprite_7
       rect:
         serializedVersion: 2
         x: 3072
@@ -258,14 +258,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19f208382f9f6a64f92f20602243aeb4
-      internalID: 885251182
+      spriteID: b0c1cc09397b737478724168c81fac0c
+      internalID: -611362717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_SpriteSheet_8
+      name: OwlAttack_Sprite_8
       rect:
         serializedVersion: 2
         x: 0
@@ -279,14 +279,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9693fc500cdde5143a787e4c088e6464
-      internalID: -35580406
+      spriteID: a6df13f7c000ea446b7edd2079029eda
+      internalID: 996926775
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_SpriteSheet_9
+      name: OwlAttack_Sprite_9
       rect:
         serializedVersion: 2
         x: 1024
@@ -300,8 +300,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acfc3458b108cee40959d99d502ab1a8
-      internalID: -524309484
+      spriteID: 9628f5148908fb94eb78c5757e1eda33
+      internalID: -1991909236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OwlAttack_Sprite_10
+      rect:
+        serializedVersion: 2
+        x: 2043
+        y: 0
+        width: 1024
+        height: 1024
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6acd96bd5773e644be1b7c0b65f0b25
+      internalID: -222515763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OwlAttack_Sprite_11
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 0
+        width: 1024
+        height: 1024
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21e5d521453535749a8cbc3ba8d3802f
+      internalID: 1951765193
       vertices: []
       indices: 
       edges: []
@@ -309,7 +351,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 2d93d4d6b2e0ac14f95bb88d2a878fe3
+    spriteID: 7798a913739441245b0ecb3cec8bc093
     internalID: 0
     vertices: []
     indices: 
@@ -317,17 +359,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PinParry_SpriteSheet_0: -315817967
-      PinParry_SpriteSheet_1: 1867948744
-      PinParry_SpriteSheet_10: 216612657
-      PinParry_SpriteSheet_2: 1866512684
-      PinParry_SpriteSheet_3: -888697469
-      PinParry_SpriteSheet_4: 1148909299
-      PinParry_SpriteSheet_5: 880673210
-      PinParry_SpriteSheet_6: 1936814488
-      PinParry_SpriteSheet_7: 885251182
-      PinParry_SpriteSheet_8: -35580406
-      PinParry_SpriteSheet_9: -524309484
+      OwlAttack_Sprite_0: -1830349929
+      OwlAttack_Sprite_1: -831423024
+      OwlAttack_Sprite_10: -222515763
+      OwlAttack_Sprite_11: 1951765193
+      OwlAttack_Sprite_2: 865302330
+      OwlAttack_Sprite_3: 918973343
+      OwlAttack_Sprite_4: 1240832984
+      OwlAttack_Sprite_5: 1967365366
+      OwlAttack_Sprite_6: -1674947015
+      OwlAttack_Sprite_7: -611362717
+      OwlAttack_Sprite_8: 996926775
+      OwlAttack_Sprite_9: -1991909236
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
