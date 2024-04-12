@@ -5499,7 +5499,7 @@ MonoBehaviour:
   TitleScreenCanvas: {fileID: 152026367}
   SettingsCanvas: {fileID: 403287368}
   CreditsCanvas: {fileID: 973469157}
-  GameScene: Test_Scene
+  GameScene: LevelScene
 --- !u!114 &2095252907
 MonoBehaviour:
   m_ObjectHideFlags: 0
