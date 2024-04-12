@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fa740181f0a8ec34ca8ab8b8e7a1d3f4
+guid: b652eb8e08729a14e957642f31467d4b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -97,148 +97,211 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PinParry_Sprite_0
+      name: PinParry_SpriteSheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 2048
         width: 1024
         height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8deb5d36b6f1044b85326af87aff5f7
-      internalID: -433770981
+      spriteID: 844a498ef3773ad46aa26b988bea22e6
+      internalID: -315817967
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_Sprite_1
+      name: PinParry_SpriteSheet_1
       rect:
         serializedVersion: 2
         x: 1024
         y: 2048
         width: 1024
         height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a85a5a7356792a4d9f18622ad371c4b
-      internalID: 920756141
+      spriteID: 08ad9866b9f9cbc459a0c46da0ac0b57
+      internalID: 1867948744
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_Sprite_2
+      name: PinParry_SpriteSheet_2
       rect:
         serializedVersion: 2
         x: 2048
         y: 2048
         width: 1024
         height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3357ba6824a2db4c8c891cf0ec1c067
-      internalID: -2116461733
+      spriteID: e099e630ee2d0ea46832e107ac9f6bcc
+      internalID: 1866512684
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_Sprite_3
+      name: PinParry_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 2048
+        width: 1024
+        height: 1024
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30241136206b1f24592d36cf769c9fe3
+      internalID: -888697469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PinParry_SpriteSheet_4
       rect:
         serializedVersion: 2
         x: 0
         y: 1024
         width: 1024
         height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ae58bf18d721164b9d6aeccba2b44c5
-      internalID: 34130160
+      spriteID: 74737edd9381b05479cd0fd1a382c9e4
+      internalID: 1148909299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_Sprite_4
+      name: PinParry_SpriteSheet_5
       rect:
         serializedVersion: 2
         x: 1024
         y: 1024
         width: 1024
         height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a5594869091c674689fb6dcf200e98b
-      internalID: -65429115
+      spriteID: 71026f4077a6348419da55f73a1cde1c
+      internalID: 880673210
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_Sprite_5
+      name: PinParry_SpriteSheet_6
       rect:
         serializedVersion: 2
         x: 2048
         y: 1024
         width: 1024
         height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a73f8c4f2d0e5564a9c03a6501ed547b
-      internalID: -1383643998
+      spriteID: c054d95c31851124aa697ee3d456f5e8
+      internalID: 1936814488
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PinParry_Sprite_6
+      name: PinParry_SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 1024
+        width: 1024
+        height: 1024
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19f208382f9f6a64f92f20602243aeb4
+      internalID: 885251182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PinParry_SpriteSheet_8
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 1024
         height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 601013f95ad964c4b8bd94f22c9c514a
-      internalID: 458573910
+      spriteID: 9693fc500cdde5143a787e4c088e6464
+      internalID: -35580406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PinParry_SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 1024
+        height: 1024
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acfc3458b108cee40959d99d502ab1a8
+      internalID: -524309484
       vertices: []
       indices: 
       edges: []
@@ -246,7 +309,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e7b7fe7bd2dc6e43b5794b3d2ea50e6
+    spriteID: 2d93d4d6b2e0ac14f95bb88d2a878fe3
     internalID: 0
     vertices: []
     indices: 
@@ -254,13 +317,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PinParry_Sprite_0: -433770981
-      PinParry_Sprite_1: 920756141
-      PinParry_Sprite_2: -2116461733
-      PinParry_Sprite_3: 34130160
-      PinParry_Sprite_4: -65429115
-      PinParry_Sprite_5: -1383643998
-      PinParry_Sprite_6: 458573910
+      PinParry_SpriteSheet_0: -315817967
+      PinParry_SpriteSheet_1: 1867948744
+      PinParry_SpriteSheet_10: 216612657
+      PinParry_SpriteSheet_2: 1866512684
+      PinParry_SpriteSheet_3: -888697469
+      PinParry_SpriteSheet_4: 1148909299
+      PinParry_SpriteSheet_5: 880673210
+      PinParry_SpriteSheet_6: 1936814488
+      PinParry_SpriteSheet_7: 885251182
+      PinParry_SpriteSheet_8: -35580406
+      PinParry_SpriteSheet_9: -524309484
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

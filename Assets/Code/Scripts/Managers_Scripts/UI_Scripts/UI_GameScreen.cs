@@ -34,12 +34,18 @@ public class UI_GameScreen : UI_Screen
 
     private void UpdatePlayer_HP()
     {
+        if (Player == null)
+            return;
+
         PlayerHP = Player.PlayerHP;
         Hp_Bar.fillAmount = PlayerHP / PlayerStartHP;        
     }
 
     private void UpdatePlayer_Stamina()
     {
+        if (Player == null)
+            return;
+
         Stamina_Bar.fillAmount = Player.Stamina / PlayerStartStamina;
     }
 

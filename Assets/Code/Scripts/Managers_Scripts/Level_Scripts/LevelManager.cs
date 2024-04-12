@@ -120,8 +120,14 @@ public class LevelManager : MonoBehaviour
             CollectibleSpawners[i].ResetSpawner();
 
         //Reset Player Pos
-        Player.transform.position = PlayerSpawnPosition.position;
+        if(Player != null)
+            Player.transform.position = PlayerSpawnPosition.position;
 
+        if (LightCycleCoroutine != null)
+        {
+            StopCoroutine(LightCycleCoroutine);
+            LightCycleCoroutine = null;
+        }
         LightCycleCoroutine = StartCoroutine(LightCycle());
 
         SpawnAll();
@@ -146,6 +152,7 @@ public class LevelManager : MonoBehaviour
     {
         PlayerTransform = controller.transform;
         Player = controller;
+        Player.transform.position = PlayerSpawnPosition.position;
     }
 
     private void OnEnable()
@@ -172,6 +179,7 @@ public class LevelManager : MonoBehaviour
 
     private void OnDisable()
     {
+        Player = null;
         //Level Manager Events
         OnLevelReady -= StartLevel;
 
