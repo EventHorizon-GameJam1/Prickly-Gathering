@@ -5,6 +5,11 @@ ModelImporter:
   internalIDToNameTable: []
   externalObjects:
   - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: r2s
+    second: {fileID: 2100000, guid: 5bd8ad40518fda940bd58b1ad00dabea, type: 2}
+  - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: rocce 2 chiara_roccia_chiara_BaseColor

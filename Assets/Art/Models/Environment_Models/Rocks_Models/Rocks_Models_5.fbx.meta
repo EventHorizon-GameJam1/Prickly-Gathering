@@ -5,6 +5,11 @@ ModelImporter:
   internalIDToNameTable: []
   externalObjects:
   - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: s3s
+    second: {fileID: 2100000, guid: 5bd8ad40518fda940bd58b1ad00dabea, type: 2}
+  - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: sasso 2 scuro_roccia_scura_BaseColor
