@@ -70,6 +70,7 @@ public class UI_FamilyNecessities : MonoBehaviour
         }
         
         OnContinueToNewDay();
+        this.gameObject.SetActive(false);
     }
 
     private IEnumerator FadeOut()

@@ -150,6 +150,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4737700920524603277, guid: 571b279b29c40dd4aab3026708ed9a43,
         type: 3}
+      propertyPath: EnemySettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b527b668dced4a4f8cf9887d6a609be,
+        type: 2}
+    - target: {fileID: 4737700920524603277, guid: 571b279b29c40dd4aab3026708ed9a43,
+        type: 3}
       propertyPath: StartingState
       value: 1
       objectReference: {fileID: 0}

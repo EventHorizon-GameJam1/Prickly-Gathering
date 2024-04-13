@@ -699,7 +699,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9180144067178262833
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1626,7 +1626,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 000000
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: acde37e92b6671745a5b83b098497ffc, type: 2}
   m_sharedMaterial: {fileID: -6548141548012373626, guid: acde37e92b6671745a5b83b098497ffc,
@@ -1957,6 +1959,8 @@ MonoBehaviour:
   FinalRotation: {x: 0, y: 0, z: 180}
   TimerText: {fileID: 7775227531143915869}
   Player: {fileID: 0}
+  PlayerStartHP: 0
+  PlayerStartStamina: 0
 --- !u!1 &3079011920869920557
 GameObject:
   m_ObjectHideFlags: 0
@@ -6879,7 +6883,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 000000
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: acde37e92b6671745a5b83b098497ffc, type: 2}
   m_sharedMaterial: {fileID: -6548141548012373626, guid: acde37e92b6671745a5b83b098497ffc,
