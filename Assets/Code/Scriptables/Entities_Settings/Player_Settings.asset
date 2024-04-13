@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerStamina: 10
   m_PlayerHP: 10
-  m_ParrySustainTime: 0.5
+  m_ParrySustainTime: 1
   m_ParryInvulnerabilityTime: 0.25
   m_EnergyRecoveredOnParry: 0.1
   EnergyUsage: 1
   Movement:
     MovementSpeed: 5
-    SprintMultiplier: 1
+    SpeedMultiplier: 2
     Rigidbody: {fileID: 0}
     JumpHeight: 1.5
     JumpAnimationSpeed: 2
@@ -57,6 +57,4 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  Walking_SFX: {fileID: 0}
-  Running_SFX: {fileID: 0}
   Parry_SFX: {fileID: 0}
