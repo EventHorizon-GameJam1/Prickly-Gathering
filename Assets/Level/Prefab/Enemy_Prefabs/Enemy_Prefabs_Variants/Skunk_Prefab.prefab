@@ -8,10 +8,91 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 99499152260508598, guid: 571b279b29c40dd4aab3026708ed9a43,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.719
+      objectReference: {fileID: 0}
+    - target: {fileID: 99499152260508598, guid: 571b279b29c40dd4aab3026708ed9a43,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.373
+      objectReference: {fileID: 0}
+    - target: {fileID: 99499152260508598, guid: 571b279b29c40dd4aab3026708ed9a43,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.773
+      objectReference: {fileID: 0}
+    - target: {fileID: 419490035565311843, guid: 571b279b29c40dd4aab3026708ed9a43,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.081
+      objectReference: {fileID: 0}
+    - target: {fileID: 419490035565311843, guid: 571b279b29c40dd4aab3026708ed9a43,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.373
+      objectReference: {fileID: 0}
+    - target: {fileID: 419490035565311843, guid: 571b279b29c40dd4aab3026708ed9a43,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.773
+      objectReference: {fileID: 0}
+    - target: {fileID: 974806604711277452, guid: 571b279b29c40dd4aab3026708ed9a43,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1916508221, guid: 1750a3454ddb62845a2e24b7252155ff,
+        type: 3}
     - target: {fileID: 1189693376616397582, guid: 571b279b29c40dd4aab3026708ed9a43,
         type: 3}
       propertyPath: m_Name
       value: Skunk_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1630521938407742791, guid: 571b279b29c40dd4aab3026708ed9a43,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.31899995
+      objectReference: {fileID: 0}
+    - target: {fileID: 1630521938407742791, guid: 571b279b29c40dd4aab3026708ed9a43,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.7265534
+      objectReference: {fileID: 0}
+    - target: {fileID: 1630521938407742791, guid: 571b279b29c40dd4aab3026708ed9a43,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.1265533
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775707911923148727, guid: 571b279b29c40dd4aab3026708ed9a43,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775707911923148727, guid: 571b279b29c40dd4aab3026708ed9a43,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775707911923148727, guid: 571b279b29c40dd4aab3026708ed9a43,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3979340921099001822, guid: 571b279b29c40dd4aab3026708ed9a43,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 3979340921099001822, guid: 571b279b29c40dd4aab3026708ed9a43,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 3979340921099001822, guid: 571b279b29c40dd4aab3026708ed9a43,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 4500488971409048150, guid: 571b279b29c40dd4aab3026708ed9a43,
         type: 3}
@@ -63,6 +144,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7662233900859802122, guid: 571b279b29c40dd4aab3026708ed9a43,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ae2fa447e3a6f814588901c587538ff6, type: 2}
     m_RemovedComponents:
     - {fileID: 4737700920524603277, guid: 571b279b29c40dd4aab3026708ed9a43, type: 3}
     m_RemovedGameObjects: []
