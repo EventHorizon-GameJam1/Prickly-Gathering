@@ -55,6 +55,7 @@ public class EnemyController : MonoBehaviour
     protected EnemyAction EnemyActions;
 
     protected Coroutine IdleCoroutine;
+    protected WaitForSeconds AttackWaitTime;
 
     protected bool IsFleeing = false;
     protected bool CanDamage = true;
@@ -78,6 +79,7 @@ public class EnemyController : MonoBehaviour
         EnemyAnimation.ParticleTransform = ParticleHolder;
         //Enemy set up
         EnemyDetermination = EnemySettings.EnemyDetermination;
+        AttackWaitTime = new WaitForSeconds(EnemySettings.AttackDelay);
     }
 
     private void Start()
@@ -108,10 +110,14 @@ public class EnemyController : MonoBehaviour
             }
             case State.PATROLLING:
             {
+                StopAllCoroutines();
                 EnemyActions -= EnemyActions;
                 NavMeshAgent.stoppingDistance = EnemyMovement.StoppingDistance;
                 NavMeshAgent.speed = EnemyMovement.MovementSpeed;
-                
+
+                for (int i = 0; i < HealthIndicators.Count; i++)
+                    HealthIndicators[i].gameObject.SetActive(false);
+
                 if (!ClosestAlreadyGot)
                 {
                     ClosestAlreadyGot = true;
@@ -122,6 +128,7 @@ public class EnemyController : MonoBehaviour
                 if(EnemySettings.Patrolling_SFX!=null)
                     SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Patrolling_SFX);
                 break;
+
             }
             case State.FLEE:
             {
@@ -186,11 +193,9 @@ public class EnemyController : MonoBehaviour
         EnemyMovement.SetTargetTransform(PlayerTransform);
         float dist = EnemyMovement.GetDistance();
 
-        EnemyMovement.Sprint();
-        EnemyAnimation.PlaySprint();
-
         if(CanDamage)
         {
+            StartCoroutine(AttackDelay());
             //Play Attack Animation
             if (dist < EnemySettings.AttackDistance)
                 EnemyAnimation.PlaySpecial();
@@ -199,7 +204,17 @@ public class EnemyController : MonoBehaviour
         }
 
         if (dist > EnemySettings.UntriggerDistance)
+        {
             ChangeState(State.PATROLLING);
+            GetClosestPatrollingPoint();
+        }
+    }
+
+    private IEnumerator AttackDelay()
+    {
+        CanDamage = false;
+        yield return AttackWaitTime;
+        CanDamage = true;
     }
 
     private void StopAttack()

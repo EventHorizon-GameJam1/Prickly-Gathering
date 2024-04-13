@@ -7,7 +7,6 @@ public class EnemySettings : ScriptableObject
 {
     [Header("Enemy Settings")]
     [SerializeField] public int EnemyDetermination = 3;
-    [SerializeField] public float Damage = 1f;
     [SerializeField][Range(0f, 1f)] public float PercentageLost = 0.25f;
     [Space]
     [Header("Movement Settings")]
@@ -20,6 +19,9 @@ public class EnemySettings : ScriptableObject
     [SerializeField][Range(0f, 1f)] public float IdleProbability = 0.25f;
     [SerializeField][Min(0)] public float IdleTime_Min = 1f;
     [SerializeField][Min(0)] public float IdleTime_Max = 2f;
+    [Header("Attack Settings")]
+    [SerializeField] public float Damage = 1f;
+    [SerializeField] public float AttackDelay = 0.5f;
     [Header("Animation Settings")]
     [SerializeField] public AnimationController AnimationController;
     [Space]
