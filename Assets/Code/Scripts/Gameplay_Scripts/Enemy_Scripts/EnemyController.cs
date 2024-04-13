@@ -195,13 +195,17 @@ public class EnemyController : MonoBehaviour
 
         if(CanDamage)
         {
+            CanDamage = false;
             StartCoroutine(AttackDelay());
             //Play Attack Animation
             if (dist < EnemySettings.AttackDistance)
                 EnemyAnimation.PlaySpecial();
-            else
-                EnemyAnimation.StopSpecial();
         }
+        else
+        {
+            EnemyAnimation.StopSpecial();
+        }
+
 
         if (dist > EnemySettings.UntriggerDistance)
         {
@@ -212,7 +216,6 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator AttackDelay()
     {
-        CanDamage = false;
         yield return AttackWaitTime;
         CanDamage = true;
     }
