@@ -73,6 +73,16 @@ public class EnemyZone : MonoBehaviour
         EnemiesSpawned[0].gameObject.SetActive(true);
     }
 
+    private void OnEnable()
+    {
+        GameManager.OnEndDay += ResetSpawner;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnEndDay -= ResetSpawner;
+    }
+
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
