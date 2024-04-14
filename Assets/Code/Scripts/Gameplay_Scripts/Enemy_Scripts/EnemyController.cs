@@ -40,7 +40,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] protected bool DrawGizmos = true;
     //Patrolling
     [HideInInspector] public PatrollingData EnemyPatrollingPath;
-    [HideInInspector] protected Transform PlayerTransform => LevelManager.PlayerTransform;
+    [HideInInspector] protected Transform PlayerTransform = LevelManager.PlayerTransform;
 
     //Components
     protected EnemyMovement EnemyMovement = new EnemyMovement();
@@ -155,8 +155,8 @@ public class EnemyController : MonoBehaviour
 
                 EnemyActions -= EnemyActions;
                 EnemyActions += AttackState;
-                EnemyMovement.SetTargetTransform(PlayerTransform);
                 SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.EnemySpotted_SFX);
+                PlayerTransform = LevelManager.PlayerTransform;
                 break;
             }
             default:break;

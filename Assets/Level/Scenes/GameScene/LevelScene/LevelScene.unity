@@ -7624,7 +7624,7 @@ MonoBehaviour:
   - {fileID: 2116096669}
   - {fileID: 1762415351}
   CollectibleSpawners: []
-  DayDuration: 10
+  DayDuration: 300
   LightTransform: {fileID: 527213255}
   StartRotation: {x: 28, y: 3, z: -3}
   EndRotation: {x: 11, y: -175, z: -177}
