@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using static PlayerController;
 
 [RequireComponent(typeof(Animator), typeof(Rigidbody), typeof(CapsuleCollider))]
 public class PlayerController : MonoBehaviour
