@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18386787, g: 0.22872572, b: 0.30142888, a: 1}
+  m_IndirectSpecularColor: {r: 0.18386823, g: 0.22872654, b: 0.3014299, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7624,7 +7624,7 @@ MonoBehaviour:
   - {fileID: 2116096669}
   - {fileID: 1762415351}
   CollectibleSpawners: []
-  DayDuration: 300
+  DayDuration: 10
   LightTransform: {fileID: 527213255}
   StartRotation: {x: 28, y: 3, z: -3}
   EndRotation: {x: 11, y: -175, z: -177}

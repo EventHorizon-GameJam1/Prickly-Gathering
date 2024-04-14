@@ -16,7 +16,7 @@ public class UI_GameScreen : UI_Screen
     [SerializeField] private Vector3 FinalRotation;
     [SerializeField] private TMP_Text TimerText;
 
-    public PlayerController Player;
+    [HideInInspector] public PlayerController Player;
     private Quaternion TimerImageStartRotation;
     private Quaternion TimerImageFinalRotation;
 
@@ -58,6 +58,16 @@ public class UI_GameScreen : UI_Screen
     {
         int min, sec;
 
+        TimerImage.rectTransform.rotation = TimerImageStartRotation;
+
+        Vector3 startRotEuler = TimerImage.rectTransform.rotation.eulerAngles;
+
+        Vector3 middleRot = (FinalRotation - startRotEuler)/2;
+        middleRot += Vector3.forward * 0.05f;
+
+        Quaternion targetRot = Quaternion.Euler(middleRot);
+
+
         while (true)
         {
             sec = (int)LevelManager.TimerProgress;
@@ -65,7 +75,13 @@ public class UI_GameScreen : UI_Screen
             if (sec >= 60)
                 sec -= min * 60;
 
-            TimerImage.rectTransform.rotation = Quaternion.Lerp(TimerImageStartRotation, TimerImageFinalRotation, LevelManager.TimerProgress/LevelManager.Instance.DayDuration);
+            float progress = LevelManager.TimerProgress / LevelManager.Instance.DayDuration;
+
+            if (progress <= 0.5)
+                TimerImage.rectTransform.rotation = Quaternion.Lerp(TimerImageStartRotation, targetRot, progress/0.5f);
+            else
+                TimerImage.rectTransform.rotation = Quaternion.Lerp(targetRot, TimerImageFinalRotation, (progress-0.5f)/0.5f);
+
 
             TimerText.text = min + " : " + sec;
             yield return null;
