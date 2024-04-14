@@ -52,7 +52,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 9cd65586daccfbe4c8729b6c1ab5c5d5,
+      objectReference: {fileID: -988575380, guid: 11dc3f739f99ee64699012e49a29cdd0,
         type: 3}
     - target: {fileID: 5812936685849748907, guid: ac31b6fdc6746e749835f87c5937ba64,
         type: 3}
@@ -68,7 +68,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ColectibleSetting
       value: 
-      objectReference: {fileID: 11400000, guid: 6267ee1957c33394fbf3fa987bd36a82,
+      objectReference: {fileID: 11400000, guid: da25b7e3f74a5ee4e91c141b81d2e377,
         type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

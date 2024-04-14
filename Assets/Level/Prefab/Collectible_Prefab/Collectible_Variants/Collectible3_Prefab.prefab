@@ -52,7 +52,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 96e377396253e4d459feafdd9f951d8f,
+      objectReference: {fileID: -1921976879, guid: 11dc3f739f99ee64699012e49a29cdd0,
         type: 3}
     - target: {fileID: 5812936685849748907, guid: ac31b6fdc6746e749835f87c5937ba64,
         type: 3}
@@ -64,6 +64,12 @@ PrefabInstance:
       propertyPath: Score
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 7286480678684925469, guid: ac31b6fdc6746e749835f87c5937ba64,
+        type: 3}
+      propertyPath: ColectibleSetting
+      value: 
+      objectReference: {fileID: 11400000, guid: a527bf5b715959d49b386c906bf23250,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
