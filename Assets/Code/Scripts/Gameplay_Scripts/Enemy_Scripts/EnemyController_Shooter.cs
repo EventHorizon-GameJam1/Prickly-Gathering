@@ -40,6 +40,7 @@ public class EnemyController_Shooter: EnemyController
                 break;
             }
         }
+        SFX_Manager.Request2DSFX(transform.position, EnemySettings.Attack_SFX);
     }
 
     protected override void ApplyDamage()

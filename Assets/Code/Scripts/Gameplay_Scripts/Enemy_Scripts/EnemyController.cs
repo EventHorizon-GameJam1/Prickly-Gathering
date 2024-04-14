@@ -40,7 +40,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] protected bool DrawGizmos = true;
     //Patrolling
     [HideInInspector] public PatrollingData EnemyPatrollingPath;
-    [HideInInspector] protected Transform PlayerTransform = LevelManager.PlayerTransform;
+    [HideInInspector] public Transform PlayerTransform;
 
     //Components
     protected EnemyMovement EnemyMovement = new EnemyMovement();
@@ -105,7 +105,8 @@ public class EnemyController : MonoBehaviour
             {
                 EnemyActions -= EnemyActions;
                 EnemyActions += IdleState;
-                SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Idling_SFX);
+                if (EnemySettings.Idling_SFX != null)
+                    SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Idling_SFX);
                 break;
             }
             case State.PATROLLING:
@@ -138,7 +139,8 @@ public class EnemyController : MonoBehaviour
                 EnemyAnimation.StopSpecial();
                 EnemyMovement.SetTargetTransform(EnemyPatrollingPath.EscapePoint);
                 EnemyActions += FleeState;
-                SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Fleeing_SFX);
+                if (EnemySettings.Fleeing_SFX != null)
+                    SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Fleeing_SFX);
                 break;
             }
             case State.ATTACK:
@@ -155,8 +157,10 @@ public class EnemyController : MonoBehaviour
 
                 EnemyActions -= EnemyActions;
                 EnemyActions += AttackState;
+
+                EnemyMovement.SetTargetTransform(PlayerTransform);
+
                 SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.EnemySpotted_SFX);
-                PlayerTransform = LevelManager.PlayerTransform;
                 break;
             }
             default:break;
@@ -199,7 +203,10 @@ public class EnemyController : MonoBehaviour
             StartCoroutine(AttackDelay());
             //Play Attack Animation
             if (dist < EnemySettings.AttackDistance)
+            {
                 EnemyAnimation.PlaySpecial();
+            }
+
         }
         else
         {
@@ -228,7 +235,8 @@ public class EnemyController : MonoBehaviour
     //Called by animation
     protected virtual void ApplyDamage()
     {
-        if(LevelManager.Player.IsInvulnerable) //Parryed
+        SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Attack_SFX);
+        if (LevelManager.Player.IsInvulnerable) //Parryed
             TakeDamage();
         else
             OnPlayerDamaged(EnemySettings.Damage, EnemySettings.PercentageLost);
@@ -319,6 +327,7 @@ public class EnemyController : MonoBehaviour
 
         LevelManager.OnPlayerSecured += StopAttack;
         PlayerController.OnPlayerDefeated += StopAttack;
+        PlayerController.OnPlayerReady += (PlayerController controller) => PlayerTransform = controller.transform;
     }
 
     private void OnDisable()
@@ -330,7 +339,6 @@ public class EnemyController : MonoBehaviour
         LevelManager.OnPlayerSecured -= StopAttack;
         PlayerController.OnPlayerDefeated -= StopAttack;
     }
-
 
     //Gizsmos
 #if UNITY_EDITOR

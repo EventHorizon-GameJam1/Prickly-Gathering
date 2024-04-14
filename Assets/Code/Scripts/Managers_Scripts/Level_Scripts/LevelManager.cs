@@ -153,6 +153,11 @@ public class LevelManager : MonoBehaviour
         PlayerTransform = controller.transform;
         Player = controller;
         Player.transform.position = PlayerSpawnPosition.position;
+
+        for(int i = 0; i< EnemyZones.Count; i++)
+        {
+            EnemyZones[i].SetPlayerTransform(PlayerTransform);
+        }
     }
 
     private void OnEnable()

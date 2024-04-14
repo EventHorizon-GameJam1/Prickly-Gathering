@@ -73,6 +73,15 @@ public class EnemyZone : MonoBehaviour
         EnemiesSpawned[0].gameObject.SetActive(true);
     }
 
+    public void SetPlayerTransform(Transform PlayerTransform)
+    {
+        for (int i = 0; i < EnemiesSpawned.Count; i++)
+        {
+            EnemiesSpawned[i].PlayerTransform = PlayerTransform;
+        }
+    }
+
+
     private void OnEnable()
     {
         GameManager.OnEndDay += ResetSpawner;

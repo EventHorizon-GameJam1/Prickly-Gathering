@@ -9477,10 +9477,16 @@ MonoBehaviour:
   SpawnData:
   - EnemyToSpawn: {fileID: 8075195217387524148, guid: 45d6d9c89e4445b4a836e83cf4409707,
       type: 3}
-    Probability: 0.5
+    Probability: 0.25
   - EnemyToSpawn: {fileID: 3786070655297138125, guid: 70e75032df942ff41b300c5afe3a3fb7,
       type: 3}
-    Probability: 0.5
+    Probability: 0.25
+  - EnemyToSpawn: {fileID: 8075195217387524148, guid: 8bd39ecee9a5459488ce2c761bd325dc,
+      type: 3}
+    Probability: 0.25
+  - EnemyToSpawn: {fileID: 6107307546335166610, guid: 80edbd0a31a772d4d979b411721bfa6a,
+      type: 3}
+    Probability: 0.25
   EnemyPath:
     PatrollingPositions:
     - {fileID: 510011211}
@@ -11290,7 +11296,6 @@ GameObject:
   m_Component:
   - component: {fileID: 284730568}
   - component: {fileID: 284730567}
-  - component: {fileID: 284730566}
   - component: {fileID: 284730565}
   - component: {fileID: 284730564}
   m_Layer: 0
@@ -11378,14 +11383,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!81 &284730566
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 284730563}
-  m_Enabled: 1
 --- !u!20 &284730567
 Camera:
   m_ObjectHideFlags: 0
@@ -44507,9 +44504,9 @@ MonoBehaviour:
   Max3DSFX: 3
   Max2DSFX: 5
   MaxDistanceFromPlayer: 50
-  Source3D: {fileID: -4665707991769908462, guid: f27bf1d4e77722d4886f9e69fe52bc99,
+  Source3D: {fileID: -6288604172438286560, guid: e2c2ccc263e9e8f478b31ca99e17d669,
     type: 3}
-  Source2D: {fileID: -6288604172438286560, guid: e2c2ccc263e9e8f478b31ca99e17d669,
+  Source2D: {fileID: -4665707991769908462, guid: f27bf1d4e77722d4886f9e69fe52bc99,
     type: 3}
 --- !u!114 &1204081614
 MonoBehaviour:
@@ -67823,10 +67820,16 @@ MonoBehaviour:
   SpawnData:
   - EnemyToSpawn: {fileID: 8075195217387524148, guid: 45d6d9c89e4445b4a836e83cf4409707,
       type: 3}
-    Probability: 0.5
+    Probability: 0.25
   - EnemyToSpawn: {fileID: 3786070655297138125, guid: 70e75032df942ff41b300c5afe3a3fb7,
       type: 3}
-    Probability: 0.5
+    Probability: 0.25
+  - EnemyToSpawn: {fileID: 8075195217387524148, guid: 8bd39ecee9a5459488ce2c761bd325dc,
+      type: 3}
+    Probability: 0.25
+  - EnemyToSpawn: {fileID: 6107307546335166610, guid: 80edbd0a31a772d4d979b411721bfa6a,
+      type: 3}
+    Probability: 0.25
   EnemyPath:
     PatrollingPositions:
     - {fileID: 1293110528}
@@ -70217,16 +70220,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestPlayer_Prefab
       objectReference: {fileID: 0}
-    - target: {fileID: 529485350517087746, guid: 397bc4fa0af351c47a2a07af867c6fae,
-        type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 529485350517087746, guid: 397bc4fa0af351c47a2a07af867c6fae,
-        type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2609435633452203105, guid: 397bc4fa0af351c47a2a07af867c6fae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -70276,16 +70269,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6709689417375415477, guid: 397bc4fa0af351c47a2a07af867c6fae,
-        type: 3}
-      propertyPath: m_Radius
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6709689417375415477, guid: 397bc4fa0af351c47a2a07af867c6fae,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -81333,10 +81316,16 @@ MonoBehaviour:
   SpawnData:
   - EnemyToSpawn: {fileID: 8075195217387524148, guid: 45d6d9c89e4445b4a836e83cf4409707,
       type: 3}
-    Probability: 0.5
+    Probability: 0.25
   - EnemyToSpawn: {fileID: 3786070655297138125, guid: 70e75032df942ff41b300c5afe3a3fb7,
       type: 3}
-    Probability: 0.5
+    Probability: 0.25
+  - EnemyToSpawn: {fileID: 8075195217387524148, guid: 8bd39ecee9a5459488ce2c761bd325dc,
+      type: 3}
+    Probability: 0.25
+  - EnemyToSpawn: {fileID: 6107307546335166610, guid: 80edbd0a31a772d4d979b411721bfa6a,
+      type: 3}
+    Probability: 0.25
   EnemyPath:
     PatrollingPositions:
     - {fileID: 602206078}
@@ -81417,10 +81406,16 @@ MonoBehaviour:
   SpawnData:
   - EnemyToSpawn: {fileID: 8075195217387524148, guid: 45d6d9c89e4445b4a836e83cf4409707,
       type: 3}
-    Probability: 0.5
+    Probability: 0.25
   - EnemyToSpawn: {fileID: 3786070655297138125, guid: 70e75032df942ff41b300c5afe3a3fb7,
       type: 3}
-    Probability: 0.5
+    Probability: 0.25
+  - EnemyToSpawn: {fileID: 8075195217387524148, guid: 8bd39ecee9a5459488ce2c761bd325dc,
+      type: 3}
+    Probability: 0.25
+  - EnemyToSpawn: {fileID: 6107307546335166610, guid: 80edbd0a31a772d4d979b411721bfa6a,
+      type: 3}
+    Probability: 0.25
   EnemyPath:
     PatrollingPositions:
     - {fileID: 979624645}

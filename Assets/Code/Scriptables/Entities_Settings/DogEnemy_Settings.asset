@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: DogEnemy_Settings
   m_EditorClassIdentifier: 
   EnemyDetermination: 3
-  Damage: 1
   PercentageLost: 0.25
   AttackDistance: 1.5
   SprintDistance: 10
@@ -29,11 +28,13 @@ MonoBehaviour:
   IdleProbability: 0.25
   IdleTime_Min: 1
   IdleTime_Max: 2
+  Damage: 1
+  AttackDelay: 0.5
   Idling_SFX: {fileID: 0}
   Patrolling_SFX: {fileID: 0}
-  Attack_SFX: {fileID: 0}
+  Attack_SFX: {fileID: 8300000, guid: 1041820eb4668124d8c9ddf661254068, type: 3}
   Fleeing_SFX: {fileID: 8300000, guid: fd21231df3625844a8ed39da3c5f3d19, type: 3}
-  EnemySpotted_SFX: {fileID: 8300000, guid: 691398e6bf770874e86cb5d45e8e2d9e, type: 3}
+  EnemySpotted_SFX: {fileID: 8300000, guid: cae6f17b22c222b40b6257870945aae9, type: 3}
   TriggerRadiousColor: {r: 0.5019608, g: 0.21568628, b: 0.67058825, a: 1}
   AttackRadiousColor: {r: 0.7921569, g: 0.1882353, b: 0.1882353, a: 1}
   SprintRadiousColor: {r: 0.85882354, g: 0.41568628, b: 0, a: 0.49803922}

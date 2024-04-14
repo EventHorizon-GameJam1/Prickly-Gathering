@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4553248367099020901}
   - component: {fileID: 4039806637820848610}
   - component: {fileID: 644376095257136156}
+  - component: {fileID: 2067334174630574499}
   m_Layer: 8
   m_Name: TestPlayer_Prefab
   m_TagString: Player
@@ -4994,6 +4995,14 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!81 &2067334174630574499
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27641178449606679}
+  m_Enabled: 1
 --- !u!1 &304408733988100401
 GameObject:
   m_ObjectHideFlags: 0
