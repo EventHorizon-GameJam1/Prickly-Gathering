@@ -7,4 +7,5 @@ public class CollectibleSetting : ScriptableObject
 {
     [Header("Collectible Settings")]
     [SerializeField] public float ScoreOnCollect = 0f;
+    [SerializeField][Range(0f,1f)] public float HpOnCollect = 0f;
 }

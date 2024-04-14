@@ -100,6 +100,13 @@ public class PlayerController : MonoBehaviour
             OnPlayerDefeated();
     }
 
+    private void RecoverHP(float percetage)
+    {
+        PlayerHP += (PlayerHP*percetage);
+        Mathf.Clamp(PlayerHP, 0, PlayerSettings.PlayerHP);
+        OnHPChanged();
+    }
+
     private void RecoverStamina()
     {
         Stamina += PlayerSettings.PlayerStartStamina*PlayerSettings.EnergyRecoveredOnParry;
@@ -186,6 +193,8 @@ public class PlayerController : MonoBehaviour
         //Game Manager Connection
         GameManager.OnNewDay += ResetStamina;
         GameManager.OnNewDay += ResetHP;
+        //Collectible
+        Collectible.OnHpCollect += RecoverHP;
     }
 
     private void OnDisable()
@@ -213,5 +222,7 @@ public class PlayerController : MonoBehaviour
         //Game Manager Disconnections
         GameManager.OnNewDay -= ResetStamina;
         GameManager.OnNewDay -= ResetHP;
+        //Collectible
+        Collectible.OnHpCollect -= RecoverHP;
     }
 }
