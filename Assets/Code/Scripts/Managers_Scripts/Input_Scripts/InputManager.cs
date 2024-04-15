@@ -211,6 +211,31 @@ public class InputManager : MonoBehaviour
         //OnUISelect -= OnUISelect;
         //--------------------------------------------------------------
 
+        //Setup events
+        //---------------------------GAMEPLAY---------------------------
+        //Movement
+        InputActions.Gameplay.Movement.performed -= CallMovement;
+        //Sprint
+        InputActions.Gameplay.Sprint.started -= CallSprint;
+        InputActions.Gameplay.Sprint.canceled -= CancelSprint;
+        //Jump
+        //InputActions.Gameplay.Jump.performed -= CallJump;
+        //Parry
+        InputActions.Gameplay.Parry.performed -= CallParry;
+        //-----------------------------GAME-----------------------------
+        //Menu
+        InputActions.Gameplay.EnterMenu.performed -= CallMenu;
+        InputActions.Menu.ExitMenu.performed -= CallMenu;
+        //Interact
+        InputActions.Gameplay.Select.performed -= CallSelect;
+        //------------------------------UI------------------------------
+        //UI Movement
+        //InputActions.Menu.MenuNavigation.performed -= CallUIMovement;
+        //UI Select
+        //InputActions.Menu.Select.performed -= CallUISelect;
+        //--------------------------------------------------------------
+
+
         GameManager.OnEndDay -= MenuInput;
         GameManager.OnEndDay -= SuspendPause;
         GameManager.OnNewDay -= GameInput;

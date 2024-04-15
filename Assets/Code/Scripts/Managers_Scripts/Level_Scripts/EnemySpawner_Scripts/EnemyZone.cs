@@ -77,7 +77,7 @@ public class EnemyZone : MonoBehaviour
     {
         for (int i = 0; i < EnemiesSpawned.Count; i++)
         {
-            EnemiesSpawned[i].PlayerTransform = PlayerTransform;
+            EnemiesSpawned[i].SetPlayerTransform(PlayerTransform);
         }
     }
 

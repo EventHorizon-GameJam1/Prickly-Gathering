@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour
     }
 
     public delegate void EnemyReady(EnemyController enemy);
-    public EnemyReady OnEnemyReady = (EnemyController controller) => {};
+    public EnemyReady OnEnemyReady = (EnemyController controller) => { };
 
     public delegate void EnemyParried();
     public static EnemyParried OnEnemyParried = () => { };
@@ -34,7 +34,7 @@ public class EnemyController : MonoBehaviour
     [Header("Health Indicator settings")]
     [SerializeField] protected Sprite FullHealth;
     [SerializeField] protected Sprite EmptyHealth;
-    [SerializeField] protected List<SpriteRenderer> HealthIndicators = new List<SpriteRenderer>(); 
+    [SerializeField] protected List<SpriteRenderer> HealthIndicators = new List<SpriteRenderer>();
     [Space]
     [Header("Debug Settings")]
     [SerializeField] protected bool DrawGizmos = true;
@@ -84,10 +84,9 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        ChangeState(StartingState);
-
         for (int i = 0; i < HealthIndicators.Count; i++)
             HealthIndicators[i].sprite = FullHealth;
+        ChangeState(StartingState);
     }
 
     private void FixedUpdate()
@@ -99,71 +98,71 @@ public class EnemyController : MonoBehaviour
 
     private void ChangeState(State newState)
     {
-        switch(newState)
+        switch (newState)
         {
             case State.IDLE:
-            {
-                EnemyActions -= EnemyActions;
-                EnemyActions += IdleState;
-                if (EnemySettings.Idling_SFX != null)
-                    SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Idling_SFX);
-                break;
-            }
-            case State.PATROLLING:
-            {
-                StopAllCoroutines();
-                EnemyActions -= EnemyActions;
-                NavMeshAgent.stoppingDistance = EnemyMovement.StoppingDistance;
-                NavMeshAgent.speed = EnemyMovement.MovementSpeed;
-
-                for (int i = 0; i < HealthIndicators.Count; i++)
-                    HealthIndicators[i].gameObject.SetActive(false);
-
-                if (!ClosestAlreadyGot)
                 {
-                    ClosestAlreadyGot = true;
-                    GetClosestPatrollingPoint();
+                    EnemyActions -= EnemyActions;
+                    EnemyActions += IdleState;
+                    if (EnemySettings.Idling_SFX != null)
+                        SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Idling_SFX);
+                    break;
                 }
+            case State.PATROLLING:
+                {
+                    StopAllCoroutines();
+                    EnemyActions -= EnemyActions;
+                    NavMeshAgent.stoppingDistance = EnemyMovement.StoppingDistance;
+                    NavMeshAgent.speed = EnemyMovement.MovementSpeed;
 
-                EnemyActions += PatrolState;
-                if(EnemySettings.Patrolling_SFX!=null)
-                    SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Patrolling_SFX);
-                break;
+                    for (int i = 0; i < HealthIndicators.Count; i++)
+                        HealthIndicators[i].gameObject.SetActive(false);
 
-            }
+                    if (!ClosestAlreadyGot)
+                    {
+                        ClosestAlreadyGot = true;
+                        GetClosestPatrollingPoint();
+                    }
+
+                    EnemyActions += PatrolState;
+                    if (EnemySettings.Patrolling_SFX != null)
+                        SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Patrolling_SFX);
+                    break;
+
+                }
             case State.FLEE:
-            {
-                StartCoroutine(FleeEnum());
-                EnemyActions -= EnemyActions;
-                IsFleeing = true;
-                EnemyAnimation.StopSpecial();
-                EnemyMovement.SetTargetTransform(EnemyPatrollingPath.EscapePoint);
-                EnemyActions += FleeState;
-                if (EnemySettings.Fleeing_SFX != null)
-                    SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Fleeing_SFX);
-                break;
-            }
+                {
+                    StartCoroutine(FleeEnum());
+                    EnemyActions -= EnemyActions;
+                    IsFleeing = true;
+                    EnemyAnimation.StopSpecial();
+                    EnemyMovement.SetTargetTransform(EnemyPatrollingPath.EscapePoint);
+                    EnemyActions += FleeState;
+                    if (EnemySettings.Fleeing_SFX != null)
+                        SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.Fleeing_SFX);
+                    break;
+                }
             case State.ATTACK:
-            {
-                CanDamage = true;
+                {
+                    CanDamage = true;
 
-                if (IdleCoroutine != null)
-                    StopCoroutine(IdleCoroutine);
+                    if (IdleCoroutine != null)
+                        StopCoroutine(IdleCoroutine);
 
-                NavMeshAgent.stoppingDistance = EnemySettings.AttackDistance;
+                    NavMeshAgent.stoppingDistance = EnemySettings.AttackDistance;
 
-                for (int i = 0; i < HealthIndicators.Count; i++)
-                    HealthIndicators[i].gameObject.SetActive(true);
+                    for (int i = 0; i < HealthIndicators.Count; i++)
+                        HealthIndicators[i].gameObject.SetActive(true);
 
-                EnemyActions -= EnemyActions;
-                EnemyActions += AttackState;
+                    EnemyActions -= EnemyActions;
+                    EnemyActions += AttackState;
 
-                EnemyMovement.SetTargetTransform(PlayerTransform);
+                    EnemyMovement.SetTargetTransform(PlayerTransform);
 
-                SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.EnemySpotted_SFX);
-                break;
-            }
-            default:break;
+                    SFX_Manager.Request2DSFX?.Invoke(transform.position, EnemySettings.EnemySpotted_SFX);
+                    break;
+                }
+            default: break;
         }
     }
 
@@ -172,7 +171,7 @@ public class EnemyController : MonoBehaviour
     {
         EnemyMovement.Disable();
 
-        if(IdleCoroutine ==  null)
+        if (IdleCoroutine == null)
             IdleCoroutine = StartCoroutine(IdleEumerator());
 
         //Check if player is in trigger distance
@@ -194,10 +193,9 @@ public class EnemyController : MonoBehaviour
     #region ATTACK
     protected virtual void AttackState()
     {
-        EnemyMovement.SetTargetTransform(PlayerTransform);
         float dist = EnemyMovement.GetDistance();
 
-        if(CanDamage)
+        if (CanDamage)
         {
             CanDamage = false;
             StartCoroutine(AttackDelay());
@@ -209,16 +207,17 @@ public class EnemyController : MonoBehaviour
 
         }
         else
-        {
             EnemyAnimation.StopSpecial();
-        }
 
 
         if (dist > EnemySettings.UntriggerDistance)
         {
             ChangeState(State.PATROLLING);
             GetClosestPatrollingPoint();
+            return;
         }
+
+        EnemyMovement.SetTargetTransform(PlayerTransform);
     }
 
     private IEnumerator AttackDelay()
@@ -315,12 +314,15 @@ public class EnemyController : MonoBehaviour
     }
     #endregion
 
+    public void SetPlayerTransform(Transform transform)
+    {
+        PlayerTransform = transform;
+    }
+
     private void OnEnable()
     {
         IsFleeing = false;
         ClosestAlreadyGot = false;
-
-        ChangeState(State.PATROLLING);
 
         for (int i = 0; i < HealthIndicators.Count; i++)
             HealthIndicators[i].gameObject.SetActive(false);

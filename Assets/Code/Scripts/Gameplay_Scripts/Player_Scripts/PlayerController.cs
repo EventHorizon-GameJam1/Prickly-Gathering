@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Security.Cryptography;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator), typeof(Rigidbody), typeof(CapsuleCollider))]
@@ -52,11 +53,6 @@ public class PlayerController : MonoBehaviour
         ParryWait = new WaitForSeconds(Parry_TAI);
         PlayerHP = PlayerSettings.PlayerHP;
         Stamina = PlayerSettings.PlayerStartStamina;
-    }
-
-    private void Start()
-    {
-        OnPlayerReady(this);
     }
 
     private void EnablePlayerController()
@@ -167,6 +163,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void SendPlayerRef()
+    {
+        OnPlayerReady(this);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         Body.velocity = collision.contacts[0].normal;
@@ -194,6 +195,8 @@ public class PlayerController : MonoBehaviour
         GameManager.OnNewDay += ResetHP;
         //Collectible
         Collectible.OnHpCollect += RecoverHP;
+        //Level
+        LevelManager.OnLevelReady += SendPlayerRef;
     }
 
     private void OnDisable()
@@ -223,5 +226,7 @@ public class PlayerController : MonoBehaviour
         GameManager.OnNewDay -= ResetHP;
         //Collectible
         Collectible.OnHpCollect -= RecoverHP;
+        //Level
+        LevelManager.OnLevelReady -= SendPlayerRef;
     }
 }
