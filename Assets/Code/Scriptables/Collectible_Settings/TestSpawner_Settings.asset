@@ -17,7 +17,7 @@ MonoBehaviour:
   CollectibleToSpawn:
   - Collectible: {fileID: 2249080998733161602, guid: deb7e0a11cbee454cbfe9d1b48e86b3f,
       type: 3}
-    Probability: 0.4
+    Probability: 0.45
   - Collectible: {fileID: 2249080998733161602, guid: 9f129d4bd26ca5a409345372cd722ddc,
       type: 3}
     Probability: 0.3
@@ -26,5 +26,5 @@ MonoBehaviour:
     Probability: 0.2
   - Collectible: {fileID: 2249080998733161602, guid: 7552fedc399dc9f43bb0daae49c7ba51,
       type: 3}
-    Probability: 0.1
+    Probability: 0.05
   SpawnAreaColor: {r: 0, g: 1, b: 1, a: 1}
