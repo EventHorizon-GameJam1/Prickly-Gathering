@@ -17,7 +17,6 @@ public class EnemyMovement : Movement
         TargetTransform = target;
         Agent.updateRotation = false;
         Agent.destination = new Vector3(target.position.x , 0f, target.position.z);
-        Debug.Log(target.gameObject.name+" at: "+Agent.destination);
     }
 
     public float GetDistance()

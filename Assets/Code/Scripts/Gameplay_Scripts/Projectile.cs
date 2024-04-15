@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
     [HideInInspector] public float LifeTime = 1.5f;
     [HideInInspector] public Movement ProjectileMovement;
     [SerializeField] Rigidbody Rigidbody;
-
+    [SerializeField] SpriteRenderer Sprite;
     private void Awake()
     {
         ProjectileMovement.Rigidbody = Rigidbody;
@@ -18,6 +18,8 @@ public class Projectile : MonoBehaviour
 
     private IEnumerator Exist()
     {
+        if(Rigidbody.velocity.x < 0f)
+            Sprite.flipX = true;
         yield return new WaitForSeconds(LifeTime);
         this.gameObject.SetActive(false);
     }
