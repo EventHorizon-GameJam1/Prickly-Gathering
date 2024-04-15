@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0326c18aaf1a8b749a2fdff7133f28ae, type: 3}
   m_Name: DogFood_Point
   m_EditorClassIdentifier: 
-  ScoreOnCollect: 1
+  ScoreOnCollect: 50
+  HpOnCollect: 0
