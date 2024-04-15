@@ -146,6 +146,8 @@ public class EnemyController : MonoBehaviour
                 {
                     CanDamage = true;
 
+                    NavMeshAgent.speed = EnemyMovement.MovementSpeed;
+
                     if (IdleCoroutine != null)
                         StopCoroutine(IdleCoroutine);
 
