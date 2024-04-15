@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0326c18aaf1a8b749a2fdff7133f28ae, type: 3}
   m_Name: Fruit_Point
   m_EditorClassIdentifier: 
-  ScoreOnCollect: 10
+  ScoreOnCollect: 5
   HpOnCollect: 0
