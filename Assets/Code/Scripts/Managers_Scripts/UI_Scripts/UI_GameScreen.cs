@@ -34,7 +34,7 @@ public class UI_GameScreen : UI_Screen
 
     private void FixedUpdate()
     {
-        Debug.Log(Player.transform.gameObject.name);
+
     }
 
     private void UpdatePlayer_HP()

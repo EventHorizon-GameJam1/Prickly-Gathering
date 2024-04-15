@@ -31,7 +31,7 @@ MonoBehaviour:
   Damage: 1
   AttackDelay: 0.5
   Idling_SFX: {fileID: 0}
-  Patrolling_SFX: {fileID: 0}
+  Patrolling_SFX: {fileID: 8300000, guid: 9558e0937eb969f44a773590b590089c, type: 3}
   Attack_SFX: {fileID: 8300000, guid: e066d5a99318b66488ba9d87b25a5177, type: 3}
   Fleeing_SFX: {fileID: 8300000, guid: 1041820eb4668124d8c9ddf661254068, type: 3}
   EnemySpotted_SFX: {fileID: 8300000, guid: 27ef3be67b506aa4fb1157bb3cebdf27, type: 3}
