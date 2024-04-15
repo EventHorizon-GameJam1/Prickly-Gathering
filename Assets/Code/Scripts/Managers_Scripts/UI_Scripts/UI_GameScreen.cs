@@ -32,6 +32,11 @@ public class UI_GameScreen : UI_Screen
         TimerImageFinalRotation = Quaternion.Euler(FinalRotation);
     }
 
+    private void FixedUpdate()
+    {
+        Debug.Log(Player.transform.gameObject.name);
+    }
+
     private void UpdatePlayer_HP()
     {
         if (Player == null)
@@ -105,6 +110,7 @@ public class UI_GameScreen : UI_Screen
         GameManager.OnNewDay += StartTimer;
         PlayerController.OnHPChanged += UpdatePlayer_HP;
         PlayerController.OnStaminaChanged += UpdatePlayer_Stamina;
+        StartTimer();
     }
 
     private void OnDisable()
@@ -114,7 +120,6 @@ public class UI_GameScreen : UI_Screen
         GameManager.OnNewDay -= StartTimer;
         PlayerController.OnHPChanged -= UpdatePlayer_HP;
         PlayerController.OnStaminaChanged -= UpdatePlayer_Stamina;
-
 
         if (TimerCoroutine != null)
             StopCoroutine(TimerCoroutine);
